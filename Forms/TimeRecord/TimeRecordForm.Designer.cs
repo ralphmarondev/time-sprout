@@ -35,10 +35,10 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tbDayOfWeek = new System.Windows.Forms.TextBox();
             this.tbProjects = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.employeesPanel = new System.Windows.Forms.Panel();
-            this.tbDayOfWeek = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.employeesPanel.SuspendLayout();
@@ -47,7 +47,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(191, 110);
+            this.label1.Location = new System.Drawing.Point(309, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(431, 112);
             this.label1.TabIndex = 0;
@@ -124,6 +124,17 @@
             this.panel2.Size = new System.Drawing.Size(800, 90);
             this.panel2.TabIndex = 3;
             // 
+            // tbDayOfWeek
+            // 
+            this.tbDayOfWeek.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDayOfWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
+            this.tbDayOfWeek.Location = new System.Drawing.Point(12, 45);
+            this.tbDayOfWeek.Name = "tbDayOfWeek";
+            this.tbDayOfWeek.ReadOnly = true;
+            this.tbDayOfWeek.Size = new System.Drawing.Size(200, 30);
+            this.tbDayOfWeek.TabIndex = 3;
+            this.tbDayOfWeek.Text = "MONDAY";
+            // 
             // tbProjects
             // 
             this.tbProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -155,19 +166,9 @@
             this.employeesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employeesPanel.Location = new System.Drawing.Point(0, 155);
             this.employeesPanel.Name = "employeesPanel";
+            this.employeesPanel.Padding = new System.Windows.Forms.Padding(10);
             this.employeesPanel.Size = new System.Drawing.Size(800, 295);
             this.employeesPanel.TabIndex = 4;
-            // 
-            // tbDayOfWeek
-            // 
-            this.tbDayOfWeek.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDayOfWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.tbDayOfWeek.Location = new System.Drawing.Point(12, 45);
-            this.tbDayOfWeek.Name = "tbDayOfWeek";
-            this.tbDayOfWeek.ReadOnly = true;
-            this.tbDayOfWeek.Size = new System.Drawing.Size(200, 30);
-            this.tbDayOfWeek.TabIndex = 3;
-            this.tbDayOfWeek.Text = "MONDAY";
             // 
             // TimeRecordForm
             // 

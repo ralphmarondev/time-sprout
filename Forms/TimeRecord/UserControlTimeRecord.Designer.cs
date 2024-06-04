@@ -28,194 +28,234 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblRecordDate = new System.Windows.Forms.Label();
+            this.btnTimeOut = new System.Windows.Forms.Button();
+            this.btnTimeIn = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.lblOtTimeOut = new System.Windows.Forms.Label();
+            this.lblOtTimeIn = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblPmTimeOut = new System.Windows.Forms.Label();
+            this.lblPmTimeIn = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblAmTimeOut = new System.Windows.Forms.Label();
+            this.lblAmTimeIn = new System.Windows.Forms.Label();
+            this.lblCurrProject = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // panel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "20240604-001";
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
+            this.panel1.Controls.Add(this.lblRecordDate);
+            this.panel1.Controls.Add(this.btnTimeOut);
+            this.panel1.Controls.Add(this.btnTimeIn);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.lblOtTimeOut);
+            this.panel1.Controls.Add(this.lblOtTimeIn);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.lblPmTimeOut);
+            this.panel1.Controls.Add(this.lblPmTimeIn);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.lblAmTimeOut);
+            this.panel1.Controls.Add(this.lblAmTimeIn);
+            this.panel1.Controls.Add(this.lblCurrProject);
+            this.panel1.Controls.Add(this.lblName);
+            this.panel1.Controls.Add(this.lblID);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(711, 96);
+            this.panel1.TabIndex = 0;
             // 
-            // label2
+            // lblRecordDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Ralph Maron Eda";
+            this.lblRecordDate.AutoSize = true;
+            this.lblRecordDate.Font = new System.Drawing.Font("Courier New", 4F);
+            this.lblRecordDate.Location = new System.Drawing.Point(166, 21);
+            this.lblRecordDate.Name = "lblRecordDate";
+            this.lblRecordDate.Size = new System.Drawing.Size(92, 8);
+            this.lblRecordDate.TabIndex = 29;
+            this.lblRecordDate.Text = "RecordDate [Invisible]";
+            this.lblRecordDate.Visible = false;
             // 
-            // label3
+            // btnTimeOut
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Courier New", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 80);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "EARTH 2.0";
+            this.btnTimeOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTimeOut.Location = new System.Drawing.Point(596, 57);
+            this.btnTimeOut.Name = "btnTimeOut";
+            this.btnTimeOut.Size = new System.Drawing.Size(106, 36);
+            this.btnTimeOut.TabIndex = 28;
+            this.btnTimeOut.Text = "OUT";
+            this.btnTimeOut.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // btnTimeIn
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(258, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 22);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "8:00";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(258, 59);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 22);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "12:00";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(258, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 22);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "AM";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(367, 14);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 22);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "PM";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(367, 59);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 22);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "5:00";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(367, 37);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 22);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "1:00";
+            this.btnTimeIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTimeIn.Location = new System.Drawing.Point(596, 12);
+            this.btnTimeIn.Name = "btnTimeIn";
+            this.btnTimeIn.Size = new System.Drawing.Size(106, 36);
+            this.btnTimeIn.TabIndex = 27;
+            this.btnTimeIn.Text = "IN";
+            this.btnTimeIn.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(470, 14);
+            this.label10.Location = new System.Drawing.Point(476, 12);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(34, 22);
-            this.label10.TabIndex = 11;
+            this.label10.TabIndex = 26;
             this.label10.Text = "OT";
             // 
-            // label11
+            // lblOtTimeOut
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(470, 59);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 22);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "23:00";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOtTimeOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOtTimeOut.AutoSize = true;
+            this.lblOtTimeOut.Location = new System.Drawing.Point(476, 57);
+            this.lblOtTimeOut.Name = "lblOtTimeOut";
+            this.lblOtTimeOut.Size = new System.Drawing.Size(70, 22);
+            this.lblOtTimeOut.TabIndex = 25;
+            this.lblOtTimeOut.Text = "23:00";
+            this.lblOtTimeOut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label12
+            // lblOtTimeIn
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(470, 37);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 22);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "6:00";
+            this.lblOtTimeIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOtTimeIn.AutoSize = true;
+            this.lblOtTimeIn.Location = new System.Drawing.Point(476, 35);
+            this.lblOtTimeIn.Name = "lblOtTimeIn";
+            this.lblOtTimeIn.Size = new System.Drawing.Size(58, 22);
+            this.lblOtTimeIn.TabIndex = 24;
+            this.lblOtTimeIn.Text = "6:00";
             // 
-            // button1
+            // label7
             // 
-            this.button1.Location = new System.Drawing.Point(590, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 36);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "EDIT";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(373, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 22);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "PM";
             // 
-            // button2
+            // lblPmTimeOut
             // 
-            this.button2.Location = new System.Drawing.Point(590, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 36);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "DELETE";
-            this.button2.UseVisualStyleBackColor = true;
+            this.lblPmTimeOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPmTimeOut.AutoSize = true;
+            this.lblPmTimeOut.Location = new System.Drawing.Point(373, 57);
+            this.lblPmTimeOut.Name = "lblPmTimeOut";
+            this.lblPmTimeOut.Size = new System.Drawing.Size(58, 22);
+            this.lblPmTimeOut.TabIndex = 22;
+            this.lblPmTimeOut.Text = "5:00";
+            // 
+            // lblPmTimeIn
+            // 
+            this.lblPmTimeIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPmTimeIn.AutoSize = true;
+            this.lblPmTimeIn.Location = new System.Drawing.Point(373, 35);
+            this.lblPmTimeIn.Name = "lblPmTimeIn";
+            this.lblPmTimeIn.Size = new System.Drawing.Size(58, 22);
+            this.lblPmTimeIn.TabIndex = 21;
+            this.lblPmTimeIn.Text = "1:00";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(264, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 22);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "AM";
+            // 
+            // lblAmTimeOut
+            // 
+            this.lblAmTimeOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAmTimeOut.AutoSize = true;
+            this.lblAmTimeOut.Location = new System.Drawing.Point(264, 57);
+            this.lblAmTimeOut.Name = "lblAmTimeOut";
+            this.lblAmTimeOut.Size = new System.Drawing.Size(70, 22);
+            this.lblAmTimeOut.TabIndex = 19;
+            this.lblAmTimeOut.Text = "12:00";
+            // 
+            // lblAmTimeIn
+            // 
+            this.lblAmTimeIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAmTimeIn.AutoSize = true;
+            this.lblAmTimeIn.Location = new System.Drawing.Point(264, 35);
+            this.lblAmTimeIn.Name = "lblAmTimeIn";
+            this.lblAmTimeIn.Size = new System.Drawing.Size(58, 22);
+            this.lblAmTimeIn.TabIndex = 18;
+            this.lblAmTimeIn.Text = "8:00";
+            // 
+            // lblCurrProject
+            // 
+            this.lblCurrProject.AutoSize = true;
+            this.lblCurrProject.Font = new System.Drawing.Font("Courier New", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrProject.Location = new System.Drawing.Point(9, 66);
+            this.lblCurrProject.Name = "lblCurrProject";
+            this.lblCurrProject.Size = new System.Drawing.Size(108, 20);
+            this.lblCurrProject.TabIndex = 17;
+            this.lblCurrProject.Text = "EARTH 2.0";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(9, 38);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(190, 23);
+            this.lblName.TabIndex = 16;
+            this.lblName.Text = "Ralph Maron Eda";
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblID.Location = new System.Drawing.Point(9, 12);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(129, 20);
+            this.lblID.TabIndex = 15;
+            this.lblID.Text = "20240604-001";
             // 
             // UserControlTimeRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControlTimeRecord";
             this.Size = new System.Drawing.Size(717, 102);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblRecordDate;
+        private System.Windows.Forms.Button btnTimeOut;
+        private System.Windows.Forms.Button btnTimeIn;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblOtTimeOut;
+        private System.Windows.Forms.Label lblOtTimeIn;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblPmTimeOut;
+        private System.Windows.Forms.Label lblPmTimeIn;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblAmTimeOut;
+        private System.Windows.Forms.Label lblAmTimeIn;
+        private System.Windows.Forms.Label lblCurrProject;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblID;
     }
 }
