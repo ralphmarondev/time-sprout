@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using TimeSprout.Core.DB;
 
 namespace TimeSprout
 {
@@ -13,6 +14,10 @@ namespace TimeSprout
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // initializing database
+            DBConfig.InitializeDatabase();
+
             Application.Run(new AuthForm());
         }
     }

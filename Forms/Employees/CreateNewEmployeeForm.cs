@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using TimeSprout.Core.DB;
 
 namespace TimeSprout.Forms.Employees
 {
@@ -30,6 +31,7 @@ namespace TimeSprout.Forms.Employees
 
             Console.WriteLine($"Saving to db... ID: [{id}], name: [{name}], password: [{password}], currentProject: [{currentProject}].");
             // update_data_in_db();
+            DBEmployee.CreateNewEmployee(id, name, password, currentProject);
         }
     }
 }
