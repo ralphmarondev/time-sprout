@@ -44,6 +44,7 @@ namespace TimeSprout
         {
             Console.WriteLine($"Username: {tbUsername.Text}, Status: {tbStatus.Text}, Password: {tbPassword.Text}");
 
+            Hide();
             MainForm mainForm = new MainForm();
             mainForm.ShowDialog();
         }

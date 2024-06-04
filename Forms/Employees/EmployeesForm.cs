@@ -59,5 +59,10 @@ namespace TimeSprout.Forms.Employees
 
             createNewEmployeeForm.ShowDialog(this);
         }
+
+        private void btnSearch_Click(object sender, System.EventArgs e)
+        {
+            MessageBox.Show("Searching for: '" + tbUserID.Text + "'");
+        }
     }
 }

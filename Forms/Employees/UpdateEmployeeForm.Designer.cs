@@ -135,6 +135,7 @@
             this.tbId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
             this.tbId.Location = new System.Drawing.Point(38, 44);
             this.tbId.Name = "tbId";
+            this.tbId.ReadOnly = true;
             this.tbId.Size = new System.Drawing.Size(228, 30);
             this.tbId.TabIndex = 1;
             // 
@@ -156,6 +157,7 @@
             this.Controls.Add(this.employeeFieldsPanel);
             this.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UpdateEmployeeForm";
+            this.ShowInTaskbar = false;
             this.Text = "UpdateEmployeeForm";
             this.employeeFieldsPanel.ResumeLayout(false);
             this.employeeFieldsPanel.PerformLayout();

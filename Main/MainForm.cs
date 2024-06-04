@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Forms.Employees;
+using TimeSprout.Forms.TimeRecord;
 
 namespace TimeSprout
 {
@@ -71,6 +72,23 @@ namespace TimeSprout
 
             // update the label with the current for subititle
             lblDestination.Text = $"{formTitle}";
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new TimeRecordForm(), "Time Record");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new EmployeesForm(), "Employees");
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Close();
+            AuthForm authForm = new AuthForm();
+            authForm.Show();
         }
     }
 }
