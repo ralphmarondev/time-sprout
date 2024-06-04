@@ -21,5 +21,18 @@ namespace TimeSprout.Forms.Employees
             lblName.Text = name;
             lblCurrentProject.Text = currentProject;
         }
+
+        private void btnUpdate_Click(object sender, System.EventArgs e)
+        {
+            var createNewEmployeeForm = new UpdateEmployeeForm(
+                id: lblID.Text,
+                name: lblName.Text,
+                currentProject: lblCurrentProject.Text,
+                password: "password_is_hidden");
+
+            createNewEmployeeForm.StartPosition = FormStartPosition.CenterScreen;
+
+            createNewEmployeeForm.ShowDialog(this);
+        }
     }
 }
