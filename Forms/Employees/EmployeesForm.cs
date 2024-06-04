@@ -14,7 +14,12 @@ namespace TimeSprout.Forms.Employees
             populatePanelWithEmployees();
         }
 
-        void populatePanelWithEmployees()
+        private void ReadAllDataFromDB()
+        {
+            // TODO: implement this
+        }
+
+        private void populatePanelWithEmployees()
         {
             employees.Clear();
             employees.Add(new EmployeeDataClass(
@@ -29,6 +34,7 @@ namespace TimeSprout.Forms.Employees
                 password: "IsAlsoCute",
                 currentProject: "Earth 2.1")
                 );
+            ReadAllDataFromDB();
 
             List<UserControlEmployee> userControls = new List<UserControlEmployee>();
 

@@ -2,6 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Forms.Employees;
+using TimeSprout.Forms.Export;
+using TimeSprout.Forms.Project;
+using TimeSprout.Forms.Records;
 using TimeSprout.Forms.TimeRecord;
 
 namespace TimeSprout
@@ -89,6 +92,21 @@ namespace TimeSprout
             Close();
             AuthForm authForm = new AuthForm();
             authForm.Show();
+        }
+
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new ProjectForm(), "Projects");
+        }
+
+        private void btnRecords_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new RecordsForm(), "Records");
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new ExportForm(), "Export");
         }
     }
 }

@@ -163,6 +163,7 @@
             this.btnExport.TabIndex = 4;
             this.btnExport.Text = "EXPORT";
             this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnRecords
             // 
@@ -176,6 +177,7 @@
             this.btnRecords.TabIndex = 3;
             this.btnRecords.Text = "RECORDS";
             this.btnRecords.UseVisualStyleBackColor = false;
+            this.btnRecords.Click += new System.EventHandler(this.btnRecords_Click);
             // 
             // btnEmployees
             // 
@@ -203,6 +205,7 @@
             this.btnProjects.TabIndex = 1;
             this.btnProjects.Text = "PROJECT";
             this.btnProjects.UseVisualStyleBackColor = false;
+            this.btnProjects.Click += new System.EventHandler(this.btnProjects_Click);
             // 
             // btnDashboard
             // 
