@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TimeSprout.Forms.TimeRecord
@@ -15,6 +8,22 @@ namespace TimeSprout.Forms.TimeRecord
         public TimeRecordForm()
         {
             InitializeComponent();
+            SetTextBoxDateOfWeek();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, System.EventArgs e)
+        {
+            // Get the selected date from the DateTimePicker
+            DateTime selectedDate = dateTimePicker1.Value;
+
+            // Update the textbox with the day of the week
+            tbDayOfWeek.Text = selectedDate.ToString("dddd");
+        }
+
+        private void SetTextBoxDateOfWeek()
+        {
+            DateTime selectedDate = dateTimePicker1.Value;
+            tbDayOfWeek.Text = selectedDate.ToString("dddd");
         }
     }
 }
