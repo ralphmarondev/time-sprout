@@ -52,6 +52,10 @@
     <Compile Include="Auth\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\DB\DBConfig.cs" />
+    <Compile Include="Core\DB\DatabaseHandler.cs" />
+    <Compile Include="Core\DB\Employee.cs" />
+    <Compile Include="Core\DB\Users.cs" />
     <Compile Include="Core\Utils\ColorPalette.cs" />
     <Compile Include="Forms\Employees\CreateNewEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -156,7 +160,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\DB\" />
     <Folder Include="Forms\Export\" />
     <Folder Include="Forms\Records\" />
   </ItemGroup>

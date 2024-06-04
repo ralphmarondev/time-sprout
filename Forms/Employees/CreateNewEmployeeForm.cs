@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TimeSprout.Forms.Employees
@@ -15,6 +8,28 @@ namespace TimeSprout.Forms.Employees
         public CreateNewEmployeeForm()
         {
             InitializeComponent();
+        }
+
+        public CreateNewEmployeeForm(
+            string id, string name, string password, string currentProject)
+        {
+            InitializeComponent();
+
+            tbId.Text = id;
+            tbName.Text = name;
+            tbPassword.Text = password;
+            tbCurrentProject.Text = currentProject;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string id = tbId.Text;
+            string name = tbName.Text;
+            string password = tbPassword.Text;
+            string currentProject = tbCurrentProject.Text;
+
+            Console.WriteLine($"Saving to db... ID: [{id}], name: [{name}], password: [{password}], currentProject: [{currentProject}].");
+            // update_data_in_db();
         }
     }
 }
