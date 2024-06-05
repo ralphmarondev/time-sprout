@@ -65,7 +65,7 @@
             this.tbCurrentProject.Location = new System.Drawing.Point(38, 236);
             this.tbCurrentProject.Name = "tbCurrentProject";
             this.tbCurrentProject.Size = new System.Drawing.Size(228, 30);
-            this.tbCurrentProject.TabIndex = 7;
+            this.tbCurrentProject.TabIndex = 3;
             // 
             // label1
             // 
@@ -84,7 +84,7 @@
             this.tbPassword.Location = new System.Drawing.Point(38, 171);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(228, 30);
-            this.tbPassword.TabIndex = 6;
+            this.tbPassword.TabIndex = 2;
             // 
             // label3
             // 
@@ -115,10 +115,11 @@
             // 
             this.tbName.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
+            this.tbName.HideSelection = false;
             this.tbName.Location = new System.Drawing.Point(38, 106);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(228, 30);
-            this.tbName.TabIndex = 3;
+            this.tbName.TabIndex = 1;
             // 
             // label4
             // 
@@ -138,7 +139,8 @@
             this.tbId.Name = "tbId";
             this.tbId.ReadOnly = true;
             this.tbId.Size = new System.Drawing.Size(228, 30);
-            this.tbId.TabIndex = 1;
+            this.tbId.TabIndex = 20000;
+            this.tbId.TabStop = false;
             // 
             // label2
             // 

@@ -93,7 +93,7 @@ namespace TimeSprout.Core.DB
             }
         }
 
-        public static void DeleteEmployee(int id)
+        public static void DeleteEmployee(string id)
         {
             try
             {
