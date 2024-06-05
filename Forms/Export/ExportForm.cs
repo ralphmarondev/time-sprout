@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimeSprout.Core.EXCEL;
 
 namespace TimeSprout.Forms.Export
 {
@@ -15,6 +9,16 @@ namespace TimeSprout.Forms.Export
         public ExportForm()
         {
             InitializeComponent();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            //var tableName = tbDate.Text;
+            //tableName = "users"; // exporting the content of users
+            //DatabaseToExcel.DatabaseToExcelExporter(tableName: tableName);
+
+            // Exporting all tables to excel
+            DatabaseToExcel.DatabaseToExcelExporter_AllTables();
         }
     }
 }
