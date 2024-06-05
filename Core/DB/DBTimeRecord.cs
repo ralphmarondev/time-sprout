@@ -5,12 +5,12 @@ namespace TimeSprout.Core.DB
 {
     internal class DBTimeRecord
     {
-        public static void InitializeTimeRecordTable()
+        public static void InitializeTimeRecordTable(string tableName)
         {
             // create new table ex: record_20240604
             // insert: id, empName, currentProject, am-in, am-out, pm-in, pm-out, ot-in, ot-out
-            var currentDate = "20240604";
-            var tableName = $"record_{currentDate}";
+            //var currentDate = "20240604";
+            //var tableName = $"record_{currentDate}";
             try
             {
                 Console.WriteLine("Initializing time-record table...");
@@ -34,18 +34,35 @@ namespace TimeSprout.Core.DB
             }
         }
 
-        public static void CreateTimeRecord(string id, string name, string currentProject, string amIn, string amOut, string pmIn, string pmOut, string otIn, string otOut)
+        public static void CreateTimeRecord(string currentDate, string id, string name, string currentProject, string amIn, string amOut, string pmIn, string pmOut, string otIn, string otOut)
         {
+            var tableName = $"record_{currentDate}";
             try
             {
-                InitializeTimeRecordTable();
+                InitializeTimeRecordTable(tableName);
 
                 Console.WriteLine("Creating new time record...");
                 using (var connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
 
-                    string createTimeRecordQuery = @"INSERT INTO";
+                    string createTimeRecordQuery = $@"INSERT INTO {tableName} (id, name, currentProject, amIn, amOut, pmIn, pmOut, otIn, otOut) VALUES 
+                                (@id, @name, @currentProject, @amIn, @amOut, @pmIn, @pmOut, @otIn, @otOut)";
+                    using (var command = new SQLiteCommand(createTimeRecordQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@name", name);
+                        command.Parameters.AddWithValue("@currentProject", currentProject);
+                        command.Parameters.AddWithValue("@amIn", amIn);
+                        command.Parameters.AddWithValue("@amOut", amOut);
+                        command.Parameters.AddWithValue("@pmIn", pmIn);
+                        command.Parameters.AddWithValue("@pmOut", pmOut);
+                        command.Parameters.AddWithValue("@otIn", otIn);
+                        command.Parameters.AddWithValue("@otOut", otOut);
+
+                        command.ExecuteNonQuery();
+                    }
+                    Console.WriteLine($"Time record for '{currentDate}' created successfully.");
                 }
 
             }
