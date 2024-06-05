@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using TimeSprout.Core.DB;
+﻿using System;
+using System.Windows.Forms;
 
 namespace TimeSprout.Forms.Employees
 {
@@ -23,6 +23,8 @@ namespace TimeSprout.Forms.Employees
             lblCurrentProject.Text = currentProject;
         }
 
+        public EventHandler UpdatedClicked;
+        public EventHandler DeleteClicked;
         private void btnUpdate_Click(object sender, System.EventArgs e)
         {
             var createNewEmployeeForm = new UpdateEmployeeForm(
@@ -33,12 +35,30 @@ namespace TimeSprout.Forms.Employees
 
             createNewEmployeeForm.StartPosition = FormStartPosition.CenterScreen;
 
+            // subscribe to the form closed event of the update form
+            createNewEmployeeForm.FormClosed += UpdateEmployeeForm_FormClosed;
+
             createNewEmployeeForm.ShowDialog(this);
+        }
+
+        private void UpdateEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UpdatedClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnDelete_Click(object sender, System.EventArgs e)
         {
-            DBEmployee.DeleteEmployee(lblID.Text);
+            var deleteEmployeeForm = new DeleteEmployeeForm(lblID.Text);
+
+            deleteEmployeeForm.StartPosition = FormStartPosition.CenterScreen;
+
+            deleteEmployeeForm.FormClosed += DeleteEmployeeForm_FormClosed;
+            deleteEmployeeForm.ShowDialog(this);
+        }
+
+        private void DeleteEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DeleteClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

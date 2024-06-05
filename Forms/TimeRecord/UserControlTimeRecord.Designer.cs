@@ -30,8 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblRecordDate = new System.Windows.Forms.Label();
-            this.btnTimeOut = new System.Windows.Forms.Button();
-            this.btnTimeIn = new System.Windows.Forms.Button();
+            this.btnAction = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.lblOtTimeOut = new System.Windows.Forms.Label();
             this.lblOtTimeIn = new System.Windows.Forms.Label();
@@ -53,8 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.panel1.Controls.Add(this.lblRecordDate);
-            this.panel1.Controls.Add(this.btnTimeOut);
-            this.panel1.Controls.Add(this.btnTimeIn);
+            this.panel1.Controls.Add(this.btnAction);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.lblOtTimeOut);
             this.panel1.Controls.Add(this.lblOtTimeIn);
@@ -83,25 +81,16 @@
             this.lblRecordDate.Text = "RecordDate [Invisible]";
             this.lblRecordDate.Visible = false;
             // 
-            // btnTimeOut
+            // btnAction
             // 
-            this.btnTimeOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimeOut.Location = new System.Drawing.Point(596, 57);
-            this.btnTimeOut.Name = "btnTimeOut";
-            this.btnTimeOut.Size = new System.Drawing.Size(106, 36);
-            this.btnTimeOut.TabIndex = 28;
-            this.btnTimeOut.Text = "OUT";
-            this.btnTimeOut.UseVisualStyleBackColor = true;
-            // 
-            // btnTimeIn
-            // 
-            this.btnTimeIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimeIn.Location = new System.Drawing.Point(596, 12);
-            this.btnTimeIn.Name = "btnTimeIn";
-            this.btnTimeIn.Size = new System.Drawing.Size(106, 36);
-            this.btnTimeIn.TabIndex = 27;
-            this.btnTimeIn.Text = "IN";
-            this.btnTimeIn.UseVisualStyleBackColor = true;
+            this.btnAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAction.Location = new System.Drawing.Point(592, 31);
+            this.btnAction.Name = "btnAction";
+            this.btnAction.Size = new System.Drawing.Size(106, 36);
+            this.btnAction.TabIndex = 27;
+            this.btnAction.Text = "ACTION";
+            this.btnAction.UseVisualStyleBackColor = true;
+            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
             // label10
             // 
@@ -243,8 +232,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblRecordDate;
-        private System.Windows.Forms.Button btnTimeOut;
-        private System.Windows.Forms.Button btnTimeIn;
+        private System.Windows.Forms.Button btnAction;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblOtTimeOut;
         private System.Windows.Forms.Label lblOtTimeIn;

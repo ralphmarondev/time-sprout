@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using TimeSprout.Core.DB;
 using TimeSprout.Forms.Employees.Model;
@@ -38,7 +39,10 @@ namespace TimeSprout.Forms.Employees
             {
                 userControl.Dock = DockStyle.Top;
                 userControl.Width = int.MaxValue; // fillMaxWidth()
-                //userControl.BackColor = ColorPalette.AccentLavender;
+                                                  //userControl.BackColor = ColorPalette.AccentLavender;
+
+                userControl.UpdatedClicked += UserControl_UpdateClicked;
+                userControl.DeleteClicked += UserControl_DeleteClicked;
 
                 employeesPanel.Controls.Add(userControl);
             }
@@ -64,5 +68,18 @@ namespace TimeSprout.Forms.Employees
         {
             MessageBox.Show("Searching for: '" + tbUserID.Text + "'");
         }
+
+        #region UPDATE_DELETE
+        private void UserControl_UpdateClicked(object sender, EventArgs e)
+        {
+            populatePanelWithEmployees();
+        }
+
+        private void UserControl_DeleteClicked(object sender, EventArgs e)
+        {
+            populatePanelWithEmployees();
+        }
+
+        #endregion UPDATE_DELETE
     }
 }

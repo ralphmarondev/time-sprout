@@ -76,6 +76,10 @@ namespace TimeSprout.Forms.TimeRecord
                     otTimeIn: employee.AmTimeOut,
                     otTimeOut: employee.AmTimeOut
                     );
+
+                // adding click event on the usercontrol
+                userControl.ButtonClicked += UserControl_ButtonClicked;
+
                 userControls.Add(userControl);
             }
 
@@ -87,7 +91,29 @@ namespace TimeSprout.Forms.TimeRecord
 
                 employeesPanel.Controls.Add(userControl);
             }
+        }
 
+        private void UserControl_ButtonClicked(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+
+            // open the child form
+            var childForm = new MyDialog();
+            childForm.StartPosition = FormStartPosition.CenterParent;
+            childForm.FormClosed += ChildForm_FormClosed;
+            childForm.ShowDialog(this);
+
+            this.Enabled = true;
+
+            // refresh list
+            populatePanelWithEmployees();
+        }
+
+        private void ChildForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // refresh the list
+            Console.WriteLine("Refresing list...");
+            populatePanelWithEmployees();
         }
 
     }

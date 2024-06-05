@@ -162,6 +162,7 @@
             // 
             // employeesPanel
             // 
+            this.employeesPanel.AutoScroll = true;
             this.employeesPanel.Controls.Add(this.label1);
             this.employeesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employeesPanel.Location = new System.Drawing.Point(0, 155);
