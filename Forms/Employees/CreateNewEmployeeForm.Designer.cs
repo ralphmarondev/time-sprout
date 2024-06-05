@@ -65,7 +65,7 @@
             this.tbCurrentProject.Location = new System.Drawing.Point(38, 236);
             this.tbCurrentProject.Name = "tbCurrentProject";
             this.tbCurrentProject.Size = new System.Drawing.Size(228, 30);
-            this.tbCurrentProject.TabIndex = 7;
+            this.tbCurrentProject.TabIndex = 4;
             // 
             // label1
             // 
@@ -84,7 +84,7 @@
             this.tbPassword.Location = new System.Drawing.Point(38, 171);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(228, 30);
-            this.tbPassword.TabIndex = 6;
+            this.tbPassword.TabIndex = 3;
             // 
             // label3
             // 
@@ -106,7 +106,7 @@
             this.btnSave.Location = new System.Drawing.Point(38, 291);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(134, 41);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -118,7 +118,7 @@
             this.tbName.Location = new System.Drawing.Point(38, 106);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(228, 30);
-            this.tbName.TabIndex = 3;
+            this.tbName.TabIndex = 2;
             // 
             // label4
             // 
