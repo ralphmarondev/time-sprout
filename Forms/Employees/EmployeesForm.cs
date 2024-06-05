@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using TimeSprout.Core.DB;
 using TimeSprout.Forms.Employees.Model;
 
 namespace TimeSprout.Forms.Employees
@@ -14,26 +15,21 @@ namespace TimeSprout.Forms.Employees
             populatePanelWithEmployees();
         }
 
+
+        private void EmployeesForm_Load(object sender, System.EventArgs e)
+        {
+            populatePanelWithEmployees();
+        }
+
         private void ReadAllDataFromDB()
         {
             // TODO: implement this
+            employees.Clear();
+            employees = DBEmployee.FetchEmployees();
         }
 
         private void populatePanelWithEmployees()
         {
-            employees.Clear();
-            employees.Add(new EmployeeDataClass(
-                id: "20240604-001",
-                name: "Ralph Maron Eda",
-                password: "IsCute",
-                currentProject: "Earth 2.0")
-                );
-            employees.Add(new EmployeeDataClass(
-                id: "20240604-002",
-                name: "Jackie Ferreras",
-                password: "IsAlsoCute",
-                currentProject: "Earth 2.1")
-                );
             ReadAllDataFromDB();
 
             List<UserControlEmployee> userControls = new List<UserControlEmployee>();
@@ -59,11 +55,15 @@ namespace TimeSprout.Forms.Employees
         {
             // showing form on the center of the parent form, and disallowing
             // access to the parent form until closed.
-            var createNewEmployeeForm = new CreateNewEmployeeForm();
-
+            CreateNewEmployeeForm createNewEmployeeForm = new CreateNewEmployeeForm();
             createNewEmployeeForm.StartPosition = FormStartPosition.CenterScreen;
-
+            createNewEmployeeForm.FormClosed += CreateNewEmployeeForm_FormClosed;
             createNewEmployeeForm.ShowDialog(this);
+        }
+
+        private void CreateNewEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            populatePanelWithEmployees();
         }
 
         private void btnSearch_Click(object sender, System.EventArgs e)

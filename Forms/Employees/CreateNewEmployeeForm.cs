@@ -6,6 +6,9 @@ namespace TimeSprout.Forms.Employees
 {
     public partial class CreateNewEmployeeForm : Form
     {
+        // custom event
+        public event EventHandler DataSaved;
+
         public CreateNewEmployeeForm()
         {
             InitializeComponent();
@@ -32,6 +35,7 @@ namespace TimeSprout.Forms.Employees
             Console.WriteLine($"Saving to db... ID: [{id}], name: [{name}], password: [{password}], currentProject: [{currentProject}].");
             // update_data_in_db();
             DBEmployee.CreateNewEmployee(id, name, password, currentProject);
+            Close();
         }
     }
 }

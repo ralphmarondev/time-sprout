@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
+using TimeSprout.Forms.Employees.Model;
 
 namespace TimeSprout.Core.DB
 {
@@ -117,8 +119,10 @@ namespace TimeSprout.Core.DB
             }
         }
 
-        public static void FetchEmployees()
+        public static List<EmployeeDataClass> FetchEmployees()
         {
+            List<EmployeeDataClass> employees = new List<EmployeeDataClass>();
+
             try
             {
                 InitializeEmployeeTable();
@@ -128,26 +132,31 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string fetchQuery = "SELECT * FROM employees";
+                    string fetchQuery = "SELECT id, name, password, currentProject FROM employees";
                     using (var command = new SQLiteCommand(fetchQuery, connection))
                     {
                         using (var reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                string id = reader.GetString(0);
-                                string name = reader.GetString(1);
-                                string password = reader.GetString(2);
-                                string currentProject = reader.GetString(3);
-                                Console.WriteLine($"id: {id}, name: {name}, password: {password}, currentProject: {currentProject}");
+                                EmployeeDataClass employee = new EmployeeDataClass
+                                {
+                                    ID = reader["id"].ToString(),
+                                    Name = reader["name"].ToString(),
+                                    Password = reader["password"].ToString(),
+                                    CurrentProject = reader["currentProject"].ToString()
+                                };
+                                employees.Add(employee);
                             }
                         }
                     }
+                    return employees;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+                return employees;
             }
         }
 

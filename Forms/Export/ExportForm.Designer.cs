@@ -34,6 +34,7 @@
             this.tbDate = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,11 +42,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Courier New", 16.2F);
-            this.label1.Location = new System.Drawing.Point(191, 206);
+            this.label1.Location = new System.Drawing.Point(79, 202);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(405, 31);
+            this.label1.Size = new System.Drawing.Size(643, 93);
             this.label1.TabIndex = 0;
-            this.label1.Text = "EXPORT FROM DB TO EXCEL";
+            this.label1.Text = "CLICK \'EXPORT\' TO EXPORT ALL THE DATA\r\nIN THE ALL TABLES TO EXCELL WITH \r\nDIFFERE" +
+    "NT SHEETS\r\n";
             // 
             // panel1
             // 
@@ -103,11 +105,22 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "EXCEL FILE IS LOCATED ON /BIN/DEBUG/FILE.xlxs";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Courier New", 16.2F);
+            this.label4.Location = new System.Drawing.Point(191, 126);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(405, 31);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "EXPORT FROM DB TO EXCEL";
+            // 
             // ExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
@@ -129,5 +142,6 @@
         private System.Windows.Forms.TextBox tbDate;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }
