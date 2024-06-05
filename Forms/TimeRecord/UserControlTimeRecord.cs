@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace TimeSprout.Forms.TimeRecord
 {
@@ -33,6 +34,13 @@ namespace TimeSprout.Forms.TimeRecord
             lblPmTimeOut.Text = pmTimeOut;
             lblOtTimeIn.Text = otTimeIn;
             lblOtTimeOut.Text = otTimeOut;
+        }
+
+        // custom event handler
+        public event EventHandler ButtonClicked;
+        private void btnAction_Click(object sender, System.EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
