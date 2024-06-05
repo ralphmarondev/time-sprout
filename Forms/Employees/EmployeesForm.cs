@@ -15,15 +15,8 @@ namespace TimeSprout.Forms.Employees
             populatePanelWithEmployees();
         }
 
-
-        private void EmployeesForm_Load(object sender, System.EventArgs e)
-        {
-            populatePanelWithEmployees();
-        }
-
         private void ReadAllDataFromDB()
         {
-            // TODO: implement this
             employees.Clear();
             employees = DBEmployee.FetchEmployees();
         }
@@ -33,6 +26,7 @@ namespace TimeSprout.Forms.Employees
             ReadAllDataFromDB();
 
             List<UserControlEmployee> userControls = new List<UserControlEmployee>();
+            employeesPanel.Controls.Clear();
 
             foreach (var employee in employees)
             {

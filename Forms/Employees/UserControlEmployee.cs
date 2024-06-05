@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using TimeSprout.Core.DB;
 
 namespace TimeSprout.Forms.Employees
 {
@@ -33,6 +34,11 @@ namespace TimeSprout.Forms.Employees
             createNewEmployeeForm.StartPosition = FormStartPosition.CenterScreen;
 
             createNewEmployeeForm.ShowDialog(this);
+        }
+
+        private void btnDelete_Click(object sender, System.EventArgs e)
+        {
+            DBEmployee.DeleteEmployee(lblID.Text);
         }
     }
 }
