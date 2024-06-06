@@ -33,10 +33,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbUserID = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbDayOfWeek = new System.Windows.Forms.TextBox();
-            this.tbProjects = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.employeesPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -100,24 +99,24 @@
             this.btnSearch.Text = "SEARCH";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // btnSave
+            // btnNew
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(697, 45);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(91, 37);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "SAVE";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNew.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.Location = new System.Drawing.Point(697, 41);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(91, 37);
+            this.btnNew.TabIndex = 0;
+            this.btnNew.Text = "NEW";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.panel2.Controls.Add(this.tbDayOfWeek);
-            this.panel2.Controls.Add(this.tbProjects);
             this.panel2.Controls.Add(this.dateTimePicker1);
-            this.panel2.Controls.Add(this.btnSave);
+            this.panel2.Controls.Add(this.btnNew);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 65);
             this.panel2.Name = "panel2";
@@ -134,20 +133,6 @@
             this.tbDayOfWeek.Size = new System.Drawing.Size(200, 30);
             this.tbDayOfWeek.TabIndex = 3;
             this.tbDayOfWeek.Text = "MONDAY";
-            // 
-            // tbProjects
-            // 
-            this.tbProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbProjects.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbProjects.FormattingEnabled = true;
-            this.tbProjects.Items.AddRange(new object[] {
-            "Earth 2.0",
-            "Mars 1.0"});
-            this.tbProjects.Location = new System.Drawing.Point(588, 9);
-            this.tbProjects.Name = "tbProjects";
-            this.tbProjects.Size = new System.Drawing.Size(200, 30);
-            this.tbProjects.TabIndex = 1;
-            this.tbProjects.Text = "ALL-PROJECTS";
             // 
             // dateTimePicker1
             // 
@@ -199,9 +184,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbUserID;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox tbProjects;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Panel employeesPanel;
         private System.Windows.Forms.TextBox tbDayOfWeek;

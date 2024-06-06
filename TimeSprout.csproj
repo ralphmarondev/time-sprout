@@ -271,6 +271,9 @@
     <EmbeddedResource Include="Forms\Records\RecordsForm.resx">
       <DependentUpon>RecordsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TimeRecord\MyDialog.resx">
+      <DependentUpon>MyDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\TimeRecord\TimeRecordForm.resx">
       <DependentUpon>TimeRecordForm.cs</DependentUpon>
     </EmbeddedResource>
