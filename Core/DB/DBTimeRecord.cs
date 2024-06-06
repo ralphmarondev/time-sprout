@@ -74,6 +74,71 @@ namespace TimeSprout.Core.DB
             }
         }
 
+        public static bool IsEmployeeRecordExists(string currentDate, string id)
+        {
+            bool exists = false;
+
+            var tableName = $"record_{currentDate}";
+            try
+            {
+                InitializeTimeRecordTable(tableName);
+
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string countQuery = $"SELECT COUNT(*) FROM {tableName} WHERE id = @id";
+                    using (var command = new SQLiteCommand(countQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        long count = (long)command.ExecuteScalar();
+                        exists = count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return exists;
+        }
+
+        public static void UpdateEmployeeTimeRecord(string currentDate, string id, string amIn, string amOut, string pmIn, string pmOut, string otIn, string otOut)
+        {
+            var tableName = $"record_{currentDate}";
+            try
+            {
+                InitializeTimeRecordTable(tableName);
+
+                Console.WriteLine($"Updating time record for: [{tableName}]...");
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string updateTimeRecordQuery = $@"UPDATE {tableName} set amIn = @amIn, amOut = @amOut, pmIn = @pmIn, pmOut = @pmOut, otIn = @otIn, otOut = @otOut WHERE id = @id";
+                    using (var command = new SQLiteCommand(updateTimeRecordQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@amIn", amIn);
+                        command.Parameters.AddWithValue("@amOut", amOut);
+                        command.Parameters.AddWithValue("@pmIn", pmIn);
+                        command.Parameters.AddWithValue("@pmOut", pmOut);
+                        command.Parameters.AddWithValue("@otIn", otIn);
+                        command.Parameters.AddWithValue("@otOut", otOut);
+
+                        command.ExecuteNonQuery();
+                    }
+                    Console.WriteLine($"Time record for '{currentDate}' created successfully.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
         public static TimeRecordDataClass ReadEmployeeTimeRecord(string currentDate, string id)
         {
             try
@@ -142,32 +207,52 @@ namespace TimeSprout.Core.DB
             List<TimeRecordDataClass> timeRecords = new List<TimeRecordDataClass>();
             timeRecords.Clear();
 
-            timeRecords.Add(
-                new TimeRecordDataClass(
-                date: "2024-06-04",
-                id: "2024-01",
-                employeeName: "Ralph Maron Eda",
-                currentProject: "Earth 2.0",
-                amTimeIn: "8:10",
-                amTimeOut: "12:00",
-                pmTimeIn: "1:20",
-                pmTimeOut: "6:00",
-                otTimeIn: "7:30",
-                otTimeOut: "10:50")
-                );
-            timeRecords.Add(
-                new TimeRecordDataClass(
-                date: "2024-06-04",
-                id: "2024-02",
-                employeeName: "Jackie Ferreras",
-                currentProject: "Earth 2.1",
-                amTimeIn: "8:00",
-                amTimeOut: "12:00",
-                pmTimeIn: "1:00",
-                pmTimeOut: "6:00",
-                otTimeIn: "7:00",
-                otTimeOut: "10:00")
-                );
+            /* TODO:
+             * if table is empty, display something like: No record for today.
+             */
+            try
+            {
+                Console.WriteLine($"Reading time record for: {currentDate}");
+                var tableName = $"record_{currentDate}";
+                InitializeTimeRecordTable(tableName);
+
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string fetchQuery = $"SELECT id, name, currentProject, amIn, amOut, pmIn, pmOut, otIn, otOut FROM {tableName}";
+                    using (var command = new SQLiteCommand(fetchQuery, connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                TimeRecordDataClass record = new TimeRecordDataClass
+                                {
+                                    ID = reader["id"].ToString(),
+                                    EmployeeName = reader["name"].ToString(),
+                                    CurrentProject = reader["currentProject"].ToString(),
+                                    AmTimeIn = reader["amIn"].ToString(),
+                                    AmTimeOut = reader["amOut"].ToString(),
+                                    PmTimeIn = reader["pmIn"].ToString(),
+                                    PmTimeOut = reader["pmOut"].ToString(),
+                                    OtTimeIn = reader["otIn"].ToString(),
+                                    OtTimeOut = reader["otOut"].ToString()
+                                };
+                                timeRecords.Add(record);
+
+                                // printing values we've got
+                                Console.WriteLine($"id: {record.ID}, name: {record.EmployeeName}, currentProject: {record.CurrentProject}, amIn: {record.AmTimeIn}, amOut: {record.AmTimeOut}, pmIn: {record.PmTimeIn}, pmOut: {record.PmTimeOut}, otIn: {record.OtTimeIn}, otOut: {record.OtTimeOut}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
             return timeRecords;
         }
     }
