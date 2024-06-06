@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TimeSprout.Core.DB;
 using TimeSprout.Forms.TimeRecord.Model;
 
 namespace TimeSprout.Forms.TimeRecord
 {
     public partial class TimeRecordForm : Form
     {
+        private string currentDate = "";
         public TimeRecordForm()
         {
             InitializeComponent();
             SetTextBoxDateOfWeek();
             populatePanelWithEmployees();
+
+            // assigning current date
+            DateTime selectedDate = dateTimePicker1.Value;
+
+            currentDate = selectedDate.ToString("ddMMyyyy");
+            Console.WriteLine($"Current date: {currentDate}");
         }
 
         private void dateTimePicker1_ValueChanged(object sender, System.EventArgs e)
@@ -33,32 +41,9 @@ namespace TimeSprout.Forms.TimeRecord
         void populatePanelWithEmployees()
         {
             employees.Clear();
-            employees.Add(
-                new TimeRecordDataClass(
-                date: "2024-06-04",
-                id: "2024-01",
-                employeeName: "Ralph Maron Eda",
-                currentProject: "Earth 2.0",
-                amTimeIn: "8:10",
-                amTimeOut: "12:00",
-                pmTimeIn: "1:20",
-                pmTimeOut: "6:00",
-                otTimeIn: "7:30",
-                otTimeOut: "10:50")
-                );
-            employees.Add(
-                new TimeRecordDataClass(
-                date: "2024-06-04",
-                id: "2024-02",
-                employeeName: "Jackie Ferreras",
-                currentProject: "Earth 2.1",
-                amTimeIn: "8:00",
-                amTimeOut: "12:00",
-                pmTimeIn: "1:00",
-                pmTimeOut: "6:00",
-                otTimeIn: "7:00",
-                otTimeOut: "10:00")
-                );
+            employeesPanel.Controls.Clear();
+            // Read from database]
+            employees = DBTimeRecord.FetchAllTimeRecords(currentDate: currentDate);
 
             List<UserControlTimeRecord> userControls = new List<UserControlTimeRecord>();
 
@@ -116,5 +101,12 @@ namespace TimeSprout.Forms.TimeRecord
             populatePanelWithEmployees();
         }
 
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            var createNewTimeRecord = new MyDialog();
+
+            createNewTimeRecord.StartPosition = FormStartPosition.CenterParent;
+            createNewTimeRecord.ShowDialog(this);
+        }
     }
 }

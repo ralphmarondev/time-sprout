@@ -40,9 +40,9 @@
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.fieldsPanel.SuspendLayout();
@@ -194,14 +194,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "README";
             // 
-            // label1
+            // label6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(273, 40);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "This will be removed on \r\nRELEASE\r\n";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(26, 135);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(361, 60);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "ACCOMPLISHMENTS\r\n- can add employees\r\n- export all table data to excel\r\n";
             // 
             // label5
             // 
@@ -212,14 +212,14 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "USERNAME: root\r\nPASSWORD: toor";
             // 
-            // label6
+            // label1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(26, 135);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(361, 60);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "ACCOMPLISHMENTS\r\n- can add employees\r\n- export all table data to excel\r\n";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(273, 40);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "This will be removed on \r\nRELEASE\r\n";
             // 
             // AuthForm
             // 
@@ -232,7 +232,6 @@
             this.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AuthForm";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DAILY TIME RECORD";
             this.titlePanel.ResumeLayout(false);

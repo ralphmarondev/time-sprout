@@ -119,6 +119,44 @@ namespace TimeSprout.Core.DB
             }
         }
 
+        public static EmployeeDataClass GetEmployeeDetails(string id)
+        {
+            try
+            {
+                InitializeEmployeeTable();
+                EmployeeDataClass employee;
+
+                Console.WriteLine($"Fetching employee [{id}] details...");
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string fetchQuery = "SELECT name, password, currentProject FROM employees WHERE @id = id";
+                    using (var command = new SQLiteCommand(fetchQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            employee = new EmployeeDataClass
+                            {
+                                ID = id,
+                                Name = reader["name"].ToString(),
+                                CurrentProject = reader["password"].ToString(),
+                                Password = reader["password"].ToString()
+                            };
+                        }
+                    }
+                }
+                return employee;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return new EmployeeDataClass();
+            }
+        }
+
         public static List<EmployeeDataClass> FetchEmployees()
         {
             List<EmployeeDataClass> employees = new List<EmployeeDataClass>();
