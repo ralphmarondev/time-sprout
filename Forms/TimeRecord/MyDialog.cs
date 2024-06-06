@@ -15,13 +15,22 @@ namespace TimeSprout.Forms.TimeRecord
             dateTimePicker1.Value = DateTime.Now;
 
             // making it readOnly
-            dateTimePicker1.Enabled = false;
+            //dateTimePicker1.Enabled = false;
+        }
+
+        public MyDialog(string _currentDate)
+        {
+            InitializeComponent();
+
+            dateTimePicker1.Value = DateTime.Now;
+            currentDate = _currentDate;
         }
 
         public MyDialog(string _employeeId, string _currentDate)
         {
             InitializeComponent();
 
+            dateTimePicker1.Value = DateTime.Now;
             employeeId = _employeeId;
             currentDate = _currentDate;
         }
@@ -30,7 +39,7 @@ namespace TimeSprout.Forms.TimeRecord
         {
             TimeRecordDataClass record = new TimeRecordDataClass
             {
-                ID = employeeId,
+                ID = tbID.Text,
                 EmployeeName = tbName.Text,
                 CurrentProject = tbCurrentProject.Text,
                 AmTimeIn = lblAmIn.Text,
@@ -42,8 +51,16 @@ namespace TimeSprout.Forms.TimeRecord
                 RecordDate = currentDate
             };
             Console.WriteLine($"Printing records for {currentDate}...");
-            Console.WriteLine($"Id: {employeeId}, name: {record.EmployeeName}, currentProject: {record.CurrentProject}, amIn: {record.AmTimeIn}, amOut: {record.AmTimeOut}, pmIn: {record.PmTimeIn}, pmOut: {record.PmTimeOut}, otIn: {record.OtTimeIn}, otOut: {record.OtTimeOut}");
+            Console.WriteLine($"Id: {record.ID}, name: {record.EmployeeName}, currentProject: {record.CurrentProject}, amIn: {record.AmTimeIn}, amOut: {record.AmTimeOut}, pmIn: {record.PmTimeIn}, pmOut: {record.PmTimeOut}, otIn: {record.OtTimeIn}, otOut: {record.OtTimeOut}");
 
+            if (DBTimeRecord.IsEmployeeRecordExists(currentDate: currentDate, id: record.ID))
+            {
+                DBTimeRecord.UpdateEmployeeTimeRecord(currentDate: currentDate, id: record.ID, amIn: record.AmTimeIn, amOut: record.AmTimeOut, pmIn: record.PmTimeIn, pmOut: record.PmTimeOut, otIn: record.OtTimeIn, otOut: record.OtTimeOut);
+            }
+            else
+            {
+                DBTimeRecord.CreateEmployeeTimeRecord(currentDate: currentDate, id: record.ID, name: record.EmployeeName, currentProject: record.CurrentProject, amIn: record.AmTimeIn, amOut: record.AmTimeOut, pmIn: record.PmTimeIn, pmOut: record.PmTimeOut, otIn: record.OtTimeIn, otOut: record.OtTimeOut);
+            }
             Close();
         }
 
@@ -124,9 +141,51 @@ namespace TimeSprout.Forms.TimeRecord
             tbID_TextChanged(sender, e);
         }
 
-        private void ReadEmployeeDailyRecord()
+
+        #region TIME_IN_AND_TIME_OUT
+        private string GetCurrentTime()
         {
-            Console.WriteLine($"Reading details of [{employeeId}] on [{currentDate}]");
+            DateTime _currentTime = DateTime.Now;
+            string formattedTime = _currentTime.ToString("hh:mm");
+
+            if (_currentTime.Hour < 10)
+            {
+                formattedTime = "0" + formattedTime;
+            }
+
+            Console.WriteLine($"Time now is: {formattedTime}");
+            return formattedTime;
         }
+        private void btnAmIn_Click(object sender, EventArgs e)
+        {
+            lblAmIn.Text = GetCurrentTime();
+        }
+        private void btnAmOut_Click(object sender, EventArgs e)
+        {
+            lblAmOut.Text = GetCurrentTime();
+        }
+
+        private void btnPmIn_Click(object sender, EventArgs e)
+        {
+            lblPmIn.Text = GetCurrentTime();
+        }
+
+        private void btnPmOut_Click(object sender, EventArgs e)
+        {
+            lblPmOut.Text = GetCurrentTime();
+        }
+
+        private void btnOtIn_Click(object sender, EventArgs e)
+        {
+            lblOtIn.Text = GetCurrentTime();
+        }
+
+        private void btnOtOut_Click(object sender, EventArgs e)
+        {
+            lblOtOut.Text = GetCurrentTime();
+        }
+        #endregion TIME_IN_AND_TIME_OUT
+
+
     }
 }

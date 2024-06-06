@@ -8,13 +8,14 @@ namespace TimeSprout.Forms.TimeRecord
 {
     public partial class TimeRecordForm : Form
     {
-        private string currentDate = "";
+        private string currentDate;
         public TimeRecordForm()
         {
             InitializeComponent();
             SetTextBoxDateOfWeek();
             populatePanelWithEmployees();
 
+            dateTimePicker1.Value = DateTime.Now;
             // assigning current date
             DateTime selectedDate = dateTimePicker1.Value;
 
@@ -29,6 +30,10 @@ namespace TimeSprout.Forms.TimeRecord
 
             // Update the textbox with the day of the week
             tbDayOfWeek.Text = selectedDate.ToString("dddd");
+
+            // refresh list
+            currentDate = selectedDate.ToString("ddMMyyyy");
+            populatePanelWithEmployees();
         }
 
         private void SetTextBoxDateOfWeek()
@@ -83,7 +88,7 @@ namespace TimeSprout.Forms.TimeRecord
             this.Enabled = false;
 
             // open the child form
-            var childForm = new MyDialog();
+            var childForm = new MyDialog(currentDate);
             childForm.StartPosition = FormStartPosition.CenterParent;
             childForm.FormClosed += ChildForm_FormClosed;
             childForm.ShowDialog(this);
@@ -101,12 +106,17 @@ namespace TimeSprout.Forms.TimeRecord
             populatePanelWithEmployees();
         }
 
+        // creating new time record
         private void btnNew_Click(object sender, EventArgs e)
         {
-            var createNewTimeRecord = new MyDialog();
+            var createNewTimeRecord = new MyDialog(_currentDate: currentDate);
 
             createNewTimeRecord.StartPosition = FormStartPosition.CenterParent;
+            createNewTimeRecord.FormClosed += ChildForm_FormClosed;
             createNewTimeRecord.ShowDialog(this);
+
+            // refresh
+            populatePanelWithEmployees();
         }
     }
 }

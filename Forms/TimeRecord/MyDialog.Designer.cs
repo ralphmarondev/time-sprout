@@ -138,6 +138,7 @@
             this.btnOtOut.TabIndex = 7;
             this.btnOtOut.Text = "OUT";
             this.btnOtOut.UseVisualStyleBackColor = false;
+            this.btnOtOut.Click += new System.EventHandler(this.btnOtOut_Click);
             // 
             // btnOtIn
             // 
@@ -152,6 +153,7 @@
             this.btnOtIn.TabIndex = 6;
             this.btnOtIn.Text = "IN";
             this.btnOtIn.UseVisualStyleBackColor = false;
+            this.btnOtIn.Click += new System.EventHandler(this.btnOtIn_Click);
             // 
             // lblOtOut
             // 
@@ -171,7 +173,7 @@
             this.lblOtIn.Name = "lblOtIn";
             this.lblOtIn.Size = new System.Drawing.Size(70, 22);
             this.lblOtIn.TabIndex = 0;
-            this.lblOtIn.Text = "07:00";
+            this.lblOtIn.Text = "--:--";
             // 
             // groupBox1
             // 
@@ -201,6 +203,7 @@
             this.btnPmOut.TabIndex = 7;
             this.btnPmOut.Text = "OUT";
             this.btnPmOut.UseVisualStyleBackColor = false;
+            this.btnPmOut.Click += new System.EventHandler(this.btnPmOut_Click);
             // 
             // btnPmIn
             // 
@@ -215,6 +218,7 @@
             this.btnPmIn.TabIndex = 6;
             this.btnPmIn.Text = "IN";
             this.btnPmIn.UseVisualStyleBackColor = false;
+            this.btnPmIn.Click += new System.EventHandler(this.btnPmIn_Click);
             // 
             // lblPmOut
             // 
@@ -234,7 +238,7 @@
             this.lblPmIn.Name = "lblPmIn";
             this.lblPmIn.Size = new System.Drawing.Size(70, 22);
             this.lblPmIn.TabIndex = 0;
-            this.lblPmIn.Text = "01:00";
+            this.lblPmIn.Text = "--:--";
             // 
             // tbCurrentProject
             // 
@@ -298,6 +302,7 @@
             this.btnAmOut.TabIndex = 7;
             this.btnAmOut.Text = "OUT";
             this.btnAmOut.UseVisualStyleBackColor = false;
+            this.btnAmOut.Click += new System.EventHandler(this.btnAmOut_Click);
             // 
             // btnAmIn
             // 
@@ -312,6 +317,7 @@
             this.btnAmIn.TabIndex = 6;
             this.btnAmIn.Text = "IN";
             this.btnAmIn.UseVisualStyleBackColor = false;
+            this.btnAmIn.Click += new System.EventHandler(this.btnAmIn_Click);
             // 
             // lblAmOut
             // 
