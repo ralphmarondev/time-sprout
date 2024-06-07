@@ -165,91 +165,92 @@
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\DB\DBConfig.cs" />
-    <Compile Include="Core\DB\DatabaseHandler.cs" />
-    <Compile Include="Core\DB\DBEmployee.cs" />
-    <Compile Include="Core\DB\DBTimeRecord.cs" />
-    <Compile Include="Core\DB\DBUsers.cs" />
-    <Compile Include="Core\EXCEL\DatabaseToExcel.cs" />
-    <Compile Include="Core\Utils\ColorPalette.cs" />
-    <Compile Include="EmployeeForms\EmployeeTimeRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EmployeeForms\EmployeeTimeRecord.Designer.cs">
-      <DependentUpon>EmployeeTimeRecord.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Admin\Core\DB\DatabaseHandler.cs" />
+    <Compile Include="Admin\Core\DB\DBEmployee.cs" />
+    <Compile Include="Admin\Core\DB\DBTimeRecord.cs" />
+    <Compile Include="Admin\Core\DB\DBUsers.cs" />
+    <Compile Include="Admin\Core\EXCEL\DatabaseToExcel.cs" />
+    <Compile Include="Admin\Core\Utils\ColorPalette.cs" />
     <Compile Include="EmployeeMain\Model\EmployeeDataClass.cs" />
-    <Compile Include="Forms\Employees\CreateNewEmployeeForm.cs">
+    <Compile Include="Employee\DB\DBEmployeeTimeRecord.cs" />
+    <Compile Include="Employee\EmployeeMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Employees\CreateNewEmployeeForm.Designer.cs">
+    <Compile Include="Employee\EmployeeMainForm.Designer.cs">
+      <DependentUpon>EmployeeMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\CreateNewEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\CreateNewEmployeeForm.Designer.cs">
       <DependentUpon>CreateNewEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Employees\DeleteEmployeeForm.cs">
+    <Compile Include="Admin\Forms\Employees\DeleteEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Employees\DeleteEmployeeForm.Designer.cs">
+    <Compile Include="Admin\Forms\Employees\DeleteEmployeeForm.Designer.cs">
       <DependentUpon>DeleteEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Employees\EmployeesForm.cs">
+    <Compile Include="Admin\Forms\Employees\EmployeesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Employees\EmployeesForm.Designer.cs">
+    <Compile Include="Admin\Forms\Employees\EmployeesForm.Designer.cs">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Employees\Model\EmployeeDataClass.cs" />
-    <Compile Include="Forms\Employees\UpdateEmployeeForm.cs">
+    <Compile Include="Admin\Forms\Employees\Model\EmployeeDataClass.cs" />
+    <Compile Include="Admin\Forms\Employees\UpdateEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Employees\UpdateEmployeeForm.Designer.cs">
+    <Compile Include="Admin\Forms\Employees\UpdateEmployeeForm.Designer.cs">
       <DependentUpon>UpdateEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Employees\UserControlEmployee.cs">
+    <Compile Include="Admin\Forms\Employees\UserControlEmployee.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Employees\UserControlEmployee.Designer.cs">
+    <Compile Include="Admin\Forms\Employees\UserControlEmployee.Designer.cs">
       <DependentUpon>UserControlEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Export\ExportForm.cs">
+    <Compile Include="Admin\Forms\Export\ExportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Export\ExportForm.Designer.cs">
+    <Compile Include="Admin\Forms\Export\ExportForm.Designer.cs">
       <DependentUpon>ExportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Project\ProjectForm.cs">
+    <Compile Include="Admin\Forms\Project\ProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Project\ProjectForm.Designer.cs">
+    <Compile Include="Admin\Forms\Project\ProjectForm.Designer.cs">
       <DependentUpon>ProjectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Records\RecordsForm.cs">
+    <Compile Include="Admin\Forms\Records\RecordsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Records\RecordsForm.Designer.cs">
+    <Compile Include="Admin\Forms\Records\RecordsForm.Designer.cs">
       <DependentUpon>RecordsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TimeRecord\Model\TimeRecordDataClass.cs" />
-    <Compile Include="Forms\TimeRecord\MyDialog.cs">
+    <Compile Include="Admin\Forms\TimeRecord\Model\TimeRecordDataClass.cs" />
+    <Compile Include="Admin\Forms\TimeRecord\MyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TimeRecord\MyDialog.Designer.cs">
+    <Compile Include="Admin\Forms\TimeRecord\MyDialog.Designer.cs">
       <DependentUpon>MyDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TimeRecord\TimeRecordForm.cs">
+    <Compile Include="Admin\Forms\TimeRecord\TimeRecordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TimeRecord\TimeRecordForm.Designer.cs">
+    <Compile Include="Admin\Forms\TimeRecord\TimeRecordForm.Designer.cs">
       <DependentUpon>TimeRecordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TimeRecord\UpdateTimeRecord.cs">
+    <Compile Include="Admin\Forms\TimeRecord\UpdateTimeRecord.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TimeRecord\UpdateTimeRecord.Designer.cs">
+    <Compile Include="Admin\Forms\TimeRecord\UpdateTimeRecord.Designer.cs">
       <DependentUpon>UpdateTimeRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TimeRecord\UserControlTimeRecord.cs">
+    <Compile Include="Admin\Forms\TimeRecord\UserControlTimeRecord.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\TimeRecord\UserControlTimeRecord.Designer.cs">
+    <Compile Include="Admin\Forms\TimeRecord\UserControlTimeRecord.Designer.cs">
       <DependentUpon>UserControlTimeRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeeMain\EmployeeMainForm.cs">
@@ -258,12 +259,13 @@
     <Compile Include="EmployeeMain\EmployeeMainForm.Designer.cs">
       <DependentUpon>EmployeeMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main\MainForm.cs">
+    <Compile Include="Admin\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main\MainForm.Designer.cs">
+    <Compile Include="Admin\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employee\Model\EmployeeDataClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Auth\AuthForm.resx">
@@ -272,44 +274,47 @@
     <EmbeddedResource Include="EmployeeMain\EmployeeMainForm.resx">
       <DependentUpon>EmployeeMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Employees\CreateNewEmployeeForm.resx">
+    <EmbeddedResource Include="Admin\Forms\Employees\CreateNewEmployeeForm.resx">
       <DependentUpon>CreateNewEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Employees\DeleteEmployeeForm.resx">
+    <EmbeddedResource Include="Admin\Forms\Employees\DeleteEmployeeForm.resx">
       <DependentUpon>DeleteEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Employees\EmployeesForm.resx">
+    <EmbeddedResource Include="Admin\Forms\Employees\EmployeesForm.resx">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Employees\UpdateEmployeeForm.resx">
+    <EmbeddedResource Include="Admin\Forms\Employees\UpdateEmployeeForm.resx">
       <DependentUpon>UpdateEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Employees\UserControlEmployee.resx">
+    <EmbeddedResource Include="Admin\Forms\Employees\UserControlEmployee.resx">
       <DependentUpon>UserControlEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Export\ExportForm.resx">
+    <EmbeddedResource Include="Admin\Forms\Export\ExportForm.resx">
       <DependentUpon>ExportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Project\ProjectForm.resx">
+    <EmbeddedResource Include="Admin\Forms\Project\ProjectForm.resx">
       <DependentUpon>ProjectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Records\RecordsForm.resx">
+    <EmbeddedResource Include="Admin\Forms\Records\RecordsForm.resx">
       <DependentUpon>RecordsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TimeRecord\MyDialog.resx">
+    <EmbeddedResource Include="Admin\Forms\TimeRecord\MyDialog.resx">
       <DependentUpon>MyDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TimeRecord\TimeRecordForm.resx">
+    <EmbeddedResource Include="Admin\Forms\TimeRecord\TimeRecordForm.resx">
       <DependentUpon>TimeRecordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TimeRecord\UpdateTimeRecord.resx">
+    <EmbeddedResource Include="Admin\Forms\TimeRecord\UpdateTimeRecord.resx">
       <DependentUpon>UpdateTimeRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TimeRecord\UserControlTimeRecord.resx">
+    <EmbeddedResource Include="Admin\Forms\TimeRecord\UserControlTimeRecord.resx">
       <DependentUpon>UserControlTimeRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main\MainForm.resx">
+    <EmbeddedResource Include="Admin\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee\EmployeeMainForm.resx">
+      <DependentUpon>EmployeeMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -351,7 +356,9 @@
     <None Include="README.md" />
     <None Include="Resources\close_icon1.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Employee\Forms\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\icons8-menu-50.png" />
   </ItemGroup>
