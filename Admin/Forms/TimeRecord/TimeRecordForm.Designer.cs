@@ -80,6 +80,7 @@
             // 
             // listTimeRecordPanel
             // 
+            this.listTimeRecordPanel.AutoScroll = true;
             this.listTimeRecordPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listTimeRecordPanel.Location = new System.Drawing.Point(0, 80);
             this.listTimeRecordPanel.Name = "listTimeRecordPanel";

@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Admin;
 using TimeSprout.Core.DB;
+using TimeSprout.Employee;
 
 namespace TimeSprout.Auth
 {
@@ -30,13 +31,26 @@ namespace TimeSprout.Auth
                 }
                 else
                 {
-                    MessageBox.Show("Incorrent Password :)");
+                    MessageBox.Show("Incorrent Password :)", "Loggin in as Admin.");
                 }
             }
             else
             {
                 // GO TO EMPLOYEE FORM
                 // TODO: IMPLEMENT THIS LATER
+                if (DBEmployee.IsEmployeeExists(_id: tbUsername.Text, _password: tbPassword.Text))
+                {
+                    Console.WriteLine($"Login as [{tbUsername.Text}] successfully.");
+
+                    EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text);
+
+                    Hide();
+                    employeeMainForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Incorrent Password :)", "Logging in as Employee.");
+                }
             }
         }
 
