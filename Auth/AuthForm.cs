@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Core.DB;
 using TimeSprout.Core.Utils;
-using TimeSprout.Main;
 
 namespace TimeSprout
 {
@@ -49,8 +48,13 @@ namespace TimeSprout
 
             if (tbStatus.Text == "EMPLOYEE")
             {
+                //Hide();
+                //EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text);
+
+                //employeeMainForm.ShowDialog();
                 Hide();
-                EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text);
+
+                Employee.EmployeeMainForm employeeMainForm = new Employee.EmployeeMainForm(tbUsername.Text);
 
                 employeeMainForm.ShowDialog();
             }
