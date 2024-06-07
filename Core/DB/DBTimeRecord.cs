@@ -48,8 +48,7 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string createTimeRecordQuery = $@"INSERT INTO {tableName} (id, name, currentProject, amIn, amOut, pmIn, pmOut, otIn, otOut) VALUES 
-                                (@id, @name, @currentProject, @amIn, @amOut, @pmIn, @pmOut, @otIn, @otOut)";
+                    string createTimeRecordQuery = $@"INSERT INTO {tableName} (id, name, currentProject, amIn, amOut, pmIn, pmOut, otIn, otOut) VALUES (@id, @name, @currentProject, @amIn, @amOut, @pmIn, @pmOut, @otIn, @otOut);";
                     using (var command = new SQLiteCommand(createTimeRecordQuery, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
@@ -147,50 +146,64 @@ namespace TimeSprout.Core.DB
                 bool employeeExists = false;
                 TimeRecordDataClass timeRecord;
 
+                Console.WriteLine($"Reading employee [{id}] record for [{currentDate}]...");
                 using (var connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
 
-                    string countQuery = $"SELECT COUNT(*) FROM {tableName} WHERE id = @id;";
-                    using (var command = new SQLiteCommand(countQuery, connection))
-                    {
-                        command.Parameters.AddWithValue("@id", id);
+                    //string countQuery = $"SELECT COUNT(*) FROM {tableName} WHERE id = @id;";
+                    //using (var command = new SQLiteCommand(countQuery, connection))
+                    //{
+                    //    command.Parameters.AddWithValue("@id", id);
 
-                        long count = (long)command.ExecuteScalar();
-                        employeeExists = count > 0;
-                    }
+                    //    long count = (long)command.ExecuteScalar();
+                    //    employeeExists = count > 0;
+                    //}
 
-                    if (!employeeExists)
-                    {
-                        var employee = DBEmployee.GetEmployeeDetails(id);
-                        // insert to time record table
-                        CreateEmployeeTimeRecord(currentDate: currentDate, id: id, name: employee.Name,
-                            currentProject: employee.CurrentProject, amIn: "-", amOut: "-", pmIn: "-", pmOut: "-", otIn: "-", otOut: "-");
-                    }
+                    //if (!employeeExists)
+                    //{
+                    //    var employee = DBEmployee.GetEmployeeDetails(id);
+                    //    // insert to time record table
+                    //    CreateEmployeeTimeRecord(currentDate: currentDate, id: id, name: employee.Name,
+                    //        currentProject: employee.CurrentProject, amIn: "-", amOut: "-", pmIn: "-", pmOut: "-", otIn: "-", otOut: "-");
+                    //}
 
 
-                    string query = $@"SELECT * FROM {tableName} WHERE id = @id";
+                    string query = $@"SELECT name, currentProject, amIn, amOut, pmIn, pmOut, otIn, otOut FROM {tableName} WHERE @id = id";
                     using (var command = new SQLiteCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
 
+                        Console.WriteLine("Reading contents...");
                         using (var reader = command.ExecuteReader())
                         {
                             timeRecord = new TimeRecordDataClass
                             {
+                                // ID = id,
+                                // EmployeeName = reader.GetString(1),
+                                // CurrentProject = reader.GetString(2),
+                                // AmTimeIn = reader.GetString(3),
+                                // AmTimeOut = reader.GetString(4),
+                                // PmTimeIn = reader.GetString(5),
+                                // PmTimeOut = reader.GetString(6),
+                                // OtTimeIn = reader.GetString(7),
+                                // OtTimeOut = reader.GetString(0),
+                                // RecordDate = currentDate
                                 ID = id,
-                                EmployeeName = reader.GetString(1),
-                                CurrentProject = reader.GetString(2),
-                                AmTimeIn = reader.GetString(3),
-                                AmTimeOut = reader.GetString(4),
-                                PmTimeIn = reader.GetString(5),
-                                PmTimeOut = reader.GetString(6),
-                                OtTimeIn = reader.GetString(7),
-                                OtTimeOut = reader.GetString(8),
+                                EmployeeName = reader["name"].ToString(),
+                                CurrentProject = reader["currentProject"].ToString(),
+                                AmTimeIn = reader["amIn"].ToString(),
+                                AmTimeOut = reader["amOut"].ToString(),
+                                PmTimeIn = reader["pmIn"].ToString(),
+                                PmTimeOut = reader["pmOut"].ToString(),
+                                OtTimeIn = reader["otIn"].ToString(),
+                                OtTimeOut = reader["otOut"].ToString(),
                                 RecordDate = currentDate
                             };
                         }
                     }
+                    Console.WriteLine($"Records. ID: {id}, name: {timeRecord.EmployeeName}, currentProject: {timeRecord.CurrentProject}, amTimeIn: {timeRecord.AmTimeIn}, amTimeout: {timeRecord.AmTimeOut}, pmTimeIn: {timeRecord.PmTimeIn}, pmTimeOut: {timeRecord.PmTimeOut}, otTimeIn: {timeRecord.OtTimeIn}, otTimeOut: {timeRecord.OtTimeOut}");
+                    Console.WriteLine("Done reading.");
                 }
                 return timeRecord;
             }
