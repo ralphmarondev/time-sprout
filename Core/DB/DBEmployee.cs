@@ -205,11 +205,7 @@ namespace TimeSprout.Core.DB
         }
 
 
-        public static bool IsEmployeeExists(string _id)
-        {
-            return IsEmployeeIdTaken(_id: _id);
-        }
-        public static bool IsEmployeeIdTaken(string _id)
+        public static bool IsEmployeeExists(string _id, string _password)
         {
             try
             {
@@ -219,15 +215,48 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string query = "SELECT COUNT(*) FROM employees WHERE id = @id";
+                    string query = "SELECT COUNT(*) FROM employees WHERE id = @id AND password = @password";
                     using (var command = new SQLiteCommand(query, connection))
                     {
+                        command.Parameters.AddWithValue("@id", _id);
+                        command.Parameters.AddWithValue("@password", _password);
+
                         long count = (long)command.ExecuteScalar();
 
+                        Console.WriteLine($"Employee Id taken: {count > 0}");
                         return (count > 0);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return false;
+        }
+        public static bool IsEmployeeIdTaken(string _id)
+        {
+            try
+            {
+                bool exists;
 
+                InitializeEmployeeTable();
+
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT COUNT(*) FROM employees WHERE id = @id";
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", _id);
+                        long count = (long)command.ExecuteScalar();
+
+                        exists = (count > 0);
+                        Console.WriteLine($"Employee Id taken: {exists}");
+                    }
+                }
+                return exists;
             }
             catch (Exception ex)
             {

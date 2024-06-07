@@ -150,6 +150,57 @@ namespace TimeSprout.Core.DB
             }
         }
 
+        public static TimeRecordModel ReadEmployeeTimeRecord(string _currentDate, string _id)
+        {
+            string tableName = $"record_{_currentDate}";
+            try
+            {
+                InitializeDailyTimeRecordTable(_tableName: tableName);
+
+                Console.WriteLine($"Reading record for {_id} on {_currentDate}...");
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string query = $"$SELECT id, name, currentProject, " +
+                        $"amTimeIn, amTimeOut, " +
+                        $"pmTimeIn, pmTimeOut, " +
+                        $"otTimeIn, otTimeOut " +
+                        $"FROM {tableName} WHERE id = @id";
+
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", _id);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new TimeRecordModel
+                                {
+                                    id = reader["id"].ToString(),
+                                    employeeName = reader["name"].ToString(),
+                                    currentProject = reader["currentProject"].ToString(),
+                                    amTimeIn = reader["amTimeIn"].ToString(),
+                                    amTimeOut = reader["amTimeOut"].ToString(),
+                                    pmTimeIn = reader["pmTimeIn"].ToString(),
+                                    pmTimeOut = reader["pmTimeOut"].ToString(),
+                                    otTimeIn = reader["otTimeIn"].ToString(),
+                                    otTimeOut = reader["otTimeOut"].ToString()
+                                };
+                            }
+                        }
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return new TimeRecordModel();
+        }
+
         public static List<TimeRecordModel> FetchAllEmployeeTimeRecords(string _currentDate)
         {
             List<TimeRecordModel> timeRecords = new List<TimeRecordModel>();
