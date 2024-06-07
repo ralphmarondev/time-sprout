@@ -154,6 +154,7 @@
             this.tbStatus.Size = new System.Drawing.Size(228, 30);
             this.tbStatus.TabIndex = 2;
             this.tbStatus.Text = "EMPLOYEE";
+            this.tbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStatus_KeyPress);
             // 
             // tbUsername
             // 

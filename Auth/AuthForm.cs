@@ -69,5 +69,11 @@ namespace TimeSprout.Auth
         {
             Close();
         }
+
+        private void tbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // making status combo box readonly
+            e.Handled = true;
+        }
     }
 }
