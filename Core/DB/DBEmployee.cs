@@ -130,7 +130,7 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string fetchQuery = "SELECT name, password, currentProject FROM employees WHERE @id = id";
+                    string fetchQuery = "SELECT id, name, password, currentProject FROM employees WHERE id = @id";
                     using (var command = new SQLiteCommand(fetchQuery, connection))
                     {
                         command.Parameters.AddWithValue("@id", _id);
@@ -149,7 +149,10 @@ namespace TimeSprout.Core.DB
 
                                 Console.WriteLine($"Employee details...");
                                 Console.WriteLine($"ID: {employee.id}, name: {employee.name}, password: {employee.password}, currentProject: {employee.currentProject}");
-                                return employee;
+                            }
+                            else
+                            {
+                                Console.WriteLine("No employee found with the given ID.");
                             }
                         }
                     }

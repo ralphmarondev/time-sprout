@@ -23,6 +23,8 @@ namespace TimeSprout.Employee
         private void EmployeeMainForm_Load(object sender, EventArgs e)
         {
             lblGreetings.Text = $"Hello, {id}";
+
+            OpenFormInPanel(new Employee.Forms.TimeRecord.TimeRecordForm(), "Home");
         }
 
 
@@ -74,7 +76,7 @@ namespace TimeSprout.Employee
         }
         private void btnHome_Click(object sender, EventArgs e)
         {
-
+            OpenFormInPanel(new Employee.Forms.TimeRecord.TimeRecordForm(), "Home");
         }
 
         private void btnRecords_Click(object sender, EventArgs e)

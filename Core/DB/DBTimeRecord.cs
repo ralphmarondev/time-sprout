@@ -248,5 +248,34 @@ namespace TimeSprout.Core.DB
             }
             return timeRecords;
         }
+
+        public static bool IsEmployeeTimeRecordExists(string _currentDate, string _id)
+        {
+            string tableName = $"record_{_currentDate}";
+
+            try
+            {
+                InitializeDailyTimeRecordTable(tableName);
+
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string query = $"SELECT COUNT(*) FROM {tableName} WHERE id = @id";
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", _id);
+
+                        long count = (long)command.ExecuteScalar();
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return false;
+        }
     }
 }

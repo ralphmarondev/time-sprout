@@ -1,4 +1,9 @@
 
+# todo 2024-06-08
+- Auto refresh the list of employees once an action is performed. [i.e. changed the dateTimePicker value, 
+	create, update, delete data from database. etc.]
+
+
 # todo 2024-06-07
 - Add check on create. If such record exists, return error saying it exists and don't add it.
 
