@@ -1,20 +1,49 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using TimeSprout.Admin;
 using TimeSprout.Core.DB;
-using TimeSprout.Core.Utils;
 
-namespace TimeSprout
+namespace TimeSprout.Auth
 {
     public partial class AuthForm : Form
     {
         public AuthForm()
         {
             InitializeComponent();
+            tbStatus.Text = "ADMIN";
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            /*EMPLOYEE
+                ADMIN*/
+            if (tbStatus.Text == "ADMIN")
+            {
+                if (DBUsers.IsUserExists(username: tbUsername.Text, password: tbPassword.Text))
+                {
+                    Console.WriteLine("Login successfully...");
+                    AdminMainForm adminMainForm = new AdminMainForm(tbUsername.Text);
+
+                    Hide();
+                    adminMainForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Incorrent Password :)");
+                }
+            }
+            else
+            {
+                // GO TO EMPLOYEE FORM
+                // TODO: IMPLEMENT THIS LATER
+            }
         }
 
 
-        #region DRAGGING_FROM_WITH_LABEL
+
+        #region DRAG_AND_DROP_TITLE
+
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
@@ -23,6 +52,7 @@ namespace TimeSprout
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
+
         private void titlePanel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -31,57 +61,9 @@ namespace TimeSprout
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
-
-        #endregion DRAGGING_FROM_WITH_LABEL
-
-
-        private void tbStatus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Suppress any key presses to make the ComboBox readonly
-            e.Handled = true;
-        }
-
-        private void btnLogin_Click(object sender, System.EventArgs e)
-        {
-            Console.WriteLine($"Username: {tbUsername.Text}, Status: {tbStatus.Text}, Password: {tbPassword.Text}");
+        #endregion DRAG_AND_DROP_TITLE
 
 
-            if (tbStatus.Text == "EMPLOYEE")
-            {
-                //Hide();
-                //EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text);
-
-                //employeeMainForm.ShowDialog();
-                Hide();
-
-                Employee.EmployeeMainForm employeeMainForm = new Employee.EmployeeMainForm(tbUsername.Text);
-
-                employeeMainForm.ShowDialog();
-            }
-            else
-            {
-                if (DBUsers.IsUserExists(username: tbUsername.Text, password: tbPassword.Text))
-                {
-                    Hide();
-                    MainForm mainForm = new MainForm();
-                    mainForm.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Invalid credentials.");
-                }
-            }
-        }
-
-        private void btnLogin_MouseEnter(object sender, EventArgs e)
-        {
-            btnLogin.BackColor = ColorPalette.AccentLavender;
-        }
-
-        private void btnLogin_MouseLeave(object sender, EventArgs e)
-        {
-            btnLogin.BackColor = ColorPalette.PrimaryPurple;
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
