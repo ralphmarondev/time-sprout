@@ -62,5 +62,14 @@ namespace TimeSprout.Admin.Forms
             }
         }
         #endregion onLoad
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            currentDate = dateTimePicker1.Value.ToString("MMddyyyy");
+            Console.WriteLine($"Updated value of current date to: {currentDate}");
+
+            Console.WriteLine("Updating list of records...");
+            populatePanelWithTimeRecordUserControl();
+        }
     }
 }

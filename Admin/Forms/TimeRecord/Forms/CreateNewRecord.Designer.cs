@@ -51,7 +51,7 @@
             this.tbEmployeeName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbId = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblDayOfWeek = new System.Windows.Forms.Label();
             this.fieldsPanel.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -72,7 +72,7 @@
             this.fieldsPanel.Controls.Add(this.tbEmployeeName);
             this.fieldsPanel.Controls.Add(this.label4);
             this.fieldsPanel.Controls.Add(this.tbId);
-            this.fieldsPanel.Controls.Add(this.dateTimePicker2);
+            this.fieldsPanel.Controls.Add(this.dateTimePicker1);
             this.fieldsPanel.Controls.Add(this.lblDayOfWeek);
             this.fieldsPanel.Location = new System.Drawing.Point(12, 12);
             this.fieldsPanel.Name = "fieldsPanel";
@@ -111,6 +111,7 @@
             this.btnOtTimeOut.TabIndex = 9;
             this.btnOtTimeOut.Text = "OUT";
             this.btnOtTimeOut.UseVisualStyleBackColor = true;
+            this.btnOtTimeOut.Click += new System.EventHandler(this.btnOtTimeOut_Click);
             // 
             // btnOtTimeIn
             // 
@@ -120,6 +121,7 @@
             this.btnOtTimeIn.TabIndex = 8;
             this.btnOtTimeIn.Text = "IN";
             this.btnOtTimeIn.UseVisualStyleBackColor = true;
+            this.btnOtTimeIn.Click += new System.EventHandler(this.btnOtTimeIn_Click);
             // 
             // tbOtTimeOut
             // 
@@ -127,7 +129,7 @@
             this.tbOtTimeOut.Name = "tbOtTimeOut";
             this.tbOtTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbOtTimeOut.TabIndex = 7;
-            this.tbOtTimeOut.Text = "9:00";
+            this.tbOtTimeOut.Text = "00:00";
             this.tbOtTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbOtTimeIn
@@ -136,7 +138,7 @@
             this.tbOtTimeIn.Name = "tbOtTimeIn";
             this.tbOtTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbOtTimeIn.TabIndex = 6;
-            this.tbOtTimeIn.Text = "9:00";
+            this.tbOtTimeIn.Text = "00:00";
             this.tbOtTimeIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox2
@@ -161,6 +163,7 @@
             this.btnPmTimeOut.TabIndex = 9;
             this.btnPmTimeOut.Text = "OUT";
             this.btnPmTimeOut.UseVisualStyleBackColor = true;
+            this.btnPmTimeOut.Click += new System.EventHandler(this.btnPmTimeOut_Click);
             // 
             // btnPmTimeIn
             // 
@@ -170,6 +173,7 @@
             this.btnPmTimeIn.TabIndex = 8;
             this.btnPmTimeIn.Text = "IN";
             this.btnPmTimeIn.UseVisualStyleBackColor = true;
+            this.btnPmTimeIn.Click += new System.EventHandler(this.btnPmTimeIn_Click);
             // 
             // tbPmTimeOut
             // 
@@ -177,7 +181,7 @@
             this.tbPmTimeOut.Name = "tbPmTimeOut";
             this.tbPmTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbPmTimeOut.TabIndex = 7;
-            this.tbPmTimeOut.Text = "9:00";
+            this.tbPmTimeOut.Text = "00:00";
             this.tbPmTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbPmTimeIn
@@ -186,7 +190,7 @@
             this.tbPmTimeIn.Name = "tbPmTimeIn";
             this.tbPmTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbPmTimeIn.TabIndex = 6;
-            this.tbPmTimeIn.Text = "9:00";
+            this.tbPmTimeIn.Text = "00:00";
             this.tbPmTimeIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox1
@@ -211,6 +215,7 @@
             this.btnAmTimeOut.TabIndex = 9;
             this.btnAmTimeOut.Text = "OUT";
             this.btnAmTimeOut.UseVisualStyleBackColor = true;
+            this.btnAmTimeOut.Click += new System.EventHandler(this.btnAmTimeOut_Click);
             // 
             // btnAmTimeIn
             // 
@@ -220,6 +225,7 @@
             this.btnAmTimeIn.TabIndex = 8;
             this.btnAmTimeIn.Text = "IN";
             this.btnAmTimeIn.UseVisualStyleBackColor = true;
+            this.btnAmTimeIn.Click += new System.EventHandler(this.btnAmTimeIn_Click);
             // 
             // tbAmTimeOut
             // 
@@ -227,7 +233,7 @@
             this.tbAmTimeOut.Name = "tbAmTimeOut";
             this.tbAmTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbAmTimeOut.TabIndex = 7;
-            this.tbAmTimeOut.Text = "9:00";
+            this.tbAmTimeOut.Text = "00:00";
             this.tbAmTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbAmTimeIn
@@ -236,7 +242,7 @@
             this.tbAmTimeIn.Name = "tbAmTimeIn";
             this.tbAmTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbAmTimeIn.TabIndex = 6;
-            this.tbAmTimeIn.Text = "9:00";
+            this.tbAmTimeIn.Text = "00:00";
             this.tbAmTimeIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
@@ -289,14 +295,16 @@
             this.tbId.Name = "tbId";
             this.tbId.Size = new System.Drawing.Size(215, 30);
             this.tbId.TabIndex = 5;
+            this.tbId.TextChanged += new System.EventHandler(this.tbId_TextChanged);
+            this.tbId.Leave += new System.EventHandler(this.tbId_Leave);
             // 
-            // dateTimePicker2
+            // dateTimePicker1
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(272, 41);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(215, 30);
-            this.dateTimePicker2.TabIndex = 4;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(272, 41);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(215, 30);
+            this.dateTimePicker1.TabIndex = 4;
             // 
             // lblDayOfWeek
             // 
@@ -321,6 +329,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "CreateNewRecord";
+            this.Load += new System.EventHandler(this.CreateNewRecord_Load);
             this.fieldsPanel.ResumeLayout(false);
             this.fieldsPanel.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -358,7 +367,7 @@
         private System.Windows.Forms.TextBox tbEmployeeName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbId;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label lblDayOfWeek;
     }
 }
