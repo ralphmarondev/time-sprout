@@ -1,4 +1,4 @@
-﻿namespace TimeSprout.Auth
+﻿namespace TimeSprout
 {
     partial class AuthForm
     {
@@ -39,9 +39,14 @@
             this.tbStatus = new System.Windows.Forms.ComboBox();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.fieldsPanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // titlePanel
@@ -52,8 +57,8 @@
             this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.titlePanel.Location = new System.Drawing.Point(0, 0);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(870, 84);
-            this.titlePanel.TabIndex = 2;
+            this.titlePanel.Size = new System.Drawing.Size(800, 84);
+            this.titlePanel.TabIndex = 1;
             this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlePanel_MouseDown);
             // 
             // pictureBox1
@@ -61,7 +66,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::TimeSprout.Properties.Resources.close_icon1;
-            this.pictureBox1.Location = new System.Drawing.Point(823, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(753, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(47, 31);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -74,7 +79,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Courier New", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(60, 33);
+            this.lblTitle.Location = new System.Drawing.Point(26, 31);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(286, 31);
             this.lblTitle.TabIndex = 0;
@@ -90,10 +95,10 @@
             this.fieldsPanel.Controls.Add(this.tbStatus);
             this.fieldsPanel.Controls.Add(this.tbUsername);
             this.fieldsPanel.Controls.Add(this.label2);
-            this.fieldsPanel.Location = new System.Drawing.Point(78, 142);
+            this.fieldsPanel.Location = new System.Drawing.Point(46, 132);
             this.fieldsPanel.Name = "fieldsPanel";
             this.fieldsPanel.Size = new System.Drawing.Size(305, 304);
-            this.fieldsPanel.TabIndex = 3;
+            this.fieldsPanel.TabIndex = 2;
             // 
             // btnLogin
             // 
@@ -109,6 +114,8 @@
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.MouseEnter += new System.EventHandler(this.btnLogin_MouseEnter);
+            this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
             // 
             // tbPassword
             // 
@@ -122,22 +129,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Courier New", 10F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label4.Location = new System.Drawing.Point(35, 157);
+            this.label4.Location = new System.Drawing.Point(35, 160);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.Size = new System.Drawing.Size(79, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "Password:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Courier New", 10F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label3.Location = new System.Drawing.Point(35, 87);
+            this.label3.Location = new System.Drawing.Point(35, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 20);
+            this.label3.Size = new System.Drawing.Size(63, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Status:";
             // 
@@ -154,6 +159,7 @@
             this.tbStatus.Size = new System.Drawing.Size(228, 30);
             this.tbStatus.TabIndex = 2;
             this.tbStatus.Text = "EMPLOYEE";
+            this.tbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStatus_KeyPress);
             // 
             // tbUsername
             // 
@@ -167,48 +173,94 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Courier New", 10F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label2.Location = new System.Drawing.Point(35, 21);
+            this.label2.Location = new System.Drawing.Point(35, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 20);
+            this.label2.Size = new System.Drawing.Size(127, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Username or ID:";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Courier New", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(396, 132);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(392, 304);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "README";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(26, 135);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(361, 60);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "ACCOMPLISHMENTS\r\n- can add employees\r\n- export all table data to excel\r\n";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 86);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(163, 40);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "USERNAME: root\r\nPASSWORD: toor";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(273, 40);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "This will be removed on \r\nRELEASE\r\n";
+            // 
             // AuthForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(870, 536);
+            this.ClientSize = new System.Drawing.Size(800, 480);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.fieldsPanel);
             this.Controls.Add(this.titlePanel);
-            this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AuthForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AuthForm";
+            this.Text = "DAILY TIME RECORD";
             this.titlePanel.ResumeLayout(false);
             this.titlePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.fieldsPanel.ResumeLayout(false);
             this.fieldsPanel.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
         private System.Windows.Forms.Panel titlePanel;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel fieldsPanel;
+        private System.Windows.Forms.TextBox tbUsername;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox tbStatus;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox tbStatus;
-        private System.Windows.Forms.TextBox tbUsername;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
     }
 }
+

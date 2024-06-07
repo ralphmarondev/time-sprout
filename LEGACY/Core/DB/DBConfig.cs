@@ -4,9 +4,8 @@ using System.IO;
 
 namespace TimeSprout.Core.DB
 {
-    internal class DBConfig
+    internal static class DBConfig
     {
-
         public static string connectionString = "Data Source=daily.db; Version=3;";
 
         public static void InitializeDatabase()

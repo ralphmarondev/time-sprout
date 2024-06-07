@@ -1,122 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TimeSprout.Admin.Forms.TimeRecord.Forms;
+using TimeSprout.Admin.Forms.TimeRecord.MyControls;
 using TimeSprout.Core.DB;
-using TimeSprout.Forms.TimeRecord.Model;
+using TimeSprout.Core.Model;
 
-namespace TimeSprout.Forms.TimeRecord
+namespace TimeSprout.Admin.Forms
 {
     public partial class TimeRecordForm : Form
     {
-        private string currentDate;
+        string currentDate = "06072024";
         public TimeRecordForm()
         {
             InitializeComponent();
-            SetTextBoxDateOfWeek();
-            populatePanelWithEmployees();
+        }
 
+        private void TimeRecordForm_Load(object sender, EventArgs e)
+        {
             dateTimePicker1.Value = DateTime.Now;
-            // assigning current date
-            DateTime selectedDate = dateTimePicker1.Value;
+            // initialize variables
+            currentDate = dateTimePicker1.Value.ToString("MMddyyyy");
 
-            currentDate = selectedDate.ToString("ddMMyyyy");
-            Console.WriteLine($"Current date: {currentDate}");
+            // popluate with employees
+            populatePanelWithTimeRecordUserControl();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, System.EventArgs e)
+        private void btnNew_Click(object sender, EventArgs e)
         {
-            // Get the selected date from the DateTimePicker
-            DateTime selectedDate = dateTimePicker1.Value;
-
-            // Update the textbox with the day of the week
-            tbDayOfWeek.Text = selectedDate.ToString("dddd");
-
-            // refresh list
-            currentDate = selectedDate.ToString("ddMMyyyy");
-            populatePanelWithEmployees();
+            // open create new time record
+            var newTimeRecord = new CreateNewRecord(_currentDate: currentDate);
+            newTimeRecord.StartPosition = FormStartPosition.CenterParent;
+            newTimeRecord.ShowDialog(this);
         }
 
-        private void SetTextBoxDateOfWeek()
+        #region onLoad
+        private List<TimeRecordModel> timeRecords = new List<TimeRecordModel>();
+        private void populatePanelWithTimeRecordUserControl()
         {
-            DateTime selectedDate = dateTimePicker1.Value;
-            tbDayOfWeek.Text = selectedDate.ToString("dddd");
-        }
+            timeRecords.Clear();
+            timeRecords = DBTimeRecord.FetchAllEmployeeTimeRecords(_currentDate: currentDate);
 
-        private List<TimeRecordDataClass> employees = new List<TimeRecordDataClass>();
-        void populatePanelWithEmployees()
-        {
-            employees.Clear();
-            employeesPanel.Controls.Clear();
-            // Read from database]
-            employees = DBTimeRecord.FetchAllTimeRecords(currentDate: currentDate);
+            List<TimeRecordUserControl> userControls = new List<TimeRecordUserControl>();
+            listTimeRecordPanel.Controls.Clear();
 
-            List<UserControlTimeRecord> userControls = new List<UserControlTimeRecord>();
-
-            foreach (var employee in employees)
+            foreach (var t in timeRecords)
             {
-                UserControlTimeRecord userControl = new UserControlTimeRecord(
-                    recordDate: employee.RecordDate,
-                    iD: employee.ID,
-                    employeeName: employee.EmployeeName,
-                    currentProject: employee.CurrentProject,
-                    amTimeIn: employee.AmTimeIn,
-                    amTimeOut: employee.AmTimeOut,
-                    pmTimeIn: employee.PmTimeIn,
-                    pmTimeOut: employee.AmTimeOut,
-                    otTimeIn: employee.AmTimeOut,
-                    otTimeOut: employee.AmTimeOut
-                    );
-
-                // adding click event on the usercontrol
-                userControl.ButtonClicked += UserControl_ButtonClicked;
-
+                TimeRecordUserControl userControl = new TimeRecordUserControl(
+                    _currentDate: currentDate,
+                    _id: t.id, _employeeName: t.employeeName, _currentProject: t.currentProject, _amTimeIn: t.amTimeIn,
+                    _amTimeOut: t.amTimeOut, _pmTimeIn: t.pmTimeIn, _pmTimeOut: t.pmTimeOut, _otTimeIn: t.otTimeIn, _otTimeOut: t.otTimeOut);
                 userControls.Add(userControl);
             }
 
             foreach (var userControl in userControls)
             {
                 userControl.Dock = DockStyle.Top;
-                userControl.Width = int.MaxValue; // fillMaxWidth()
-                //userControl.BackColor = ColorPalette.AccentLavender;
+                userControl.Width = int.MaxValue;
 
-                employeesPanel.Controls.Add(userControl);
+                listTimeRecordPanel.Controls.Add(userControl);
             }
         }
-
-        private void UserControl_ButtonClicked(object sender, EventArgs e)
-        {
-            this.Enabled = false;
-
-            // open the child form
-            var childForm = new MyDialog(currentDate);
-            childForm.StartPosition = FormStartPosition.CenterParent;
-            childForm.FormClosed += ChildForm_FormClosed;
-            childForm.ShowDialog(this);
-
-            this.Enabled = true;
-
-            // refresh list
-            populatePanelWithEmployees();
-        }
-
-        private void ChildForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // refresh the list
-            Console.WriteLine("Refresing list...");
-            populatePanelWithEmployees();
-        }
-
-        // creating new time record
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            var createNewTimeRecord = new MyDialog(_currentDate: currentDate);
-
-            createNewTimeRecord.StartPosition = FormStartPosition.CenterParent;
-            createNewTimeRecord.FormClosed += ChildForm_FormClosed;
-            createNewTimeRecord.ShowDialog(this);
-
-            // refresh
-            populatePanelWithEmployees();
-        }
+        #endregion onLoad
     }
 }
