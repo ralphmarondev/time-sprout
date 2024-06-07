@@ -173,6 +173,24 @@
     <Compile Include="Admin\Forms\Employees\EmployeesForm.Designer.cs">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Forms\Employees\Forms\CreateNewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\Forms\CreateNewEmployee.Designer.cs">
+      <DependentUpon>CreateNewEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\Forms\UpdateEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\Forms\UpdateEmployee.Designer.cs">
+      <DependentUpon>UpdateEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.Designer.cs">
+      <DependentUpon>EmployeeUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Forms\TimeRecord\Forms\CreateNewRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +234,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\Employees\EmployeesForm.resx">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Employees\Forms\CreateNewEmployee.resx">
+      <DependentUpon>CreateNewEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Employees\Forms\UpdateEmployee.resx">
+      <DependentUpon>UpdateEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.resx">
+      <DependentUpon>EmployeeUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\TimeRecord\Forms\CreateNewRecord.resx">
       <DependentUpon>CreateNewRecord.cs</DependentUpon>
@@ -272,9 +299,12 @@
     <None Include="README.md" />
     <None Include="Resources\close_icon1.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Employee\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\icons8-menu-50.png" />
+    <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

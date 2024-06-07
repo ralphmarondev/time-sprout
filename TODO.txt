@@ -1,0 +1,4 @@
+
+# todo 2024-06-07
+- Add check on create. If such record exists, return error saying it exists and don't add it.
+
