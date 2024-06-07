@@ -117,11 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="close_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-menu-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-menu-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DQAACw0B7QfALAAAAOBJREFUeF7t2jFuwlAURFFLrIagrB1IlWRTEdDRkHm9C2xjeBLnSLf9xbdku5gB
+        AAAAAADgze3SVzqlmxZVd3hMH2mWz3RJY4drfnWndbeT/aaxA7W8nzTJJl3T2GFaXt1t3fHdPJB1m/xA
+        ilfWen2nyXzU1+mcZn3US/2iHdJfGjtc91d3uE/bBAAAAAAAAAAAT2T9/ris35tm/d4w6/dmWb83y/q9
+        WdbvjbJ+b5L1OwAAAAAAAAAAL2L9/ris35tm/d4w6/dmWb83y/q9WdbvjbJ+b5L1OwAAAAAAwDAM/+NV
+        EB+dgK4KAAAAAElFTkSuQmCC
+</value>
   </data>
 </root>

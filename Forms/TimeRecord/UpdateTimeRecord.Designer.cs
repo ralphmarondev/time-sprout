@@ -1,6 +1,6 @@
 ﻿namespace TimeSprout.Forms.TimeRecord
 {
-    partial class MyDialog
+    partial class UpdateTimeRecord
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.timeRecordPanel = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.lblOverTime = new System.Windows.Forms.Label();
             this.lblTotalWorkTime = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -52,19 +52,16 @@
             this.lblAmIn = new System.Windows.Forms.Label();
             this.tbDayOfWeek = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.timeRecordPanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupAM.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timeRecordPanel
             // 
             this.timeRecordPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.timeRecordPanel.Controls.Add(this.btnSave);
+            this.timeRecordPanel.Controls.Add(this.btnUpdate);
             this.timeRecordPanel.Controls.Add(this.lblOverTime);
             this.timeRecordPanel.Controls.Add(this.lblTotalWorkTime);
             this.timeRecordPanel.Controls.Add(this.groupBox2);
@@ -75,24 +72,22 @@
             this.timeRecordPanel.Controls.Add(this.groupAM);
             this.timeRecordPanel.Controls.Add(this.tbDayOfWeek);
             this.timeRecordPanel.Controls.Add(this.dateTimePicker1);
-            this.timeRecordPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.timeRecordPanel.Location = new System.Drawing.Point(239, 0);
+            this.timeRecordPanel.Location = new System.Drawing.Point(94, 76);
             this.timeRecordPanel.Name = "timeRecordPanel";
-            this.timeRecordPanel.Size = new System.Drawing.Size(716, 459);
-            this.timeRecordPanel.TabIndex = 5;
+            this.timeRecordPanel.Size = new System.Drawing.Size(691, 420);
+            this.timeRecordPanel.TabIndex = 6;
             // 
-            // btnSave
+            // btnUpdate
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(465, 359);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(198, 43);
-            this.btnSave.TabIndex = 18;
-            this.btnSave.Text = "SAVE";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdate.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(465, 359);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(198, 43);
+            this.btnUpdate.TabIndex = 18;
+            this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.UseVisualStyleBackColor = false;
             // 
             // lblOverTime
             // 
@@ -272,11 +267,10 @@
             this.tbID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
             this.tbID.Location = new System.Drawing.Point(26, 22);
             this.tbID.Name = "tbID";
+            this.tbID.ReadOnly = true;
             this.tbID.Size = new System.Drawing.Size(232, 30);
             this.tbID.TabIndex = 12;
             this.tbID.Text = "ID";
-            this.tbID.TextChanged += new System.EventHandler(this.tbID_TextChanged);
-            this.tbID.Leave += new System.EventHandler(this.tbID_Leave);
             // 
             // groupAM
             // 
@@ -356,6 +350,7 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(431, 22);
@@ -364,38 +359,16 @@
             this.dateTimePicker1.TabIndex = 6;
             this.dateTimePicker1.Value = new System.DateTime(2024, 4, 6, 0, 0, 0, 0);
             // 
-            // panel1
+            // UpdateTimeRecord
             // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(239, 459);
-            this.panel1.TabIndex = 6;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(21, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 43);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "SAVE";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // MyDialog
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 459);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(878, 572);
             this.Controls.Add(this.timeRecordPanel);
-            this.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "MyDialog";
-            this.ShowInTaskbar = false;
-            this.Text = "MyDialog";
+            this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "UpdateTimeRecord";
+            this.Text = "UpdateTimeRecord";
             this.timeRecordPanel.ResumeLayout(false);
             this.timeRecordPanel.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -404,7 +377,6 @@
             this.groupBox1.PerformLayout();
             this.groupAM.ResumeLayout(false);
             this.groupAM.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -412,16 +384,7 @@
         #endregion
 
         private System.Windows.Forms.Panel timeRecordPanel;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.GroupBox groupAM;
-        private System.Windows.Forms.Label lblAmOut;
-        private System.Windows.Forms.Label lblAmIn;
-        private System.Windows.Forms.TextBox tbDayOfWeek;
-        private System.Windows.Forms.TextBox tbID;
-        private System.Windows.Forms.TextBox tbCurrentProject;
-        private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.Button btnAmOut;
-        private System.Windows.Forms.Button btnAmIn;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label lblOverTime;
         private System.Windows.Forms.Label lblTotalWorkTime;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -434,8 +397,15 @@
         private System.Windows.Forms.Button btnPmIn;
         private System.Windows.Forms.Label lblPmOut;
         private System.Windows.Forms.Label lblPmIn;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tbCurrentProject;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.GroupBox groupAM;
+        private System.Windows.Forms.Button btnAmOut;
+        private System.Windows.Forms.Button btnAmIn;
+        private System.Windows.Forms.Label lblAmOut;
+        private System.Windows.Forms.Label lblAmIn;
+        private System.Windows.Forms.TextBox tbDayOfWeek;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

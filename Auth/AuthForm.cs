@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Core.DB;
 using TimeSprout.Core.Utils;
+using TimeSprout.Main;
 
 namespace TimeSprout
 {
@@ -45,15 +46,26 @@ namespace TimeSprout
         {
             Console.WriteLine($"Username: {tbUsername.Text}, Status: {tbStatus.Text}, Password: {tbPassword.Text}");
 
-            if (DBUsers.IsUserExists(username: tbUsername.Text, password: tbPassword.Text))
+
+            if (tbStatus.Text == "EMPLOYEE")
             {
                 Hide();
-                MainForm mainForm = new MainForm();
-                mainForm.ShowDialog();
+                EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text);
+
+                employeeMainForm.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Invalid credentials.");
+                if (DBUsers.IsUserExists(username: tbUsername.Text, password: tbPassword.Text))
+                {
+                    Hide();
+                    MainForm mainForm = new MainForm();
+                    mainForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid credentials.");
+                }
             }
         }
 
