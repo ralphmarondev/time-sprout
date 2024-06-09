@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Core.DB;
 using TimeSprout.Core.Model;
@@ -46,9 +48,17 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
                 dateTimePicker1.Value = DateTime.Now;
             }
 
+            // setting the date time picker readonly
+
+            SendMessage(dateTimePicker1.Handle, DTM_SETMCCOLOR, (IntPtr)MCSC_MONTHBK, (IntPtr)SystemColors.Control.ToArgb());
             // setting the label
             lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
         }
+        [DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+
+        private const int DTM_SETMCCOLOR = 0x1006;
+        private const int MCSC_MONTHBK = 0; // MonthCal_SetColor index for the background color of the month calendar control
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -111,5 +121,16 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             tbOtTimeOut.Text = getCurrentTime();
         }
         #endregion TIME_IN_OUT
+
+        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void dateTimePicker1_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Prevent the calendar from popping up
+            //((HandledMouseEventArgs)e).Handled = true; // HACK: UNCOMMENT THIS IF YOU WANT TO CRASH YOU COMPUTER ON TRYING TO DROP DOWN THE DATETIMEPICKER :)
+        }
     }
 }

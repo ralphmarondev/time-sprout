@@ -259,6 +259,7 @@
             // 
             this.tbCurrentProject.Location = new System.Drawing.Point(272, 116);
             this.tbCurrentProject.Name = "tbCurrentProject";
+            this.tbCurrentProject.ReadOnly = true;
             this.tbCurrentProject.Size = new System.Drawing.Size(215, 30);
             this.tbCurrentProject.TabIndex = 9;
             // 
@@ -276,6 +277,7 @@
             // 
             this.tbEmployeeName.Location = new System.Drawing.Point(19, 116);
             this.tbEmployeeName.Name = "tbEmployeeName";
+            this.tbEmployeeName.ReadOnly = true;
             this.tbEmployeeName.Size = new System.Drawing.Size(215, 30);
             this.tbEmployeeName.TabIndex = 7;
             // 

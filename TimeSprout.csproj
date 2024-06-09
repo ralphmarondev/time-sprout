@@ -228,6 +228,9 @@
     <Compile Include="Core\Model\EmployeeModel.cs" />
     <Compile Include="Core\Model\TimeRecordModel.cs" />
     <Compile Include="Core\Util\MyTools.cs" />
+    <Compile Include="Core\Util\ReadOnlyDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Employee\EmployeeMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
