@@ -48,6 +48,9 @@ namespace TimeSprout.Core.DB
                 InitializeDailyTimeRecordTable(tableName);
 
                 Console.WriteLine($"Creating new time record for {_currentDate}...");
+                Console.WriteLine($"id: {_record.id}, name: {_record.employeeName}, currentProject: {_record.currentProject}");
+                Console.WriteLine($"amIn: {_record.amTimeIn}, amOut: {_record.amTimeOut}, pmIn: {_record.pmTimeIn}, pmOut: {_record.pmTimeIn}, otIn: {_record.otTimeIn}, otOut: {_record.otTimeOut}");
+
                 using (var connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
@@ -88,6 +91,8 @@ namespace TimeSprout.Core.DB
                 InitializeDailyTimeRecordTable(tableName);
 
                 Console.WriteLine($"Updating time record for: [{tableName}]...");
+                Console.WriteLine($"id: {_record.id}, name: {_record.employeeName}, currentProject: {_record.currentProject}");
+                Console.WriteLine($"amIn: {_record.amTimeIn}, amOut: {_record.amTimeOut}, pmIn: {_record.pmTimeIn}, pmOut: {_record.pmTimeIn}, otIn: {_record.otTimeIn}, otOut: {_record.otTimeOut}");
                 using (var connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
@@ -235,7 +240,10 @@ namespace TimeSprout.Core.DB
                                     otTimeIn = reader["otTimeIn"].ToString(),
                                     otTimeOut = reader["otTimeOut"].ToString()
                                 };
-
+                                Console.WriteLine($"id: {record.id}, name: {record.employeeName}, currentProject: {record.currentProject},");
+                                Console.WriteLine($"amTimeIn: {record.amTimeIn}, amTimeOut: {record.amTimeOut}");
+                                Console.WriteLine($"pmTimeIn: {record.pmTimeIn}, pmTimeOut: {record.pmTimeOut}");
+                                Console.WriteLine($"otTimeIn: {record.otTimeIn}, otTimeOut: {record.otTimeOut}");
                                 timeRecords.Add(record);
                             }
                         }

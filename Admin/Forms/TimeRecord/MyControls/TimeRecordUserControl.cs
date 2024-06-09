@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using TimeSprout.Admin.Forms.TimeRecord.Forms;
 using TimeSprout.Core.DB;
 
@@ -6,6 +7,9 @@ namespace TimeSprout.Admin.Forms.TimeRecord.MyControls
 {
     public partial class TimeRecordUserControl : UserControl
     {
+        public event EventHandler DeleteButtonClicked;
+        public event EventHandler UpdateButtonClicked;
+
         private string currentDate;
         public TimeRecordUserControl()
         {
@@ -32,6 +36,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.MyControls
         private void btnDelete_Click(object sender, System.EventArgs e)
         {
             DBTimeRecord.DeleteEmployeeTimeRecord(_currentDate: currentDate, _id: lblId.Text);
+            DeleteButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnEdit_Click(object sender, System.EventArgs e)
@@ -44,6 +49,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.MyControls
 
             updateTimeRecord.StartPosition = FormStartPosition.CenterParent;
             updateTimeRecord.ShowDialog(this);
+            UpdateButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
