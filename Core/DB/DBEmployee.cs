@@ -207,6 +207,49 @@ namespace TimeSprout.Core.DB
             return employees;
         }
 
+        public static List<EmployeeModel> FetchAllEmployeesById(string _id)
+        {
+
+            List<EmployeeModel> employees = new List<EmployeeModel>();
+            employees.Clear();
+
+            try
+            {
+                InitializeEmployeeTable();
+
+                Console.WriteLine("Fetching all employees...");
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string fetchQuery = "SELECT id, name, password, currentProject FROM employees WHERE id = @id";
+                    using (var command = new SQLiteCommand(fetchQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", _id);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                EmployeeModel employee = new EmployeeModel
+                                {
+                                    id = reader["id"].ToString(),
+                                    name = reader["name"].ToString(),
+                                    password = reader["password"].ToString(),
+                                    currentProject = reader["currentProject"].ToString()
+                                };
+                                employees.Add(employee);
+                                Console.WriteLine($"ID: {employee.id}, name: {employee.name}, password: {employee.password}, currentProject: {employee.currentProject}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return employees;
+        }
 
         public static bool IsEmployeeExists(string _id, string _password)
         {

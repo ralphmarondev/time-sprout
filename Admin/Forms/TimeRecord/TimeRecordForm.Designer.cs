@@ -28,19 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeRecordForm));
             this.titlePanel = new System.Windows.Forms.Panel();
+            this.tbID = new System.Windows.Forms.TextBox();
             this.lblDayOfWeek = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnNew = new System.Windows.Forms.Button();
             this.listTimeRecordPanel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblRefreshEmpId = new System.Windows.Forms.LinkLabel();
             this.titlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // titlePanel
             // 
             this.titlePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(53)))), ((int)(((byte)(200)))));
-            this.titlePanel.Controls.Add(this.textBox1);
+            this.titlePanel.Controls.Add(this.lblRefreshEmpId);
+            this.titlePanel.Controls.Add(this.label1);
+            this.titlePanel.Controls.Add(this.button1);
+            this.titlePanel.Controls.Add(this.tbID);
             this.titlePanel.Controls.Add(this.lblDayOfWeek);
             this.titlePanel.Controls.Add(this.dateTimePicker1);
             this.titlePanel.Controls.Add(this.btnNew);
@@ -50,12 +57,21 @@
             this.titlePanel.Size = new System.Drawing.Size(844, 80);
             this.titlePanel.TabIndex = 1;
             // 
+            // tbID
+            // 
+            this.tbID.Location = new System.Drawing.Point(15, 28);
+            this.tbID.Name = "tbID";
+            this.tbID.Size = new System.Drawing.Size(198, 30);
+            this.tbID.TabIndex = 4;
+            this.tbID.Leave += new System.EventHandler(this.tbID_Leave);
+            // 
             // lblDayOfWeek
             // 
+            this.lblDayOfWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDayOfWeek.AutoSize = true;
             this.lblDayOfWeek.Font = new System.Drawing.Font("Courier New", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDayOfWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(199)))), ((int)(((byte)(255)))));
-            this.lblDayOfWeek.Location = new System.Drawing.Point(207, 30);
+            this.lblDayOfWeek.Location = new System.Drawing.Point(442, 22);
             this.lblDayOfWeek.Name = "lblDayOfWeek";
             this.lblDayOfWeek.Size = new System.Drawing.Size(103, 29);
             this.lblDayOfWeek.TabIndex = 2;
@@ -63,8 +79,9 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 28);
+            this.dateTimePicker1.Location = new System.Drawing.Point(551, 22);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(180, 30);
             this.dateTimePicker1.TabIndex = 1;
@@ -73,7 +90,7 @@
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(736, 28);
+            this.btnNew.Location = new System.Drawing.Point(747, 22);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(85, 31);
             this.btnNew.TabIndex = 0;
@@ -90,13 +107,46 @@
             this.listTimeRecordPanel.Size = new System.Drawing.Size(844, 470);
             this.listTimeRecordPanel.TabIndex = 2;
             // 
-            // textBox1
+            // button1
             // 
-            this.textBox1.Location = new System.Drawing.Point(532, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(198, 30);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "EMPLOYEE ID";
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(189, 29);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.MaximumSize = new System.Drawing.Size(24, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(24, 24);
+            this.button1.TabIndex = 8;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 17);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "EMPLOYEE ID:";
+            // 
+            // lblRefreshEmpId
+            // 
+            this.lblRefreshEmpId.AutoSize = true;
+            this.lblRefreshEmpId.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRefreshEmpId.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lblRefreshEmpId.Location = new System.Drawing.Point(12, 60);
+            this.lblRefreshEmpId.Name = "lblRefreshEmpId";
+            this.lblRefreshEmpId.Size = new System.Drawing.Size(341, 17);
+            this.lblRefreshEmpId.TabIndex = 12;
+            this.lblRefreshEmpId.TabStop = true;
+            this.lblRefreshEmpId.Text = "results for \'2024-002\' click to close";
+            this.lblRefreshEmpId.Visible = false;
+            this.lblRefreshEmpId.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblRefreshEmpId_LinkClicked);
             // 
             // TimeRecordForm
             // 
@@ -126,6 +176,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Panel listTimeRecordPanel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel lblRefreshEmpId;
     }
 }

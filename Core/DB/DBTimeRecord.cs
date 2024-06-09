@@ -257,6 +257,59 @@ namespace TimeSprout.Core.DB
             return timeRecords;
         }
 
+        public static List<TimeRecordModel> FetchAllEmployeeTimeRecordsById(string _currentDate, string _id)
+        {
+            List<TimeRecordModel> timeRecords = new List<TimeRecordModel>();
+            timeRecords.Clear();
+            string tableName = $"record_{_currentDate}";
+
+            try
+            {
+                InitializeDailyTimeRecordTable(_tableName: tableName);
+
+                Console.WriteLine($"Fetching all records for {_currentDate}...");
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string fetchQuery = $"SELECT id, name, currentProject, amTimeIn, amTimeOut, pmTimeIn, pmTimeOut, otTimeIn, otTimeOut FROM {tableName} WHERE id = @id";
+                    using (var command = new SQLiteCommand(fetchQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", _id);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                TimeRecordModel record = new TimeRecordModel
+                                {
+                                    id = reader["id"].ToString(),
+                                    employeeName = reader["name"].ToString(),
+                                    currentProject = reader["currentProject"].ToString(),
+                                    amTimeIn = reader["amTimeIn"].ToString(),
+                                    amTimeOut = reader["amTimeOut"].ToString(),
+                                    pmTimeIn = reader["pmTimeIn"].ToString(),
+                                    pmTimeOut = reader["pmTimeOut"].ToString(),
+                                    otTimeIn = reader["otTimeIn"].ToString(),
+                                    otTimeOut = reader["otTimeOut"].ToString()
+                                };
+                                Console.WriteLine($"id: {record.id}, name: {record.employeeName}, currentProject: {record.currentProject},");
+                                Console.WriteLine($"amTimeIn: {record.amTimeIn}, amTimeOut: {record.amTimeOut}");
+                                Console.WriteLine($"pmTimeIn: {record.pmTimeIn}, pmTimeOut: {record.pmTimeOut}");
+                                Console.WriteLine($"otTimeIn: {record.otTimeIn}, otTimeOut: {record.otTimeOut}");
+                                timeRecords.Add(record);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return timeRecords;
+        }
+
         public static bool IsEmployeeTimeRecordExists(string _currentDate, string _id)
         {
             string tableName = $"record_{_currentDate}";

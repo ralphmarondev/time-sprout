@@ -68,6 +68,37 @@ namespace TimeSprout.Admin.Forms
                 listTimeRecordPanel.Controls.Add(userControl);
             }
         }
+
+        // HACK: on search by id
+        private void populatePanelWithTimeRecordUserControlById(string _id)
+        {
+            timeRecords.Clear();
+            timeRecords = DBTimeRecord.FetchAllEmployeeTimeRecordsById(_currentDate: currentDate, _id: _id);
+
+            List<TimeRecordUserControl> userControls = new List<TimeRecordUserControl>();
+            listTimeRecordPanel.Controls.Clear();
+
+            foreach (var t in timeRecords)
+            {
+                TimeRecordUserControl userControl = new TimeRecordUserControl(
+                    _currentDate: currentDate,
+                    _id: t.id, _employeeName: t.employeeName, _currentProject: t.currentProject, _amTimeIn: t.amTimeIn,
+                    _amTimeOut: t.amTimeOut, _pmTimeIn: t.pmTimeIn, _pmTimeOut: t.pmTimeOut, _otTimeIn: t.otTimeIn, _otTimeOut: t.otTimeOut);
+
+                userControl.DeleteButtonClicked += TimeRecordList_RefreshEvent;
+                userControl.UpdateButtonClicked += TimeRecordList_RefreshEvent;
+
+                userControls.Add(userControl);
+            }
+
+            foreach (var userControl in userControls)
+            {
+                userControl.Dock = DockStyle.Top;
+                userControl.Width = int.MaxValue;
+
+                listTimeRecordPanel.Controls.Add(userControl);
+            }
+        }
         #endregion onLoad
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -88,5 +119,29 @@ namespace TimeSprout.Admin.Forms
             populatePanelWithTimeRecordUserControl();
         }
         #endregion REFRESH
+
+        private void tbID_Leave(object sender, EventArgs e)
+        {
+
+            if (tbID.Text.Trim().Length > 0)
+            {
+                lblRefreshEmpId.Visible = true;
+                lblRefreshEmpId.Text = $"results for '{tbID.Text}' click to close";
+
+                // search from db where id = @id
+                populatePanelWithTimeRecordUserControlById(_id: tbID.Text);
+            }
+            else
+            {
+                populatePanelWithTimeRecordUserControl();
+            }
+        }
+
+        private void lblRefreshEmpId_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            populatePanelWithTimeRecordUserControl();
+            tbID.Text = "";
+            lblRefreshEmpId.Visible = false;
+        }
     }
 }

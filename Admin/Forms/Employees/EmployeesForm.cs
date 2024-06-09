@@ -54,6 +54,40 @@ namespace TimeSprout.Admin.Forms.Employees
                 listEmployeesPanel.Controls.Add(userControl);
             }
         }
+
+        // HACK: CALL THIS ON SEARCH
+        private void populatePanelWithEmployeeUserControlById(string _id)
+        {
+            employees.Clear();
+            employees = DBEmployee.FetchAllEmployeesById(_id: _id);
+
+            List<EmployeeUserControl> userControls = new List<EmployeeUserControl>();
+            listEmployeesPanel.Controls.Clear();
+
+            foreach (var employee in employees)
+            {
+                EmployeeUserControl userControl = new EmployeeUserControl(
+                    _id: employee.id,
+                    _employeeName: employee.name,
+                    _currentProject: employee.currentProject,
+                    _password: employee.password);
+
+                // HACK: refreshing the list when delete operation is done
+                userControl.DeleteButtonClicked += EmployeeUserControl_DeleteButtonClicked;
+                userControl.UpdateButtonClicked += EmployeeUserControl_UpdateButtonClicked;
+
+                userControls.Add(userControl);
+            }
+
+            foreach (var userControl in userControls)
+            {
+                userControl.Dock = DockStyle.Top;
+                userControl.Width = int.MaxValue;
+
+                listEmployeesPanel.Controls.Add(userControl);
+            }
+        }
+
         #endregion ON_LOAD
 
 
@@ -105,6 +139,30 @@ namespace TimeSprout.Admin.Forms.Employees
                 updateForm.StartPosition = FormStartPosition.CenterParent;
                 updateForm.ShowDialog(this);
             }
+        }
+
+        private void tbId_Leave(object sender, EventArgs e)
+        {
+            if (tbId.Text.Trim().Length > 0)
+            {
+                lblRefreshEmpId.Visible = true;
+                lblRefreshEmpId.Text = $"results for '{tbId.Text}' click to close";
+
+                // search from db where id = @id
+                populatePanelWithEmployeeUserControlById(_id: tbId.Text);
+                // tbId.Text = "";
+            }
+            else
+            {
+                populatePanelWithEmployeeUserControl();
+            }
+        }
+
+        private void lblRefreshEmpId_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            populatePanelWithEmployeeUserControl();
+            tbId.Text = "";
+            lblRefreshEmpId.Visible = false;
         }
     }
 }
