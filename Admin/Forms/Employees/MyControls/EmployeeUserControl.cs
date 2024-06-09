@@ -1,11 +1,18 @@
-﻿using System.Windows.Forms;
-using TimeSprout.Admin.Forms.Employees.Forms;
-using TimeSprout.Core.DB;
+﻿using System;
+using System.Windows.Forms;
 
 namespace TimeSprout.Admin.Forms.Employees.MyControls
 {
     public partial class EmployeeUserControl : UserControl
     {
+        public event EventHandler DeleteButtonClicked;
+        public event EventHandler UpdateButtonClicked;
+
+        public string EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+        public string CurrentProject { get; set; }
+        public string EmployeePassword { get; set; }
+
         public EmployeeUserControl()
         {
             InitializeComponent();
@@ -15,26 +22,29 @@ namespace TimeSprout.Admin.Forms.Employees.MyControls
         {
             InitializeComponent();
 
-            lblEmployeeId.Text = _id;
-            lblEmployeeName.Text = _employeeName;
-            lblCurrentProject.Text = _currentProject;
-            lblEmployeePassword.Text = _password;
+            EmployeeId = _id;
+            EmployeeName = _employeeName;
+            CurrentProject = _currentProject;
+            EmployeePassword = _password;
+        }
+
+
+        private void EmployeeUserControl_Load(object sender, EventArgs e)
+        {
+            lblEmployeeId.Text = EmployeeId;
+            lblEmployeeName.Text = EmployeeName;
+            lblCurrentProject.Text = CurrentProject;
+            lblEmployeePassword.Text = EmployeePassword;
         }
 
         private void btnDelete_Click(object sender, System.EventArgs e)
         {
-            DBEmployee.DeleteEmployeeDetails(_id: lblEmployeeId.Text);
+            DeleteButtonClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnEdit_Click(object sender, System.EventArgs e)
         {
-            UpdateEmployee updateForm = new UpdateEmployee(_id: lblEmployeeId.Text,
-                _name: lblEmployeeName.Text,
-                _password: lblEmployeePassword.Text,
-                _currentProject: lblCurrentProject.Text);
-
-            updateForm.StartPosition = FormStartPosition.CenterParent;
-            updateForm.ShowDialog(this);
+            UpdateButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

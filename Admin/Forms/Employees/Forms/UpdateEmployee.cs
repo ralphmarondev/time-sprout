@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using TimeSprout.Core.DB;
 
 namespace TimeSprout.Admin.Forms.Employees.Forms
@@ -28,7 +29,19 @@ namespace TimeSprout.Admin.Forms.Employees.Forms
                 _password: tbPassword.Text,
                 _currentProject: tbCurrentProject.Text));
 
-            Hide();
+            this.Close();
         }
+
+        #region ON_CLOSE
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+
+            // trigger event
+            FormClosedEvent?.Invoke(this, EventArgs.Empty);
+        }
+        #endregion ON_CLOSE
+
+        public event EventHandler FormClosedEvent;
     }
 }

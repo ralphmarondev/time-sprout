@@ -25,8 +25,19 @@ namespace TimeSprout.Admin.Forms.Employees.Forms
                     _password: tbPassword.Text,
                     _currentProject: tbCurrentProject.Text));
 
-                Hide();
+                this.Close();
             }
         }
+
+
+        #region ON_CLOSE
+        public event EventHandler FormClosedEvent;
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            FormClosedEvent?.Invoke(this, EventArgs.Empty);
+        }
+        #endregion ON_CLOSE
     }
 }
