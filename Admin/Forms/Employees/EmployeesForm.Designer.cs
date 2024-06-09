@@ -91,6 +91,7 @@
             // listEmployeesPanel
             // 
             this.listEmployeesPanel.AutoScroll = true;
+            this.listEmployeesPanel.AutoSize = true;
             this.listEmployeesPanel.Controls.Add(this.label2);
             this.listEmployeesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listEmployeesPanel.Location = new System.Drawing.Point(0, 80);
@@ -118,6 +119,7 @@
             this.listEmployeesPanel.ResumeLayout(false);
             this.listEmployeesPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

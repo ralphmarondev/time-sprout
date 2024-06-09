@@ -39,6 +39,10 @@ namespace TimeSprout.Admin.Forms.Employees
                     _currentProject: employee.currentProject,
                     _password: employee.password);
 
+                // HACK: refreshing the list when delete operation is done
+                userControl.DeleteButtonClicked += EmployeeUserControl_DeleteButtonClicked;
+                userControl.UpdateButtonClicked += EmployeeUserControl_UpdateButtonClicked;
+
                 userControls.Add(userControl);
             }
 
@@ -49,15 +53,58 @@ namespace TimeSprout.Admin.Forms.Employees
 
                 listEmployeesPanel.Controls.Add(userControl);
             }
-            #endregion ON_LOAD
         }
+        #endregion ON_LOAD
+
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            var createNewEmployee = new CreateNewEmployee();
+            CreateNewEmployee createNewEmployee = new CreateNewEmployee();
+
+            // HACK: adding form closed event :)
+            createNewEmployee.FormClosed += RefreshingList_FormEvent;
 
             createNewEmployee.StartPosition = FormStartPosition.CenterParent;
             createNewEmployee.ShowDialog(this);
+        }
+
+        // HACK: refresh the list when the new form is closed
+        private void RefreshingList_FormEvent(object sender, EventArgs e)
+        {
+            populatePanelWithEmployeeUserControl();
+        }
+
+        private void EmployeeUserControl_DeleteButtonClicked(object sender, EventArgs e)
+        {
+            EmployeeUserControl userControl = sender as EmployeeUserControl;
+
+            if (userControl != null)
+            {
+                // deleting employee
+                DBEmployee.DeleteEmployeeDetails(_id: userControl.EmployeeId);
+                populatePanelWithEmployeeUserControl();
+            }
+        }
+
+        private void EmployeeUserControl_UpdateButtonClicked(object sender, EventArgs e)
+        {
+            EmployeeUserControl userControl = sender as EmployeeUserControl;
+
+            if (userControl != null)
+            {
+
+                UpdateEmployee updateForm = new UpdateEmployee(
+                    _id: userControl.EmployeeId,
+                    _name: userControl.EmployeeName,
+                    _password: userControl.EmployeePassword,
+                    _currentProject: userControl.CurrentProject);
+
+                // HACK: closed event
+                updateForm.FormClosed += RefreshingList_FormEvent;
+
+                updateForm.StartPosition = FormStartPosition.CenterParent;
+                updateForm.ShowDialog(this);
+            }
         }
     }
 }

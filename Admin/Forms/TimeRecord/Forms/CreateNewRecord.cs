@@ -68,7 +68,10 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
                     Console.WriteLine($"Checking if employee: {tbId.Text} exists in database...");
                     if (DBEmployee.IsEmployeeIdTaken(_id: tbId.Text))
                     {
+                        Console.WriteLine("Emloyee is valid.");
+
                         // TODO: CHECK IF THE TIME ARE CORRECT.
+                        Console.WriteLine($"Is time in and out valid: {isTimeInOutValid()}. Implement this!");
 
                         DBTimeRecord.CreateEmployeeTimeRecord(_currentDate: currentDate,
                             _record: new TimeRecordModel(_id: tbId.Text, _employeeName: tbEmployeeName.Text,
@@ -217,13 +220,13 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
                 }
                 else
                 {
-                    Console.WriteLine("Invalid time.");
+                    Console.WriteLine("Invalid Am time.");
                     return false;
                 }
 
                 // checking if pm time in - out is valid [1pm >= time < 6pm]
-                DateTime pmStartTime = DateTime.ParseExact("13:00", "HH:mm", CultureInfo.InvariantCulture);
-                DateTime pmEndTime = DateTime.ParseExact("18:00", "HH:mm", CultureInfo.InvariantCulture);
+                DateTime pmStartTime = DateTime.ParseExact("13:00", "hh:mm", CultureInfo.InvariantCulture);
+                DateTime pmEndTime = DateTime.ParseExact("18:00", "hh:mm", CultureInfo.InvariantCulture);
 
                 if (pmTimeIn >= pmStartTime && pmTimeOut < pmEndTime)
                 {
@@ -231,6 +234,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
                 }
                 else
                 {
+                    Console.WriteLine("Invalid Pm Time");
                     return false;
                 }
             }

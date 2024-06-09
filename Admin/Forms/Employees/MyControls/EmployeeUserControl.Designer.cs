@@ -110,6 +110,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeUserControl";
             this.Size = new System.Drawing.Size(687, 102);
+            this.Load += new System.EventHandler(this.EmployeeUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
