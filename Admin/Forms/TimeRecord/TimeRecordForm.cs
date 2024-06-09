@@ -21,6 +21,7 @@ namespace TimeSprout.Admin.Forms
             dateTimePicker1.Value = DateTime.Now;
             // initialize variables
             currentDate = dateTimePicker1.Value.ToString("MMddyyyy");
+            lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
 
             // popluate with employees
             populatePanelWithTimeRecordUserControl();
@@ -72,7 +73,10 @@ namespace TimeSprout.Admin.Forms
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             currentDate = dateTimePicker1.Value.ToString("MMddyyyy");
+            lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
+
             Console.WriteLine($"Updated value of current date to: {currentDate}");
+            TimeRecordList_RefreshEvent(sender, e);
 
             Console.WriteLine("Updating list of records...");
             populatePanelWithTimeRecordUserControl();

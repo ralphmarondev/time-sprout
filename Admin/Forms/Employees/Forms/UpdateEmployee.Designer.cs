@@ -157,7 +157,8 @@
             this.ClientSize = new System.Drawing.Size(326, 371);
             this.Controls.Add(this.employeeFieldsPanel);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UpdateEmployee";
             this.Text = "UpdateEmployee";
             this.employeeFieldsPanel.ResumeLayout(false);
