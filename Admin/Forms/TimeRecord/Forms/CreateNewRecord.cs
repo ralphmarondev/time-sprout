@@ -78,7 +78,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
                             _currentProject: tbCurrentProject.Text, _amTimeIn: tbAmTimeIn.Text, _amTimeOut: tbAmTimeOut.Text,
                             _pmTimeIn: tbPmTimeIn.Text, _pmTimeOut: tbPmTimeOut.Text, _otTimeIn: tbOtTimeIn.Text, _otTimeOut: tbOtTimeOut.Text));
 
-                        Hide();
+                        Close();
                         Console.WriteLine("Saved.");
                     }
                     else

@@ -30,6 +30,8 @@ namespace TimeSprout.Admin.Forms
         {
             // open create new time record
             var newTimeRecord = new CreateNewRecord(_currentDate: currentDate);
+
+            newTimeRecord.FormClosed += TimeRecordList_RefreshEvent;
             newTimeRecord.StartPosition = FormStartPosition.CenterParent;
             newTimeRecord.ShowDialog(this);
         }
@@ -50,6 +52,10 @@ namespace TimeSprout.Admin.Forms
                     _currentDate: currentDate,
                     _id: t.id, _employeeName: t.employeeName, _currentProject: t.currentProject, _amTimeIn: t.amTimeIn,
                     _amTimeOut: t.amTimeOut, _pmTimeIn: t.pmTimeIn, _pmTimeOut: t.pmTimeOut, _otTimeIn: t.otTimeIn, _otTimeOut: t.otTimeOut);
+
+                userControl.DeleteButtonClicked += TimeRecordList_RefreshEvent;
+                userControl.UpdateButtonClicked += TimeRecordList_RefreshEvent;
+
                 userControls.Add(userControl);
             }
 
@@ -71,5 +77,12 @@ namespace TimeSprout.Admin.Forms
             Console.WriteLine("Updating list of records...");
             populatePanelWithTimeRecordUserControl();
         }
+
+        #region REFRESH
+        private void TimeRecordList_RefreshEvent(object sender, EventArgs e)
+        {
+            populatePanelWithTimeRecordUserControl();
+        }
+        #endregion REFRESH
     }
 }
