@@ -51,7 +51,7 @@
             this.tbEmployeeName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbId = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblDayOfWeek = new System.Windows.Forms.Label();
             this.fieldsPanel.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -72,7 +72,7 @@
             this.fieldsPanel.Controls.Add(this.tbEmployeeName);
             this.fieldsPanel.Controls.Add(this.label4);
             this.fieldsPanel.Controls.Add(this.tbId);
-            this.fieldsPanel.Controls.Add(this.dateTimePicker2);
+            this.fieldsPanel.Controls.Add(this.dateTimePicker1);
             this.fieldsPanel.Controls.Add(this.lblDayOfWeek);
             this.fieldsPanel.Location = new System.Drawing.Point(12, 12);
             this.fieldsPanel.Name = "fieldsPanel";
@@ -85,7 +85,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(198, 46);
             this.btnSave.TabIndex = 14;
-            this.btnSave.Text = "SAVE";
+            this.btnSave.Text = "UPDATE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -111,6 +111,7 @@
             this.btnOtTimeOut.TabIndex = 9;
             this.btnOtTimeOut.Text = "OUT";
             this.btnOtTimeOut.UseVisualStyleBackColor = true;
+            this.btnOtTimeOut.Click += new System.EventHandler(this.btnOtTimeOut_Click);
             // 
             // btnOtTimeIn
             // 
@@ -120,6 +121,7 @@
             this.btnOtTimeIn.TabIndex = 8;
             this.btnOtTimeIn.Text = "IN";
             this.btnOtTimeIn.UseVisualStyleBackColor = true;
+            this.btnOtTimeIn.Click += new System.EventHandler(this.btnOtTimeIn_Click);
             // 
             // tbOtTimeOut
             // 
@@ -161,6 +163,7 @@
             this.btnPmTimeOut.TabIndex = 9;
             this.btnPmTimeOut.Text = "OUT";
             this.btnPmTimeOut.UseVisualStyleBackColor = true;
+            this.btnPmTimeOut.Click += new System.EventHandler(this.btnPmTimeOut_Click);
             // 
             // btnPmTimeIn
             // 
@@ -170,6 +173,7 @@
             this.btnPmTimeIn.TabIndex = 8;
             this.btnPmTimeIn.Text = "IN";
             this.btnPmTimeIn.UseVisualStyleBackColor = true;
+            this.btnPmTimeIn.Click += new System.EventHandler(this.btnPmTimeIn_Click);
             // 
             // tbPmTimeOut
             // 
@@ -211,6 +215,7 @@
             this.btnAmTimeOut.TabIndex = 9;
             this.btnAmTimeOut.Text = "OUT";
             this.btnAmTimeOut.UseVisualStyleBackColor = true;
+            this.btnAmTimeOut.Click += new System.EventHandler(this.btnAmTimeOut_Click);
             // 
             // btnAmTimeIn
             // 
@@ -220,6 +225,7 @@
             this.btnAmTimeIn.TabIndex = 8;
             this.btnAmTimeIn.Text = "IN";
             this.btnAmTimeIn.UseVisualStyleBackColor = true;
+            this.btnAmTimeIn.Click += new System.EventHandler(this.btnAmTimeIn_Click);
             // 
             // tbAmTimeOut
             // 
@@ -253,6 +259,7 @@
             // 
             this.tbCurrentProject.Location = new System.Drawing.Point(272, 116);
             this.tbCurrentProject.Name = "tbCurrentProject";
+            this.tbCurrentProject.ReadOnly = true;
             this.tbCurrentProject.Size = new System.Drawing.Size(215, 30);
             this.tbCurrentProject.TabIndex = 9;
             // 
@@ -270,6 +277,7 @@
             // 
             this.tbEmployeeName.Location = new System.Drawing.Point(19, 116);
             this.tbEmployeeName.Name = "tbEmployeeName";
+            this.tbEmployeeName.ReadOnly = true;
             this.tbEmployeeName.Size = new System.Drawing.Size(215, 30);
             this.tbEmployeeName.TabIndex = 7;
             // 
@@ -287,16 +295,18 @@
             // 
             this.tbId.Location = new System.Drawing.Point(19, 41);
             this.tbId.Name = "tbId";
+            this.tbId.ReadOnly = true;
             this.tbId.Size = new System.Drawing.Size(215, 30);
             this.tbId.TabIndex = 5;
             // 
-            // dateTimePicker2
+            // dateTimePicker1
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(272, 41);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(215, 30);
-            this.dateTimePicker2.TabIndex = 4;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(272, 41);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(215, 30);
+            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // lblDayOfWeek
             // 
@@ -316,6 +326,7 @@
             this.ClientSize = new System.Drawing.Size(731, 426);
             this.Controls.Add(this.fieldsPanel);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UpdateTimeRecord";
             this.ShowIcon = false;
@@ -359,7 +370,7 @@
         private System.Windows.Forms.TextBox tbEmployeeName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbId;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label lblDayOfWeek;
     }
 }

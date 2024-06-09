@@ -34,6 +34,20 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
         {
             // set the value of dateTimePicker to the current Date
             tbId.ReadOnly = true;
+            // parse date with the currentDate passed
+            DateTime parseDateTime;
+            if (DateTime.TryParseExact(currentDate, "MMddyyyy", null, System.Globalization.DateTimeStyles.None, out parseDateTime))
+            {
+                dateTimePicker1.Value = parseDateTime;
+            }
+            else
+            {
+                Console.WriteLine("Cannot parse date.");
+                dateTimePicker1.Value = DateTime.Now;
+            }
+
+            // setting the label
+            lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -46,7 +60,56 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
                     _amTimeOut: tbAmTimeOut.Text,
                     _pmTimeIn: tbPmTimeIn.Text, _pmTimeOut: tbPmTimeOut.Text,
                     _otTimeIn: tbOtTimeIn.Text, _otTimeOut: tbOtTimeOut.Text));
-            Hide();
+            Close();
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            // updating day of the week and current date
+            lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
+
+            currentDate = dateTimePicker1.Value.ToString("MMddyyyy");
+        }
+
+
+        #region TIME_IN_OUT
+        private string getCurrentTime()
+        {
+            DateTime _currentTime = DateTime.Now;
+            string formattedTime = _currentTime.ToString("hh:mm");
+
+            Console.WriteLine($"Time now is: {formattedTime}");
+            return formattedTime;
+        }
+        private void btnAmTimeIn_Click(object sender, EventArgs e)
+        {
+            tbAmTimeIn.Text = getCurrentTime();
+        }
+
+        private void btnAmTimeOut_Click(object sender, EventArgs e)
+        {
+            tbAmTimeOut.Text = getCurrentTime();
+        }
+
+        private void btnPmTimeIn_Click(object sender, EventArgs e)
+        {
+            tbPmTimeIn.Text = getCurrentTime();
+        }
+
+        private void btnPmTimeOut_Click(object sender, EventArgs e)
+        {
+            tbPmTimeOut.Text = getCurrentTime();
+        }
+
+        private void btnOtTimeIn_Click(object sender, EventArgs e)
+        {
+            tbOtTimeIn.Text = getCurrentTime();
+        }
+
+        private void btnOtTimeOut_Click(object sender, EventArgs e)
+        {
+            tbOtTimeOut.Text = getCurrentTime();
+        }
+        #endregion TIME_IN_OUT
     }
 }

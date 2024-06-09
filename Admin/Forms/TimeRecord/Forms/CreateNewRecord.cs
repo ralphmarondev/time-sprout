@@ -22,7 +22,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             // parse date with the currentDate passed
             Console.WriteLine($"Trying to parese the dateTimePicker with value: {currentDate}");
             DateTime parseDateTime;
-            if (DateTime.TryParseExact(currentDate, "ddMMyyyy", null, System.Globalization.DateTimeStyles.None, out parseDateTime))
+            if (DateTime.TryParseExact(currentDate, "MMddyyyy", null, System.Globalization.DateTimeStyles.None, out parseDateTime))
             {
                 dateTimePicker1.Value = parseDateTime;
                 Console.WriteLine("Parsed successfully.");
@@ -39,7 +39,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
         {
             // parse date with the currentDate passed
             DateTime parseDateTime;
-            if (DateTime.TryParseExact(currentDate, "ddMMyyyy", null, System.Globalization.DateTimeStyles.None, out parseDateTime))
+            if (DateTime.TryParseExact(currentDate, "MMddyyyy", null, System.Globalization.DateTimeStyles.None, out parseDateTime))
             {
                 dateTimePicker1.Value = parseDateTime;
             }
@@ -48,6 +48,8 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
                 Console.WriteLine("Cannot parse date.");
                 dateTimePicker1.Value = DateTime.Now;
             }
+
+            lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -246,5 +248,12 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             return true;
         }
         #endregion VALIDATION
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
+
+            currentDate = dateTimePicker1.Value.ToString("MMddyyyy");
+        }
     }
 }

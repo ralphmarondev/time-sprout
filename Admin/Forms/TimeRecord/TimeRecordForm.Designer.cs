@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.titlePanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDayOfWeek = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnNew = new System.Windows.Forms.Button();
             this.listTimeRecordPanel = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.titlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // titlePanel
             // 
             this.titlePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(53)))), ((int)(((byte)(200)))));
-            this.titlePanel.Controls.Add(this.label1);
+            this.titlePanel.Controls.Add(this.textBox1);
+            this.titlePanel.Controls.Add(this.lblDayOfWeek);
             this.titlePanel.Controls.Add(this.dateTimePicker1);
             this.titlePanel.Controls.Add(this.btnNew);
             this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -48,16 +50,16 @@
             this.titlePanel.Size = new System.Drawing.Size(844, 80);
             this.titlePanel.TabIndex = 1;
             // 
-            // label1
+            // lblDayOfWeek
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(199)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(207, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 29);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "MONDAY";
+            this.lblDayOfWeek.AutoSize = true;
+            this.lblDayOfWeek.Font = new System.Drawing.Font("Courier New", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDayOfWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(199)))), ((int)(((byte)(255)))));
+            this.lblDayOfWeek.Location = new System.Drawing.Point(207, 30);
+            this.lblDayOfWeek.Name = "lblDayOfWeek";
+            this.lblDayOfWeek.Size = new System.Drawing.Size(103, 29);
+            this.lblDayOfWeek.TabIndex = 2;
+            this.lblDayOfWeek.Text = "MONDAY";
             // 
             // dateTimePicker1
             // 
@@ -88,6 +90,14 @@
             this.listTimeRecordPanel.Size = new System.Drawing.Size(844, 470);
             this.listTimeRecordPanel.TabIndex = 2;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(532, 28);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(198, 30);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "EMPLOYEE ID";
+            // 
             // TimeRecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
@@ -112,9 +122,10 @@
         #endregion
 
         private System.Windows.Forms.Panel titlePanel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDayOfWeek;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Panel listTimeRecordPanel;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
