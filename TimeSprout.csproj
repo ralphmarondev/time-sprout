@@ -191,6 +191,18 @@
     <Compile Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.Designer.cs">
       <DependentUpon>EmployeeUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Forms\Export\ExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Export\ExportForm.Designer.cs">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Records\RecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Records\RecordForm.Designer.cs">
+      <DependentUpon>RecordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Forms\TimeRecord\Forms\CreateNewRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +235,7 @@
     </Compile>
     <Compile Include="Core\DB\DBConfig.cs" />
     <Compile Include="Core\DB\DBEmployee.cs" />
+    <Compile Include="Core\DB\DBExport.cs" />
     <Compile Include="Core\DB\DBTimeRecord.cs" />
     <Compile Include="Core\DB\DBUsers.cs" />
     <Compile Include="Core\Model\EmployeeModel.cs" />
@@ -259,6 +272,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.resx">
       <DependentUpon>EmployeeUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Export\ExportForm.resx">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Records\RecordForm.resx">
+      <DependentUpon>RecordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\TimeRecord\Forms\CreateNewRecord.resx">
       <DependentUpon>CreateNewRecord.cs</DependentUpon>

@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Admin.Forms;
 using TimeSprout.Admin.Forms.Employees;
+using TimeSprout.Admin.Forms.Export;
+using TimeSprout.Admin.Forms.Records;
 using TimeSprout.Auth;
 
 namespace TimeSprout.Admin
@@ -89,9 +91,15 @@ namespace TimeSprout.Admin
         {
             OpenFormInPanel(new EmployeesForm(), "Employee");
         }
+
+        private void btnRecords_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new RecordForm(), "Records");
+        }
+
         private void btnExport_Click(object sender, EventArgs e)
         {
-            mainPanel.Controls.Clear();
+            OpenFormInPanel(new ExportForm(), "Export");
         }
         private void btnToggleNavBar_Click(object sender, EventArgs e)
         {
@@ -102,8 +110,7 @@ namespace TimeSprout.Admin
             Close();
         }
 
+
         #endregion NAVIGATIONS
-
-
     }
 }
