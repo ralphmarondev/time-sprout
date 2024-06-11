@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.titlePanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnToggleNavBar = new System.Windows.Forms.Button();
             this.lblGreetings = new System.Windows.Forms.Label();
-            this.lblDestination = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -41,11 +41,10 @@
             this.btnHome = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.titlePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.navigationPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // titlePanel
@@ -54,15 +53,27 @@
             this.titlePanel.Controls.Add(this.pictureBox1);
             this.titlePanel.Controls.Add(this.btnToggleNavBar);
             this.titlePanel.Controls.Add(this.lblGreetings);
-            this.titlePanel.Controls.Add(this.lblDestination);
             this.titlePanel.Controls.Add(this.lblTitle);
             this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.titlePanel.Location = new System.Drawing.Point(0, 0);
             this.titlePanel.Margin = new System.Windows.Forms.Padding(4);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(1134, 95);
+            this.titlePanel.Size = new System.Drawing.Size(1134, 73);
             this.titlePanel.TabIndex = 3;
             this.titlePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titlePanel_MouseDown);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::TimeSprout.Properties.Resources.close_icon1;
+            this.pictureBox1.Location = new System.Drawing.Point(1087, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(47, 31);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnToggleNavBar
             // 
@@ -71,7 +82,7 @@
             this.btnToggleNavBar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToggleNavBar.Font = new System.Drawing.Font("Courier New", 24F, System.Drawing.FontStyle.Bold);
             this.btnToggleNavBar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnToggleNavBar.Location = new System.Drawing.Point(251, 31);
+            this.btnToggleNavBar.Location = new System.Drawing.Point(248, 12);
             this.btnToggleNavBar.Margin = new System.Windows.Forms.Padding(0);
             this.btnToggleNavBar.Name = "btnToggleNavBar";
             this.btnToggleNavBar.Size = new System.Drawing.Size(60, 50);
@@ -86,34 +97,19 @@
             this.lblGreetings.AutoSize = true;
             this.lblGreetings.Font = new System.Drawing.Font("Courier New", 14F);
             this.lblGreetings.ForeColor = System.Drawing.Color.White;
-            this.lblGreetings.Location = new System.Drawing.Point(333, 54);
+            this.lblGreetings.Location = new System.Drawing.Point(334, 26);
             this.lblGreetings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGreetings.Name = "lblGreetings";
             this.lblGreetings.Size = new System.Drawing.Size(250, 27);
             this.lblGreetings.TabIndex = 0;
             this.lblGreetings.Text = "Hello, [USERNAME]\r\n";
             // 
-            // lblDestination
-            // 
-            this.lblDestination.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDestination.AutoSize = true;
-            this.lblDestination.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDestination.ForeColor = System.Drawing.Color.White;
-            this.lblDestination.Location = new System.Drawing.Point(1063, 62);
-            this.lblDestination.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDestination.Name = "lblDestination";
-            this.lblDestination.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblDestination.Size = new System.Drawing.Size(58, 22);
-            this.lblDestination.TabIndex = 1;
-            this.lblDestination.Text = "HOME";
-            this.lblDestination.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Courier New", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(32, 31);
+            this.lblTitle.Location = new System.Drawing.Point(32, 22);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(174, 31);
@@ -129,10 +125,10 @@
             this.navigationPanel.Controls.Add(this.btnEmployees);
             this.navigationPanel.Controls.Add(this.btnHome);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.navigationPanel.Location = new System.Drawing.Point(0, 95);
+            this.navigationPanel.Location = new System.Drawing.Point(0, 73);
             this.navigationPanel.Name = "navigationPanel";
             this.navigationPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.navigationPanel.Size = new System.Drawing.Size(248, 590);
+            this.navigationPanel.Size = new System.Drawing.Size(248, 612);
             this.navigationPanel.TabIndex = 4;
             // 
             // btnLogout
@@ -144,7 +140,7 @@
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Courier New", 14F, System.Drawing.FontStyle.Bold);
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(221)))), ((int)(((byte)(238)))));
-            this.btnLogout.Location = new System.Drawing.Point(5, 518);
+            this.btnLogout.Location = new System.Drawing.Point(5, 540);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(0);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Padding = new System.Windows.Forms.Padding(5);
@@ -232,9 +228,9 @@
             this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(231)))), ((int)(((byte)(250)))));
             this.mainPanel.Controls.Add(this.label2);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(248, 95);
+            this.mainPanel.Location = new System.Drawing.Point(248, 73);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(886, 590);
+            this.mainPanel.Size = new System.Drawing.Size(886, 612);
             this.mainPanel.TabIndex = 5;
             // 
             // label2
@@ -245,19 +241,6 @@
             this.label2.Size = new System.Drawing.Size(442, 22);
             this.label2.TabIndex = 1;
             this.label2.Text = "DIFFERENT FORMS WILL BE OPENED HERE!\r\n";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::TimeSprout.Properties.Resources.close_icon1;
-            this.pictureBox1.Location = new System.Drawing.Point(1087, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 31);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // AdminMainForm
             // 
@@ -276,10 +259,10 @@
             this.Load += new System.EventHandler(this.AdminMainForm_Load);
             this.titlePanel.ResumeLayout(false);
             this.titlePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.navigationPanel.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,7 +272,6 @@
         private System.Windows.Forms.Panel titlePanel;
         private System.Windows.Forms.Button btnToggleNavBar;
         private System.Windows.Forms.Label lblGreetings;
-        private System.Windows.Forms.Label lblDestination;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel navigationPanel;
         private System.Windows.Forms.Button btnHome;

@@ -77,9 +77,6 @@ namespace TimeSprout.Admin
             mainPanel.Tag = form;
             form.BringToFront();
             form.Show();
-
-            // update destination
-            lblDestination.Text = formTitle;
         }
 
         private void btnHome_Click(object sender, EventArgs e)

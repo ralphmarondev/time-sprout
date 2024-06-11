@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TimeSprout.Forms.Records
+namespace TimeSprout.Admin.Forms.TimeRecord.MyControls
 {
-    public partial class RecordsForm : Form
+    public partial class NoDataUserControl : UserControl
     {
-        public RecordsForm()
+        public NoDataUserControl()
         {
             InitializeComponent();
         }

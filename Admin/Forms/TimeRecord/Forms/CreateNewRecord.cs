@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SQLite;
 using System.Globalization;
 using System.Windows.Forms;
 using TimeSprout.Core.DB;
@@ -50,7 +51,86 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             }
 
             lblDayOfWeek.Text = dateTimePicker1.Value.ToString("dddd");
+
+            // TODO: select all employee and add them on tbID
+            PopulateTbIdComboBox();
         }
+
+
+        #region TB_ID
+        private void PopulateTbIdComboBox()
+        {
+            try
+            {
+                SQLiteConnection connection = new SQLiteConnection(DBConfig.connectionString);
+                {
+                    connection.Open();
+
+                    string query = "SELECT id FROM employees";
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                tbId.Items.Add(reader["id"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+
+        private void tbId_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Console.WriteLine("Checking if employee exists on database or has already a record for this day...");
+                //EmployeeModel employee = null;
+                if (DBTimeRecord.IsEmployeeTimeRecordExists(_currentDate: currentDate, _id: tbId.Text))
+                {
+                    Console.WriteLine("Employee has a record for this day.");
+                    MessageBox.Show($"Employee with id: [{tbId.Text}], already has an record for this day. You can update it by searching his/her name if you cannot find it using the search field.");
+                }
+                else
+                {
+                    Console.WriteLine($"Checking if employees with id: {tbId.Text} exists...");
+                    if (DBEmployee.IsEmployeeIdTaken(_id: tbId.Text))
+                    {
+                        Console.WriteLine($"Id: {tbId.Text} is taken.");
+                        EmployeeModel employee = new EmployeeModel(_id: tbId.Text, _name: "", _password: "", _currentProject: "");
+                        employee = DBEmployee.ReadEmployeeDetails(_id: tbId.Text);
+
+                        if (employee != null)
+                        {
+                            tbEmployeeName.Text = employee.name;
+                            tbCurrentProject.Text = employee.currentProject;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Employee with that id does not exist in the database.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Employee with that id does not exists on the database.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error [tbId_Leave]: {ex.Message}");
+            }
+
+        }
+        #endregion TB_ID
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -91,7 +171,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             }
         }
 
-        private void tbId_TextChanged(object sender, EventArgs e)
+        private void tbId1_TextChanged(object sender, EventArgs e)
         {
             Console.WriteLine(tbId.Text);
 
@@ -104,7 +184,8 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             //}
         }
 
-        private void tbId_Leave(object sender, EventArgs e)
+
+        private void tbId1_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -144,6 +225,7 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             {
                 Console.WriteLine($"Error [tbId_Leave]: {ex.Message}");
             }
+
         }
 
 

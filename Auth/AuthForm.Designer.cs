@@ -90,7 +90,7 @@
             this.fieldsPanel.Controls.Add(this.tbStatus);
             this.fieldsPanel.Controls.Add(this.tbUsername);
             this.fieldsPanel.Controls.Add(this.label2);
-            this.fieldsPanel.Location = new System.Drawing.Point(78, 142);
+            this.fieldsPanel.Location = new System.Drawing.Point(66, 152);
             this.fieldsPanel.Name = "fieldsPanel";
             this.fieldsPanel.Size = new System.Drawing.Size(305, 304);
             this.fieldsPanel.TabIndex = 3;

@@ -67,6 +67,12 @@ namespace TimeSprout.Admin.Forms
 
                 listTimeRecordPanel.Controls.Add(userControl);
             }
+
+            // TODO: show that there is no data yet if the list is empty
+            if (timeRecords.Count < 1)
+            {
+                listTimeRecordPanel.Controls.Add(new NoDataUserControl());
+            }
         }
 
         // HACK: on search by id

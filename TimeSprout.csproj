@@ -215,6 +215,12 @@
     <Compile Include="Admin\Forms\TimeRecord\Forms\UpdateTimeRecord.Designer.cs">
       <DependentUpon>UpdateTimeRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Forms\TimeRecord\MyControls\NoDataUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\TimeRecord\MyControls\NoDataUserControl.Designer.cs">
+      <DependentUpon>NoDataUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Forms\TimeRecord\MyControls\TimeRecordUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\TimeRecord\Forms\UpdateTimeRecord.resx">
       <DependentUpon>UpdateTimeRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\TimeRecord\MyControls\NoDataUserControl.resx">
+      <DependentUpon>NoDataUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\TimeRecord\MyControls\TimeRecordUserControl.resx">
       <DependentUpon>TimeRecordUserControl.cs</DependentUpon>
