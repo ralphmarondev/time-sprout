@@ -50,9 +50,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbEmployeeName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbId = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblDayOfWeek = new System.Windows.Forms.Label();
+            this.tbId = new System.Windows.Forms.ComboBox();
             this.fieldsPanel.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -62,6 +62,7 @@
             // fieldsPanel
             // 
             this.fieldsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
+            this.fieldsPanel.Controls.Add(this.tbId);
             this.fieldsPanel.Controls.Add(this.btnSave);
             this.fieldsPanel.Controls.Add(this.groupBox3);
             this.fieldsPanel.Controls.Add(this.groupBox2);
@@ -71,7 +72,6 @@
             this.fieldsPanel.Controls.Add(this.label5);
             this.fieldsPanel.Controls.Add(this.tbEmployeeName);
             this.fieldsPanel.Controls.Add(this.label4);
-            this.fieldsPanel.Controls.Add(this.tbId);
             this.fieldsPanel.Controls.Add(this.dateTimePicker1);
             this.fieldsPanel.Controls.Add(this.lblDayOfWeek);
             this.fieldsPanel.Location = new System.Drawing.Point(12, 12);
@@ -291,15 +291,6 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "ID:";
             // 
-            // tbId
-            // 
-            this.tbId.Location = new System.Drawing.Point(19, 41);
-            this.tbId.Name = "tbId";
-            this.tbId.Size = new System.Drawing.Size(215, 30);
-            this.tbId.TabIndex = 5;
-            this.tbId.TextChanged += new System.EventHandler(this.tbId_TextChanged);
-            this.tbId.Leave += new System.EventHandler(this.tbId_Leave);
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -319,6 +310,15 @@
             this.lblDayOfWeek.Size = new System.Drawing.Size(103, 29);
             this.lblDayOfWeek.TabIndex = 3;
             this.lblDayOfWeek.Text = "MONDAY";
+            // 
+            // tbId
+            // 
+            this.tbId.FormattingEnabled = true;
+            this.tbId.Location = new System.Drawing.Point(19, 44);
+            this.tbId.Name = "tbId";
+            this.tbId.Size = new System.Drawing.Size(215, 30);
+            this.tbId.TabIndex = 15;
+            this.tbId.TextChanged += new System.EventHandler(this.tbId_TextChanged);
             // 
             // CreateNewRecord
             // 
@@ -370,8 +370,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbEmployeeName;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbId;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label lblDayOfWeek;
+        private System.Windows.Forms.ComboBox tbId;
     }
 }
