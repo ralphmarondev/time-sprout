@@ -161,78 +161,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\AdminMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\AdminMainForm.Designer.cs">
-      <DependentUpon>AdminMainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\EmployeesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\EmployeesForm.Designer.cs">
-      <DependentUpon>EmployeesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\Forms\CreateNewEmployee.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\Forms\CreateNewEmployee.Designer.cs">
-      <DependentUpon>CreateNewEmployee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\Forms\UpdateEmployee.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\Forms\UpdateEmployee.Designer.cs">
-      <DependentUpon>UpdateEmployee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.Designer.cs">
-      <DependentUpon>EmployeeUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\Export\ExportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\Export\ExportForm.Designer.cs">
-      <DependentUpon>ExportForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\Records\RecordForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\Records\RecordForm.Designer.cs">
-      <DependentUpon>RecordForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\Forms\CreateNewRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\Forms\CreateNewRecord.Designer.cs">
-      <DependentUpon>CreateNewRecord.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\Forms\UpdateTimeRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\Forms\UpdateTimeRecord.Designer.cs">
-      <DependentUpon>UpdateTimeRecord.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\MyControls\NoDataUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\MyControls\NoDataUserControl.Designer.cs">
-      <DependentUpon>NoDataUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\MyControls\TimeRecordUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\MyControls\TimeRecordUserControl.Designer.cs">
-      <DependentUpon>TimeRecordUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\TimeRecordForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\TimeRecordForm.Designer.cs">
-      <DependentUpon>TimeRecordForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Auth\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +184,12 @@
     <Compile Include="Employee\EmployeeMainForm.Designer.cs">
       <DependentUpon>EmployeeMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employee\Forms\Summary\SumarryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee\Forms\Summary\SumarryForm.Designer.cs">
+      <DependentUpon>SumarryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employee\Forms\TimeRecord\TimeRecordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,47 +198,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Admin\AdminMainForm.resx">
-      <DependentUpon>AdminMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\Employees\EmployeesForm.resx">
-      <DependentUpon>EmployeesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\Employees\Forms\CreateNewEmployee.resx">
-      <DependentUpon>CreateNewEmployee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\Employees\Forms\UpdateEmployee.resx">
-      <DependentUpon>UpdateEmployee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\Employees\MyControls\EmployeeUserControl.resx">
-      <DependentUpon>EmployeeUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\Export\ExportForm.resx">
-      <DependentUpon>ExportForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\Records\RecordForm.resx">
-      <DependentUpon>RecordForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\TimeRecord\Forms\CreateNewRecord.resx">
-      <DependentUpon>CreateNewRecord.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\TimeRecord\Forms\UpdateTimeRecord.resx">
-      <DependentUpon>UpdateTimeRecord.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\TimeRecord\MyControls\NoDataUserControl.resx">
-      <DependentUpon>NoDataUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\TimeRecord\MyControls\TimeRecordUserControl.resx">
-      <DependentUpon>TimeRecordUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\TimeRecord\TimeRecordForm.resx">
-      <DependentUpon>TimeRecordForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Auth\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\EmployeeMainForm.resx">
       <DependentUpon>EmployeeMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee\Forms\Summary\SumarryForm.resx">
+      <DependentUpon>SumarryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Employee\Forms\TimeRecord\TimeRecordForm.resx">
       <DependentUpon>TimeRecordForm.cs</DependentUpon>
@@ -351,7 +252,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\icons8-hide-sidepanel-50.png" />
+    <None Include="Resources\icons8-full-screen-48.png" />
     <Content Include="Resources\icons8-menu-50.png" />
+    <None Include="Resources\icons8-shutdown-64.png" />
+    <None Include="Resources\icons8-test-account-80.png" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

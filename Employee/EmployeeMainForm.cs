@@ -1,61 +1,60 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using TimeSprout.Auth;
+using TimeSprout.Core.Model;
 
 namespace TimeSprout.Employee
 {
     public partial class EmployeeMainForm : Form
     {
-        string id;
         public EmployeeMainForm()
         {
             InitializeComponent();
+            id = "2024-001";
         }
 
         public EmployeeMainForm(string _id)
         {
             InitializeComponent();
-
-            this.id = _id;
+            id = "2024-002";
         }
 
         private void EmployeeMainForm_Load(object sender, EventArgs e)
         {
-            lblGreetings.Text = $"Hello, {id}";
-
-            OpenFormInPanel(new Employee.Forms.TimeRecord.TimeRecordForm(), "Home");
+            GetEmployeeDetails(id);
+            OpenFormInPanel(new Forms.TimeRecord.TimeRecordForm(
+                _id: id,
+                _name: name,
+                _password: password,
+                _currentProject: currentProject
+                ));
         }
 
-
-
-        #region DRAG_AND_DROP_TITLE
-
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HTCAPTION = 0x2;
-
-        private void titlePanel_MouseDown(object sender, MouseEventArgs e)
+        /// <summary>
+        /// ONLOAD: 
+        ///     - GET EMPLOYEE DETAILS [ID, NAME, PASSWORD, CURRENT_PROJECT]
+        /// </summary>
+        #region ONLOAD
+        #region EMPLOYEE_DETAILS
+        private string id, name, password, currentProject;
+        private void GetEmployeeDetails(string _id)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
-            }
+            EmployeeModel employee = Core.DB.DBEmployee.ReadEmployeeDetails(_id: _id);
+            id = employee.id;
+            name = employee.name;
+            password = employee.password;
+            currentProject = employee.currentProject;
         }
-        #endregion DRAG_AND_DROP_TITLE
+
+        #endregion EMPLOYEE_DETAILS
+
+        #endregion ONLOAD
 
 
 
         #region NAVIGATIONS
-        private void OpenFormInPanel(Form form, string formTitle)
+        private void OpenFormInPanel(Form form)
         {
-            foreach (Control control in navigationPanel.Controls)
+            foreach (Control control in panelNavigation.Controls)
             {
                 if (control is Form)
                 {
@@ -70,41 +69,60 @@ namespace TimeSprout.Employee
             mainPanel.Tag = form;
             form.BringToFront();
             form.Show();
-
-            // update destination
-            lblDestination.Text = formTitle;
         }
-        private void btnHome_Click(object sender, EventArgs e)
+
+        private void btnTimeInOut_Click(object sender, EventArgs e)
         {
-            OpenFormInPanel(new Employee.Forms.TimeRecord.TimeRecordForm(), "Home");
+            OpenFormInPanel(new Forms.TimeRecord.TimeRecordForm(
+               _id: id,
+               _name: name,
+               _password: password,
+               _currentProject: currentProject
+               ));
         }
-
-        private void btnRecords_Click(object sender, EventArgs e)
+        private void btnSummary_Click(object sender, EventArgs e)
         {
-
+            OpenFormInPanel(new Forms.Summary.SumarryForm(_id: id, _name: name, _password: password, _currentProject: currentProject));
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            mainPanel.Controls.Clear();
-        }
 
-        private void btnToggleNavBar_Click(object sender, EventArgs e)
-        {
-            navigationPanel.Visible = !navigationPanel.Visible;
-        }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
         #endregion NAVIGATIONS
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        #region TOP_BAR
+
+        internal void ToggleFullScreen()
         {
-            Hide();
-            AuthForm authForm = new AuthForm();
-            authForm.ShowDialog();
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                // full screen
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
         }
+
+        internal void ToggleNavigationPanel()
+        {
+            if (panelNavigation.Visible)
+            {
+                panelNavigation.Visible = false;
+            }
+            else
+            {
+                panelNavigation.Visible = true;
+            }
+        }
+
+        internal void ShowEmployeeDetails()
+        {
+            string message = $"ID: {id}\nName: {name}\nPassword: {password}\nCurrent Project: {currentProject}\n\n=====Nothing Follows=====";
+            MessageBox.Show(caption: "Employee Details", text: message);
+        }
+
+        #endregion TOP_BAR
+
     }
 }
