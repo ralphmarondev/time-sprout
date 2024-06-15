@@ -171,64 +171,6 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Forms
             }
         }
 
-        private void tbId1_TextChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine(tbId.Text);
-
-            //if (DBEmployee.IsEmployeeIdTaken(_id: tbId.Text))
-            //{
-            //    EmployeeModel employee = DBEmployee.ReadEmployeeDetails(_id: tbId.Text);
-
-            //    tbEmployeeName.Text = employee.name;
-            //    tbCurrentProject.Text = employee.currentProject;
-            //}
-        }
-
-
-        private void tbId1_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                Console.WriteLine("Checking if employee exists on database or has already a record for this day...");
-                //EmployeeModel employee = null;
-                if (DBTimeRecord.IsEmployeeTimeRecordExists(_currentDate: currentDate, _id: tbId.Text))
-                {
-                    Console.WriteLine("Employee has a record for this day.");
-                    MessageBox.Show($"Employee with id: [{tbId.Text}], already has an record for this day. You can update it by searching his/her name if you cannot find it using the search field.");
-                }
-                else
-                {
-                    Console.WriteLine($"Checking if employees with id: {tbId.Text} exists...");
-                    if (DBEmployee.IsEmployeeIdTaken(_id: tbId.Text))
-                    {
-                        Console.WriteLine($"Id: {tbId.Text} is taken.");
-                        EmployeeModel employee = new EmployeeModel(_id: tbId.Text, _name: "", _password: "", _currentProject: "");
-                        employee = DBEmployee.ReadEmployeeDetails(_id: tbId.Text);
-
-                        if (employee != null)
-                        {
-                            tbEmployeeName.Text = employee.name;
-                            tbCurrentProject.Text = employee.currentProject;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Employee with that id does not exist in the database.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Employee with that id does not exists on the database.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error [tbId_Leave]: {ex.Message}");
-            }
-
-        }
-
-
         #region TIME_IN_OUT
         private string getCurrentTime()
         {

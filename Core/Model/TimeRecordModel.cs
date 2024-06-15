@@ -11,10 +11,13 @@
         public string pmTimeOut { get; set; }
         public string otTimeIn { get; set; }
         public string otTimeOut { get; set; }
+        public string workingHour { get; set; }
+        public string overtime { get; set; }
 
         public TimeRecordModel() { }
 
-        public TimeRecordModel(string _id, string _employeeName, string _currentProject, string _amTimeIn, string _amTimeOut, string _pmTimeIn, string _pmTimeOut, string _otTimeIn, string _otTimeOut)
+        public TimeRecordModel(string _id, string _employeeName, string _currentProject, string _amTimeIn, string _amTimeOut, string _pmTimeIn, string _pmTimeOut, string _otTimeIn, string _otTimeOut,
+            string _workingHour, string _overtime)
         {
             this.id = _id;
             this.employeeName = _employeeName;
@@ -25,6 +28,8 @@
             this.pmTimeOut = _pmTimeOut;
             this.otTimeIn = _otTimeIn;
             this.otTimeOut = _otTimeOut;
+            this.workingHour = workingHour;
+            this.overtime = overtime;
         }
     }
 }

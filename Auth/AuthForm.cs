@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using TimeSprout.Admin;
 using TimeSprout.Core.DB;
 using TimeSprout.Employee;
 
@@ -12,7 +11,7 @@ namespace TimeSprout.Auth
         public AuthForm()
         {
             InitializeComponent();
-            tbStatus.Text = "ADMIN";
+            tbStatus.Text = "EMPLOYEE";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -21,18 +20,18 @@ namespace TimeSprout.Auth
                 ADMIN*/
             if (tbStatus.Text == "ADMIN")
             {
-                if (DBUsers.IsUserExists(username: tbUsername.Text, password: tbPassword.Text))
-                {
-                    Console.WriteLine("Login successfully...");
-                    AdminMainForm adminMainForm = new AdminMainForm(tbUsername.Text);
+                //if (DBUsers.IsUserExists(username: tbUsername.Text, password: tbPassword.Text))
+                //{
+                //    Console.WriteLine("Login successfully...");
+                //    AdminMainForm adminMainForm = new AdminMainForm(tbUsername.Text);
 
-                    Hide();
-                    adminMainForm.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Incorrent Password :)", "Loggin in as Admin.");
-                }
+                //    Hide();
+                //    adminMainForm.ShowDialog();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Incorrent Password :)", "Loggin in as Admin.");
+                //}
             }
             else
             {
