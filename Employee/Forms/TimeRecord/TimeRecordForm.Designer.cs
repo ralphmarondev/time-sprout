@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelTitle = new System.Windows.Forms.Panel();
+            this.tbCurrentDate = new System.Windows.Forms.TextBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnToggleNavPanel = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.btnEmployeeInfo = new System.Windows.Forms.PictureBox();
             this.lblEmployeeName = new System.Windows.Forms.Label();
             this.fieldsPanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblOvertime = new System.Windows.Forms.Label();
@@ -65,8 +67,6 @@
             this.tbAmTimeOut = new System.Windows.Forms.TextBox();
             this.tbAmTimeIn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.tbCurrentDate = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEmployeeInfo)).BeginInit();
             this.fieldsPanel.SuspendLayout();
@@ -100,6 +100,14 @@
             this.panelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseDown);
             this.panelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseMove);
             this.panelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseUp);
+            // 
+            // tbCurrentDate
+            // 
+            this.tbCurrentDate.Location = new System.Drawing.Point(16, 20);
+            this.tbCurrentDate.Name = "tbCurrentDate";
+            this.tbCurrentDate.ReadOnly = true;
+            this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
+            this.tbCurrentDate.TabIndex = 8;
             // 
             // dateTimePicker2
             // 
@@ -217,6 +225,14 @@
             this.fieldsPanel.Size = new System.Drawing.Size(545, 457);
             this.fieldsPanel.TabIndex = 9;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Purple;
+            this.panel2.Location = new System.Drawing.Point(32, 96);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(484, 2);
+            this.panel2.TabIndex = 18;
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.panel6);
@@ -232,9 +248,9 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel6.Controls.Add(this.lblOvertime);
-            this.panel6.Location = new System.Drawing.Point(157, 54);
+            this.panel6.Location = new System.Drawing.Point(140, 54);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(52, 38);
+            this.panel6.Size = new System.Drawing.Size(69, 38);
             this.panel6.TabIndex = 13;
             // 
             // lblOvertime
@@ -251,7 +267,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Courier New", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(40, 64);
+            this.label4.Location = new System.Drawing.Point(36, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(109, 21);
             this.label4.TabIndex = 14;
@@ -264,9 +280,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel5.Controls.Add(this.lblWorkedHour);
-            this.panel5.Location = new System.Drawing.Point(157, 10);
+            this.panel5.Location = new System.Drawing.Point(140, 10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(52, 38);
+            this.panel5.Size = new System.Drawing.Size(69, 38);
             this.panel5.TabIndex = 11;
             // 
             // lblWorkedHour
@@ -283,7 +299,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Courier New", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 20);
+            this.label3.Location = new System.Drawing.Point(3, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(142, 21);
             this.label3.TabIndex = 12;
@@ -552,22 +568,6 @@
             this.label6.Size = new System.Drawing.Size(152, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "Current Project:";
-            // 
-            // tbCurrentDate
-            // 
-            this.tbCurrentDate.Location = new System.Drawing.Point(16, 20);
-            this.tbCurrentDate.Name = "tbCurrentDate";
-            this.tbCurrentDate.ReadOnly = true;
-            this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
-            this.tbCurrentDate.TabIndex = 8;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Purple;
-            this.panel2.Location = new System.Drawing.Point(32, 96);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(484, 2);
-            this.panel2.TabIndex = 18;
             // 
             // TimeRecordForm
             // 

@@ -10,6 +10,7 @@ namespace TimeSprout.Employee.Forms.TimeRecord
     {
         private string id, name, password, currentProject;
         private string currentDate;
+        private string totalWorkedHour, totalOvertime;
 
         public TimeRecordForm(string _id, string _name, string _password, string _currentProject)
         {
@@ -30,6 +31,9 @@ namespace TimeSprout.Employee.Forms.TimeRecord
             Console.WriteLine($"Time Record Form loaded...\nWe got: [id: {id}, name: {name}, password: {password}, currentProject: {currentProject}]");
             GetRecordForThisDay();
             UpdateTotalWorkHours();
+
+            // disable button depending on what time it is now
+            TimeInTimeOutCheck();
         }
 
         #region ON_LOAD
@@ -70,7 +74,7 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                 tbAmTimeOut.Text = record.amTimeOut;
                 tbPmTimeIn.Text = record.pmTimeIn;
                 tbPmTimeOut.Text = record.pmTimeOut;
-                tbOtTimeIn.Text = record.otTimeOut;
+                tbOtTimeIn.Text = record.otTimeIn;
                 tbOtTimeOut.Text = record.otTimeOut;
                 lblWorkedHour.Text = record.workingHour;
                 lblOvertime.Text = record.overtime;
@@ -91,8 +95,8 @@ namespace TimeSprout.Employee.Forms.TimeRecord
 
         #region DRAG_AND_DROP_TITLE
         private bool dragging = false;
-        private Point dragCursorPoint;
-        private Point dragFormPoint;
+        private System.Drawing.Point dragCursorPoint;
+        private System.Drawing.Point dragFormPoint;
 
         private void panelTitle_MouseDown(object sender, MouseEventArgs e)
         {
@@ -105,12 +109,12 @@ namespace TimeSprout.Employee.Forms.TimeRecord
         {
             if (dragging)
             {
-                Point diff = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                System.Drawing.Point diff = System.Drawing.Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
                 EmployeeMainForm mainForm = this.ParentForm as EmployeeMainForm;
 
                 if (mainForm != null)
                 {
-                    mainForm.Location = Point.Add(dragFormPoint, new Size(diff));
+                    mainForm.Location = System.Drawing.Point.Add(dragFormPoint, new Size(diff));
                 }
             }
         }
@@ -158,12 +162,6 @@ namespace TimeSprout.Employee.Forms.TimeRecord
 
 
         #region SAVING_RECORD
-        private void UpdateTotalWorkHours()
-        {
-            lblWorkedHour.Text = "00";
-            lblOvertime.Text = "00";
-        }
-
         private string GetCurrentTime()
         {
             DateTime _currentTime = DateTime.Now;
@@ -203,14 +201,43 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                 return TimePeriod.Evening;
             }
         }
-        private void sampleImpl()
-        {
-            TimePeriod currentPeriod = GetCurrentTimePeriod();
 
-            // Check if it's afternoon or evening
-            if (currentPeriod == TimePeriod.Afternoon || currentPeriod == TimePeriod.Evening)
+        private void TimeInTimeOutCheck()
+        {
+            TimePeriod period = GetCurrentTimePeriod();
+
+            if (period == TimePeriod.Morning)
+            {
+                btnAmTimeIn.Enabled = true;
+                btnAmTimeOut.Enabled = true;
+
+                btnPmTimeIn.Enabled = false;
+                btnPmTimeOut.Enabled = false;
+
+                btnOtTimeIn.Enabled = false;
+                btnOtTimeOut.Enabled = false;
+            }
+            else if (period == TimePeriod.Afternoon)
             {
                 btnAmTimeIn.Enabled = false;
+                btnAmTimeOut.Enabled = false;
+
+                btnPmTimeIn.Enabled = true;
+                btnPmTimeOut.Enabled = true;
+
+                btnOtTimeIn.Enabled = false;
+                btnOtTimeOut.Enabled = false;
+            }
+            else
+            {
+                btnAmTimeIn.Enabled = false;
+                btnAmTimeOut.Enabled = false;
+
+                btnPmTimeIn.Enabled = false;
+                btnPmTimeOut.Enabled = false;
+
+                btnOtTimeIn.Enabled = true;
+                btnOtTimeOut.Enabled = true;
             }
         }
         #endregion TimeFrame
@@ -246,7 +273,7 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                                     _overtime: lblOvertime.Text
                                     ));
 
-                            Console.WriteLine($"Saving...\n");
+                            Console.WriteLine($"Saving...");
                             Console.WriteLine($"Employee details: [id: {id}, name: {name}, currentProject: {currentProject}]");
                             Console.WriteLine($"Time In/Out: [amIn: {tbAmTimeIn.Text}, amOut: {tbAmTimeOut.Text}]");
                             Console.WriteLine($"Time In/Out: [pmIn: {tbPmTimeIn.Text}, pmOut: {tbPmTimeOut.Text}]");
@@ -323,5 +350,73 @@ namespace TimeSprout.Employee.Forms.TimeRecord
             tbOtTimeOut.Text = GetCurrentTime();
         }
         #endregion SAVING_RECORD
+
+
+
+        #region CALCULATING_TOTAL_WORKING_HOUR
+        private void UpdateTotalWorkHours()
+        {
+            TimeSpan totalWorkingHours = CalculateTotalWorkingHours();
+            TimeSpan totalOvertimeHours = CalculateTotalOverTime();
+
+            lblWorkedHour.Text = totalWorkingHours.ToString(@"hh\:mm"); // "08:30" ;
+            lblOvertime.Text = totalOvertimeHours.ToString(@"hh\:mm");
+
+            totalWorkedHour = totalWorkingHours.ToString(@"hh\:mm");
+            totalOvertime = totalOvertimeHours.ToString(@"hh\:mm");
+        }
+        private TimeSpan CalculateTotalWorkingHours()
+        {
+            string _amTimeIn = tbAmTimeIn.Text;
+            string _amTimeOut = tbAmTimeOut.Text;
+            string _pmTimeIn = tbPmTimeIn.Text;
+            string _pmTimeOut = tbPmTimeOut.Text;
+
+
+            TimeSpan totalWorkingHours = TimeSpan.Zero;
+
+            // morning
+            if (!string.IsNullOrEmpty(_amTimeIn) && !string.IsNullOrEmpty(_amTimeOut))
+            {
+
+                TimeSpan amTimeIn = TimeSpan.Parse(_amTimeIn);
+                TimeSpan amTimeOut = TimeSpan.Parse(_amTimeOut);
+                TimeSpan amWorkingHours = amTimeOut - amTimeIn;
+                totalWorkingHours += amWorkingHours;
+            }
+
+            // afternoon
+            if (!string.IsNullOrEmpty(_pmTimeIn) && !string.IsNullOrEmpty(_pmTimeOut))
+            {
+                TimeSpan pmTimeIn = TimeSpan.Parse(_pmTimeIn);
+                TimeSpan pmTimeOut = TimeSpan.Parse(_pmTimeOut);
+                TimeSpan pmWorkingHours = pmTimeOut - pmTimeIn;
+                totalWorkingHours += pmWorkingHours;
+            }
+
+            Console.WriteLine($"Total working time: {totalWorkingHours}");
+            return totalWorkingHours;
+        }
+
+        private TimeSpan CalculateTotalOverTime()
+        {
+            string _otTimeIn = tbPmTimeIn.Text;
+            string _otTimeOut = tbOtTimeOut.Text;
+
+            TimeSpan totalOverTime = TimeSpan.Zero;
+
+            if (!string.IsNullOrEmpty(_otTimeIn) && !string.IsNullOrEmpty(_otTimeOut))
+            {
+                TimeSpan otTimeIn = TimeSpan.Parse(_otTimeIn);
+                TimeSpan otTimeOut = TimeSpan.Parse(_otTimeOut);
+                TimeSpan otWorkingHours = otTimeOut - otTimeIn;
+
+                totalOverTime += otWorkingHours;
+            }
+
+            Console.WriteLine($"Total over time: {totalOverTime}");
+            return totalOverTime;
+        }
+        #endregion CALCULATING_TOTAL_WORKING_HOUR
     }
 }
