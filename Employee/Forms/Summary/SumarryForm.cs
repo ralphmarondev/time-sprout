@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
@@ -132,7 +133,7 @@ namespace TimeSprout.Employee.Forms.Summary
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBConfig.connectionString))
             {
-                string query = $"SELECT COUNT(*) FROM INFORMATION_SCHEME.TALBES WHERE TABLE_NAME = '{_tableName}'";
+                string query = $"SELECT COUNT(*) FROM INFORMATION_SCHEME.TABLES WHERE TABLE_NAME = '{_tableName}'";
 
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
@@ -212,7 +213,55 @@ namespace TimeSprout.Employee.Forms.Summary
         #region EXPORT
         private void btnExport_Click(object sender, EventArgs e)
         {
+            string excelPath = $"..\\{id}_full_record.xlsx";
 
+            try
+            {
+                var workbook = new XLWorkbook();
+
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string queryTableNames = "SELECT name FROM sqlite_master WHERE type = 'table' AND name LIKE 'record_%'";
+
+                    using (var commandTableNames = new SQLiteCommand(queryTableNames, connection))
+                    {
+                        using (var reader = commandTableNames.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string tableName = reader["name"].ToString();
+
+                                string queryData = $"SELECT * FROM {tableName} WHERE id = @id";
+
+                                using (var commandData = new SQLiteCommand(queryData, connection))
+                                {
+                                    commandData.Parameters.AddWithValue("@id", id);
+
+                                    using (var adapter = new SQLiteDataAdapter(commandData))
+                                    {
+                                        DataTable dataTable = new DataTable();
+                                        adapter.Fill(dataTable);
+
+                                        workbook.Worksheets.Add(dataTable, tableName);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                workbook.SaveAs(excelPath);
+
+                Console.WriteLine($"Data exported to {excelPath} successfully.");
+                MessageBox.Show($"Data exported to {excelPath} successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
         #endregion EXPORT
 

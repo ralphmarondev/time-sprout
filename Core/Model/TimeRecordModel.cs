@@ -28,8 +28,8 @@
             this.pmTimeOut = _pmTimeOut;
             this.otTimeIn = _otTimeIn;
             this.otTimeOut = _otTimeOut;
-            this.workingHour = workingHour;
-            this.overtime = overtime;
+            this.workingHour = _workingHour;
+            this.overtime = _overtime;
         }
     }
 }

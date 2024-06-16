@@ -1,3 +1,8 @@
+# todo 2024-06-15
+- add check if the time inputted is valid. [it is always valid now for we are 
+	only allowing the user to click when it is morning, afternoon, overtime[evening]]
+- OtTimeIn and OtTimeOut are same when saving. Fix it! [fixed]
+
 
 # todo 2024-06-08
 - Auto refresh the list of employees once an action is performed. [i.e. changed the dateTimePicker value, 
