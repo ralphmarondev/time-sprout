@@ -161,6 +161,48 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMainForm.Designer.cs">
+      <DependentUpon>AdminMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\Dialog\CreateNewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\Dialog\CreateNewEmployee.Designer.cs">
+      <DependentUpon>CreateNewEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\Dialog\UpdateDeleteNewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\Dialog\UpdateDeleteNewEmployee.Designer.cs">
+      <DependentUpon>UpdateDeleteNewEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\EmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Employees\EmployeeForm.Designer.cs">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Summary\SummaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Summary\SummaryForm.Designer.cs">
+      <DependentUpon>SummaryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\TimeRecord\Dialog\UpdateDeleteTimeRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\TimeRecord\Dialog\UpdateDeleteTimeRecord.Designer.cs">
+      <DependentUpon>UpdateDeleteTimeRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\TimeRecord\TimeRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\TimeRecord\TimeRecordForm.Designer.cs">
+      <DependentUpon>TimeRecordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Auth\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +216,7 @@
     <Compile Include="Core\DB\DBUsers.cs" />
     <Compile Include="Core\Model\EmployeeModel.cs" />
     <Compile Include="Core\Model\TimeRecordModel.cs" />
+    <Compile Include="Core\Model\UserModel.cs" />
     <Compile Include="Core\Util\MyTools.cs" />
     <Compile Include="Core\Util\ReadOnlyDateTimePicker.cs">
       <SubType>Component</SubType>
@@ -198,6 +241,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admin\AdminMainForm.resx">
+      <DependentUpon>AdminMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Employees\Dialog\CreateNewEmployee.resx">
+      <DependentUpon>CreateNewEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Employees\Dialog\UpdateDeleteNewEmployee.resx">
+      <DependentUpon>UpdateDeleteNewEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Employees\EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Summary\SummaryForm.resx">
+      <DependentUpon>SummaryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\TimeRecord\Dialog\UpdateDeleteTimeRecord.resx">
+      <DependentUpon>UpdateDeleteTimeRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\TimeRecord\TimeRecordForm.resx">
+      <DependentUpon>TimeRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Auth\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>

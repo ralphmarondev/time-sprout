@@ -128,6 +128,16 @@ namespace TimeSprout.Employee.Forms.TimeRecord
 
 
         #region TOP_BAR
+        private void btnLogout2_Click(object sender, EventArgs e)
+        {
+            EmployeeMainForm mainForm = this.ParentForm as EmployeeMainForm;
+
+            if (mainForm != null)
+            {
+                mainForm.LogoutForm();
+            }
+        }
+
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
             EmployeeMainForm mainForm = this.ParentForm as EmployeeMainForm;
@@ -257,6 +267,7 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                         if (!DBTimeRecord.IsEmployeeTimeRecordExists(_currentDate: currentDate, _id: id))
                         {
 
+                            UpdateTotalWorkHours();
                             DBTimeRecord.CreateEmployeeTimeRecord(
                                 _currentDate: currentDate,
                                 _record: new TimeRecordModel(
@@ -274,18 +285,11 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                                     ));
 
                             Console.WriteLine($"Saving...");
-                            Console.WriteLine($"Employee details: [id: {id}, name: {name}, currentProject: {currentProject}]");
-                            Console.WriteLine($"Time In/Out: [amIn: {tbAmTimeIn.Text}, amOut: {tbAmTimeOut.Text}]");
-                            Console.WriteLine($"Time In/Out: [pmIn: {tbPmTimeIn.Text}, pmOut: {tbPmTimeOut.Text}]");
-                            Console.WriteLine($"Time In/Out: [otIn: {tbOtTimeIn.Text}, otOut: {tbOtTimeOut.Text}]");
-                            Console.WriteLine("Saved.");
-
-                            UpdateTotalWorkHours();
                             MessageBox.Show("Saved.");
                         }
                         else
                         {
-
+                            UpdateTotalWorkHours();
                             DBTimeRecord.UpdateEmployeeTimeRecord(_currentDate: currentDate,
                                 _record: new TimeRecordModel(
                                     _id: id,
@@ -302,15 +306,13 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                                     ));
 
                             Console.WriteLine($"Updating...\n");
-                            Console.WriteLine($"Employee details: [id: {id}, name: {name}, currentProject: {currentProject}]");
-                            Console.WriteLine($"Time In/Out: [amIn: {tbAmTimeIn.Text}, amOut: {tbAmTimeOut.Text}");
-                            Console.WriteLine($"Time In/Out: [pmIn: {tbPmTimeIn.Text}, pmOut: {tbPmTimeOut.Text}");
-                            Console.WriteLine($"Time In/Out: [otIn: {tbOtTimeIn.Text}, otOut: {tbOtTimeOut.Text}");
-                            Console.WriteLine("Saved.");
-
-                            UpdateTotalWorkHours();
                             MessageBox.Show("Saved.");
                         }
+                        Console.WriteLine($"Employee details: [id: {id}, name: {name}, currentProject: {currentProject}]");
+                        Console.WriteLine($"Time In/Out: [amIn: {tbAmTimeIn.Text}, amOut: {tbAmTimeOut.Text}");
+                        Console.WriteLine($"Time In/Out: [pmIn: {tbPmTimeIn.Text}, pmOut: {tbPmTimeOut.Text}");
+                        Console.WriteLine($"Time In/Out: [otIn: {tbOtTimeIn.Text}, otOut: {tbOtTimeOut.Text}");
+                        Console.WriteLine("Saved.");
                     }
                 }
             }
@@ -382,7 +384,12 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                 TimeSpan amTimeIn = TimeSpan.Parse(_amTimeIn);
                 TimeSpan amTimeOut = TimeSpan.Parse(_amTimeOut);
                 TimeSpan amWorkingHours = amTimeOut - amTimeIn;
-                totalWorkingHours += amWorkingHours;
+
+                // HACK: WILL ONLY ADD IF TIME OUT IS GREATER THAN TIME IN
+                if (amTimeOut > amTimeIn)
+                    totalWorkingHours += amWorkingHours;
+                else
+                    Console.WriteLine($"TimeIn: {amTimeIn} is greater than timeout: {amTimeOut}.");
             }
 
             // afternoon
@@ -391,7 +398,12 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                 TimeSpan pmTimeIn = TimeSpan.Parse(_pmTimeIn);
                 TimeSpan pmTimeOut = TimeSpan.Parse(_pmTimeOut);
                 TimeSpan pmWorkingHours = pmTimeOut - pmTimeIn;
-                totalWorkingHours += pmWorkingHours;
+
+                // HACK: WILL ONLY ADD IF TIME OUT IS GREATER THAN TIME IN
+                if (pmTimeOut > pmTimeIn)
+                    totalWorkingHours += pmWorkingHours;
+                else
+                    Console.WriteLine($"TimeIn: {pmTimeIn} is greater than timeout: {pmTimeOut}.");
             }
 
             Console.WriteLine($"Total working time: {totalWorkingHours}");
@@ -400,7 +412,7 @@ namespace TimeSprout.Employee.Forms.TimeRecord
 
         private TimeSpan CalculateTotalOverTime()
         {
-            string _otTimeIn = tbPmTimeIn.Text;
+            string _otTimeIn = tbOtTimeIn.Text;
             string _otTimeOut = tbOtTimeOut.Text;
 
             TimeSpan totalOverTime = TimeSpan.Zero;
@@ -411,7 +423,11 @@ namespace TimeSprout.Employee.Forms.TimeRecord
                 TimeSpan otTimeOut = TimeSpan.Parse(_otTimeOut);
                 TimeSpan otWorkingHours = otTimeOut - otTimeIn;
 
-                totalOverTime += otWorkingHours;
+                if (otTimeOut > otTimeIn)
+                    totalOverTime += otWorkingHours;
+                else
+                    Console.WriteLine($"TimeIn: {otTimeIn} is greater than timeout: {otTimeOut}.");
+
             }
 
             Console.WriteLine($"Total over time: {totalOverTime}");

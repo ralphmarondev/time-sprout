@@ -1,3 +1,10 @@
+# todo 2024-06-16
+- add check such that dont add to [total_worked_hour] yet on time in,
+	wait until time out
+- error in overtime [time record form] [fixed]
+- time record summary is not updating if we dont click save twice  [fixed]
+
+
 # todo 2024-06-15
 - add check if the time inputted is valid. [it is always valid now for we are 
 	only allowing the user to click when it is morning, afternoon, overtime[evening]]

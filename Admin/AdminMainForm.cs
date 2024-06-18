@@ -1,68 +1,57 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using TimeSprout.Admin.Forms;
-using TimeSprout.Admin.Forms.Employees;
-using TimeSprout.Admin.Forms.Export;
-using TimeSprout.Admin.Forms.Records;
-using TimeSprout.Auth;
+using TimeSprout.Core.DB;
+using TimeSprout.Core.Model;
 
 namespace TimeSprout.Admin
 {
     public partial class AdminMainForm : Form
     {
+        private string username, password, fullName;
         public AdminMainForm()
         {
             InitializeComponent();
         }
 
-        public AdminMainForm(string _name)
+        public AdminMainForm(string _username)
         {
             InitializeComponent();
-
-            lblGreetings.Text = $"Hello, {_name}";
+            username = _username;
         }
 
-        private void AdminMainForm_Load(object sender, EventArgs e)
+        private void AdminMainForm_Load(object sender, System.EventArgs e)
         {
-            OpenFormInPanel(new TimeRecordForm(), "Home");
+            GetAdminDetails(_username: username);
+
+            OpenFormInPanel(new Forms.Summary.SummaryForm(
+                _username: username,
+                _password: password,
+                _fullName: fullName));
+            Console.WriteLine($"Username: {username}\nPassword: {password}\nFull Name: {fullName}");
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+
+
+        #region ON_LOAD
+        private void GetAdminDetails(string _username)
         {
-            Hide();
-            AuthForm authForm = new AuthForm();
-            authForm.ShowDialog();
-        }
-
-
-
-        #region DRAG_AND_DROP_TITLE
-
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HTCAPTION = 0x2;
-        private void titlePanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
+            UserModel user = DBUsers.ReadUserWhereUsername(username);
+            if (user != null)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+                username = user.username;
+                password = user.password;
+                fullName = user.fullName;
             }
         }
-        #endregion DRAG_AND_DROP_TITLE
+
+        #endregion ON_LOAD
 
 
 
-        #region NAVIGATIONS
-        private void OpenFormInPanel(Form form, string formTitle)
+        #region NAVIGATION
+        private void OpenFormInPanel(Form form)
         {
-            foreach (Control control in navigationPanel.Controls)
+            foreach (Control control in panelNavigation.Controls)
             {
                 if (control is Form)
                 {
@@ -79,35 +68,47 @@ namespace TimeSprout.Admin
             form.Show();
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
+
+        private void btnSummary_Click(object sender, System.EventArgs e)
         {
-            OpenFormInPanel(new TimeRecordForm(), "Home");
+            OpenFormInPanel(new Forms.Summary.SummaryForm(
+                _username: username,
+                _password: password,
+                _fullName: fullName));
         }
 
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            OpenFormInPanel(new EmployeesForm(), "Employee");
+            OpenFormInPanel(new Admin.Forms.Employees.EmployeeForm(
+                _name: username,
+                _password: password,
+                _fullName: fullName));
         }
 
-        private void btnRecords_Click(object sender, EventArgs e)
+        private void btnTimeInOut_Click(object sender, EventArgs e)
         {
-            OpenFormInPanel(new RecordForm(), "Records");
+            OpenFormInPanel(new Admin.Forms.TimeRecord.TimeRecordForm(
+                _username: username,
+                _password: password,
+                _fullName: fullName));
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
         {
-            OpenFormInPanel(new ExportForm(), "Export");
+            LogoutForm();
         }
-        private void btnToggleNavBar_Click(object sender, EventArgs e)
+        #endregion NAVIGATION
+
+
+
+        #region TOP_BAR
+        internal void LogoutForm()
         {
-            navigationPanel.Visible = !navigationPanel.Visible;
-        }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
+            Auth.AuthForm authForm = new Auth.AuthForm();
+
+            authForm.Show();
             Close();
         }
-
-
-        #endregion NAVIGATIONS
+        #endregion TOP_BAR
     }
 }

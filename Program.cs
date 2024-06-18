@@ -18,8 +18,8 @@ namespace TimeSprout
             // initializing database
             DBConfig.InitializeDatabase();
 
-            //Application.Run(new Auth.AuthForm());
-            Application.Run(new Employee.EmployeeMainForm());
+            Application.Run(new Auth.AuthForm());
+            //Application.Run(new Employee.EmployeeMainForm());
         }
     }
 }
