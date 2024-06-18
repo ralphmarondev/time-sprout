@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using TimeSprout.Admin;
 using TimeSprout.Core.DB;
 using TimeSprout.Employee;
 
@@ -18,33 +19,33 @@ namespace TimeSprout.Auth
         {
             /*EMPLOYEE
                 ADMIN*/
-            if (tbStatus.Text == "ADMIN")
+            if (tbStatus.Text.Trim() == "ADMIN")
             {
-                //if (DBUsers.IsUserExists(username: tbUsername.Text, password: tbPassword.Text))
-                //{
-                //    Console.WriteLine("Login successfully...");
-                //    AdminMainForm adminMainForm = new AdminMainForm(tbUsername.Text);
+                if (DBUsers.IsUserExists(username: tbUsername.Text.Trim(), password: tbPassword.Text.Trim()))
+                {
+                    Console.WriteLine("Login successfully...");
+                    AdminMainForm adminMainForm = new AdminMainForm(tbUsername.Text.Trim());
 
-                //    Hide();
-                //    adminMainForm.ShowDialog();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Incorrent Password :)", "Loggin in as Admin.");
-                //}
+                    adminMainForm.Show();
+                    Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Incorrent Password :)", "Loggin in as Admin.");
+                }
             }
             else
             {
                 // GO TO EMPLOYEE FORM
                 // TODO: IMPLEMENT THIS LATER
-                if (DBEmployee.IsEmployeeExists(_id: tbUsername.Text, _password: tbPassword.Text))
+                if (DBEmployee.IsEmployeeExists(_id: tbUsername.Text.Trim(), _password: tbPassword.Text.Trim()))
                 {
-                    Console.WriteLine($"Login as [{tbUsername.Text}] successfully.");
+                    Console.WriteLine($"Login as [{tbUsername.Text.Trim()}] successfully.");
 
-                    EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text);
+                    EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text.Trim());
 
+                    employeeMainForm.Show();
                     Hide();
-                    employeeMainForm.ShowDialog();
                 }
                 else
                 {
@@ -87,6 +88,13 @@ namespace TimeSprout.Auth
         {
             // making status combo box readonly
             e.Handled = true;
+        }
+
+        private void AuthForm_Load(object sender, EventArgs e)
+        {
+            tbUsername.Text = "root";
+            tbStatus.Text = "ADMIN";
+            tbPassword.Text = "toor";
         }
     }
 }

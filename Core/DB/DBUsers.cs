@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using TimeSprout.Core.Model;
 
 namespace TimeSprout.Core.DB
 {
@@ -170,5 +171,43 @@ namespace TimeSprout.Core.DB
             }
         }
 
+
+        public static UserModel ReadUserWhereUsername(string _username)
+        {
+            Console.WriteLine($"Reading User where username like '{_username}'");
+
+            UserModel userModel = null;
+            try
+            {
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string readUserQuery = "SELECT username, password, fullName from users WHERE username = @username;";
+                    using (var command = new SQLiteCommand(readUserQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@username", _username);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                userModel = new UserModel(
+                                    _username: reader["username"].ToString(),
+                                    _password: reader["password"].ToString(),
+                                    _fullName: reader["fullName"].ToString()
+                                    );
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine("Done.");
+                return userModel;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed. Error: {ex.Message}");
+                return userModel;
+            }
+        }
     }
 }

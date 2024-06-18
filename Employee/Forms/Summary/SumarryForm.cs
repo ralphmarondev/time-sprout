@@ -284,7 +284,7 @@ namespace TimeSprout.Employee.Forms.Summary
 
             if (mainForm != null)
             {
-                // TODO: IMPLEMENT THIS!
+                mainForm.LogoutForm();
             }
         }
 

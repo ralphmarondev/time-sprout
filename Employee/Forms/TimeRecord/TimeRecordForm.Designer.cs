@@ -178,6 +178,7 @@
             this.btnLogout2.Size = new System.Drawing.Size(30, 30);
             this.btnLogout2.TabIndex = 4;
             this.btnLogout2.UseVisualStyleBackColor = false;
+            this.btnLogout2.Click += new System.EventHandler(this.btnLogout2_Click);
             // 
             // btnEmployeeInfo
             // 
@@ -246,7 +247,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel6.BackColor = System.Drawing.SystemColors.Window;
             this.panel6.Controls.Add(this.lblOvertime);
             this.panel6.Location = new System.Drawing.Point(140, 54);
             this.panel6.Name = "panel6";
@@ -256,11 +257,12 @@
             // lblOvertime
             // 
             this.lblOvertime.AutoSize = true;
-            this.lblOvertime.Location = new System.Drawing.Point(8, 8);
+            this.lblOvertime.ForeColor = System.Drawing.Color.Purple;
+            this.lblOvertime.Location = new System.Drawing.Point(3, 8);
             this.lblOvertime.Name = "lblOvertime";
-            this.lblOvertime.Size = new System.Drawing.Size(22, 22);
+            this.lblOvertime.Size = new System.Drawing.Size(70, 22);
             this.lblOvertime.TabIndex = 16;
-            this.lblOvertime.Text = "0";
+            this.lblOvertime.Text = "00:00";
             this.lblOvertime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -278,7 +280,7 @@
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.BackColor = System.Drawing.SystemColors.Window;
             this.panel5.Controls.Add(this.lblWorkedHour);
             this.panel5.Location = new System.Drawing.Point(140, 10);
             this.panel5.Name = "panel5";
@@ -288,11 +290,12 @@
             // lblWorkedHour
             // 
             this.lblWorkedHour.AutoSize = true;
-            this.lblWorkedHour.Location = new System.Drawing.Point(8, 8);
+            this.lblWorkedHour.ForeColor = System.Drawing.Color.Purple;
+            this.lblWorkedHour.Location = new System.Drawing.Point(3, 9);
             this.lblWorkedHour.Name = "lblWorkedHour";
-            this.lblWorkedHour.Size = new System.Drawing.Size(34, 22);
+            this.lblWorkedHour.Size = new System.Drawing.Size(70, 22);
             this.lblWorkedHour.TabIndex = 15;
-            this.lblWorkedHour.Text = "10";
+            this.lblWorkedHour.Text = "00:00";
             this.lblWorkedHour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -415,9 +418,12 @@
             // 
             // tbOtTimeOut
             // 
+            this.tbOtTimeOut.BackColor = System.Drawing.SystemColors.Window;
+            this.tbOtTimeOut.ForeColor = System.Drawing.Color.Purple;
             this.tbOtTimeOut.Location = new System.Drawing.Point(117, 29);
             this.tbOtTimeOut.MaxLength = 5;
             this.tbOtTimeOut.Name = "tbOtTimeOut";
+            this.tbOtTimeOut.ReadOnly = true;
             this.tbOtTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbOtTimeOut.TabIndex = 7;
             this.tbOtTimeOut.Text = "00:00";
@@ -425,9 +431,12 @@
             // 
             // tbOtTimeIn
             // 
+            this.tbOtTimeIn.BackColor = System.Drawing.SystemColors.Window;
+            this.tbOtTimeIn.ForeColor = System.Drawing.Color.Purple;
             this.tbOtTimeIn.Location = new System.Drawing.Point(28, 29);
             this.tbOtTimeIn.MaxLength = 5;
             this.tbOtTimeIn.Name = "tbOtTimeIn";
+            this.tbOtTimeIn.ReadOnly = true;
             this.tbOtTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbOtTimeIn.TabIndex = 6;
             this.tbOtTimeIn.Text = "00:00";
@@ -477,9 +486,12 @@
             // 
             // tbPmTimeOut
             // 
+            this.tbPmTimeOut.BackColor = System.Drawing.SystemColors.Window;
+            this.tbPmTimeOut.ForeColor = System.Drawing.Color.Purple;
             this.tbPmTimeOut.Location = new System.Drawing.Point(117, 29);
             this.tbPmTimeOut.MaxLength = 5;
             this.tbPmTimeOut.Name = "tbPmTimeOut";
+            this.tbPmTimeOut.ReadOnly = true;
             this.tbPmTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbPmTimeOut.TabIndex = 7;
             this.tbPmTimeOut.Text = "00:00";
@@ -487,9 +499,12 @@
             // 
             // tbPmTimeIn
             // 
+            this.tbPmTimeIn.BackColor = System.Drawing.SystemColors.Window;
+            this.tbPmTimeIn.ForeColor = System.Drawing.Color.Purple;
             this.tbPmTimeIn.Location = new System.Drawing.Point(28, 29);
             this.tbPmTimeIn.MaxLength = 5;
             this.tbPmTimeIn.Name = "tbPmTimeIn";
+            this.tbPmTimeIn.ReadOnly = true;
             this.tbPmTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbPmTimeIn.TabIndex = 6;
             this.tbPmTimeIn.Text = "00:00";
@@ -539,10 +554,13 @@
             // 
             // tbAmTimeOut
             // 
+            this.tbAmTimeOut.BackColor = System.Drawing.SystemColors.Window;
             this.tbAmTimeOut.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbAmTimeOut.ForeColor = System.Drawing.Color.Purple;
             this.tbAmTimeOut.Location = new System.Drawing.Point(117, 29);
             this.tbAmTimeOut.MaxLength = 5;
             this.tbAmTimeOut.Name = "tbAmTimeOut";
+            this.tbAmTimeOut.ReadOnly = true;
             this.tbAmTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbAmTimeOut.TabIndex = 7;
             this.tbAmTimeOut.Text = "00:00";
@@ -550,10 +568,13 @@
             // 
             // tbAmTimeIn
             // 
+            this.tbAmTimeIn.BackColor = System.Drawing.SystemColors.Window;
             this.tbAmTimeIn.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbAmTimeIn.ForeColor = System.Drawing.Color.Purple;
             this.tbAmTimeIn.Location = new System.Drawing.Point(28, 29);
             this.tbAmTimeIn.MaxLength = 5;
             this.tbAmTimeIn.Name = "tbAmTimeIn";
+            this.tbAmTimeIn.ReadOnly = true;
             this.tbAmTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbAmTimeIn.TabIndex = 6;
             this.tbAmTimeIn.Text = "00:00";

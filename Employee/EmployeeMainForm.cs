@@ -15,7 +15,8 @@ namespace TimeSprout.Employee
         public EmployeeMainForm(string _id)
         {
             InitializeComponent();
-            id = "2024-002";
+            //id = "2024-002";
+            id = _id;
         }
 
         private void EmployeeMainForm_Load(object sender, EventArgs e)
@@ -61,7 +62,7 @@ namespace TimeSprout.Employee
                     ((Form)control).Close();
                 }
             }
-
+            // RALPH MARON EDA IS SO CUTE :)
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
@@ -85,11 +86,22 @@ namespace TimeSprout.Employee
             OpenFormInPanel(new Forms.Summary.SumarryForm(_id: id, _name: name, _password: password, _currentProject: currentProject));
         }
 
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            LogoutForm();
+        }
 
 
         #endregion NAVIGATIONS
 
         #region TOP_BAR
+        internal void LogoutForm()
+        {
+            Auth.AuthForm authForm = new Auth.AuthForm();
+            authForm.Show();
+
+            Close();
+        }
 
         internal void ToggleFullScreen()
         {
