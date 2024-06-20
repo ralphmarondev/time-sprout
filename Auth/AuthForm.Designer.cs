@@ -39,6 +39,9 @@
             this.tbStatus = new System.Windows.Forms.ComboBox();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnTest1 = new System.Windows.Forms.Button();
+            this.btnTest2 = new System.Windows.Forms.Button();
+            this.btnroot = new System.Windows.Forms.Button();
             this.titlePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.fieldsPanel.SuspendLayout();
@@ -176,11 +179,44 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Username or ID:";
             // 
+            // btnTest1
+            // 
+            this.btnTest1.Location = new System.Drawing.Point(465, 101);
+            this.btnTest1.Name = "btnTest1";
+            this.btnTest1.Size = new System.Drawing.Size(90, 36);
+            this.btnTest1.TabIndex = 4;
+            this.btnTest1.Text = "test1";
+            this.btnTest1.UseVisualStyleBackColor = true;
+            this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
+            // 
+            // btnTest2
+            // 
+            this.btnTest2.Location = new System.Drawing.Point(578, 101);
+            this.btnTest2.Name = "btnTest2";
+            this.btnTest2.Size = new System.Drawing.Size(90, 36);
+            this.btnTest2.TabIndex = 5;
+            this.btnTest2.Text = "test2";
+            this.btnTest2.UseVisualStyleBackColor = true;
+            this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
+            // 
+            // btnroot
+            // 
+            this.btnroot.Location = new System.Drawing.Point(699, 101);
+            this.btnroot.Name = "btnroot";
+            this.btnroot.Size = new System.Drawing.Size(90, 36);
+            this.btnroot.TabIndex = 6;
+            this.btnroot.Text = "root";
+            this.btnroot.UseVisualStyleBackColor = true;
+            this.btnroot.Click += new System.EventHandler(this.btnroot_Click);
+            // 
             // AuthForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(870, 536);
+            this.Controls.Add(this.btnroot);
+            this.Controls.Add(this.btnTest2);
+            this.Controls.Add(this.btnTest1);
             this.Controls.Add(this.fieldsPanel);
             this.Controls.Add(this.titlePanel);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -212,5 +248,8 @@
         private System.Windows.Forms.ComboBox tbStatus;
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnTest1;
+        private System.Windows.Forms.Button btnTest2;
+        private System.Windows.Forms.Button btnroot;
     }
 }

@@ -310,5 +310,31 @@ namespace TimeSprout.Core.DB
                 return false;
             }
         }
+
+        public static void UpdateEmployeePassword(string _id, string _password)
+        {
+            try
+            {
+                Console.WriteLine($"Updating employee: '{_id}' password.");
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string query = "UPDATE employees SET password = @password WHERE id = @id;";
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@password", _password);
+                        command.Parameters.AddWithValue("@id", _id);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+                Console.WriteLine("Done.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
     }
 }

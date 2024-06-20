@@ -24,6 +24,8 @@ namespace TimeSprout.Admin.Forms.TimeRecord
         private void TimeRecordForm_Load(object sender, EventArgs e)
         {
             Console.WriteLine("TimeRecordForm is loaded.");
+
+            lblEmployeeName.Text = fullName;
         }
 
 

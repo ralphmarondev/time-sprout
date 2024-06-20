@@ -18,6 +18,9 @@ namespace TimeSprout
             // initializing database
             DBConfig.InitializeDatabase();
 
+            // deleting empty tables
+            DBConfig.DeleteEmptyTables();
+
             Application.Run(new Auth.AuthForm());
             //Application.Run(new Employee.EmployeeMainForm());
         }

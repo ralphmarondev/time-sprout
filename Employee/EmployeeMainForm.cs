@@ -86,6 +86,15 @@ namespace TimeSprout.Employee
             OpenFormInPanel(new Forms.Summary.SumarryForm(_id: id, _name: name, _password: password, _currentProject: currentProject));
         }
 
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new Forms.Settings.SettingsForm(
+                _id: id,
+                _name: name,
+                _password: password,
+                _currentProject: currentProject));
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             LogoutForm();
