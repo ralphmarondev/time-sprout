@@ -96,5 +96,26 @@ namespace TimeSprout.Auth
             tbStatus.Text = "ADMIN";
             tbPassword.Text = "toor";
         }
+
+        private void btnTest1_Click(object sender, EventArgs e)
+        {
+            tbUsername.Text = "2024-001";
+            tbStatus.Text = "EMPLOYEE";
+            tbPassword.Text = "ispretty";
+        }
+
+        private void btnTest2_Click(object sender, EventArgs e)
+        {
+            tbUsername.Text = "2024-002";
+            tbStatus.Text = "EMPLOYEE";
+            tbPassword.Text = "iscute";
+        }
+
+        private void btnroot_Click(object sender, EventArgs e)
+        {
+            tbUsername.Text = "root";
+            tbStatus.Text = "ADMIN";
+            tbPassword.Text = "toor";
+        }
     }
 }
