@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panelTitle = new System.Windows.Forms.Panel();
-            this.tbCurrentDate = new System.Windows.Forms.TextBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnToggleNavPanel = new System.Windows.Forms.Button();
             this.btnLogout2 = new System.Windows.Forms.Button();
             this.btnEmployeeInfo = new System.Windows.Forms.PictureBox();
             this.lblEmployeeName = new System.Windows.Forms.Label();
+            this.tbCurrentDate = new System.Windows.Forms.TextBox();
             this.fieldsPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -97,15 +97,6 @@
             this.panelTitle.Name = "panelTitle";
             this.panelTitle.Size = new System.Drawing.Size(858, 68);
             this.panelTitle.TabIndex = 9;
-            // 
-            // tbCurrentDate
-            // 
-            this.tbCurrentDate.Location = new System.Drawing.Point(16, 20);
-            this.tbCurrentDate.Name = "tbCurrentDate";
-            this.tbCurrentDate.ReadOnly = true;
-            this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
-            this.tbCurrentDate.TabIndex = 8;
-            this.tbCurrentDate.Visible = false;
             // 
             // dateTimePicker2
             // 
@@ -199,6 +190,15 @@
             this.lblEmployeeName.Size = new System.Drawing.Size(190, 22);
             this.lblEmployeeName.TabIndex = 0;
             this.lblEmployeeName.Text = "RALPH MARON EDA";
+            // 
+            // tbCurrentDate
+            // 
+            this.tbCurrentDate.Location = new System.Drawing.Point(16, 20);
+            this.tbCurrentDate.Name = "tbCurrentDate";
+            this.tbCurrentDate.ReadOnly = true;
+            this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
+            this.tbCurrentDate.TabIndex = 8;
+            this.tbCurrentDate.Visible = false;
             // 
             // fieldsPanel
             // 
