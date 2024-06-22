@@ -83,13 +83,13 @@
             // panelTitle
             // 
             this.panelTitle.BackColor = System.Drawing.Color.White;
-            this.panelTitle.Controls.Add(this.tbCurrentDate);
             this.panelTitle.Controls.Add(this.dateTimePicker2);
             this.panelTitle.Controls.Add(this.btnFullScreen);
             this.panelTitle.Controls.Add(this.btnToggleNavPanel);
             this.panelTitle.Controls.Add(this.btnLogout2);
             this.panelTitle.Controls.Add(this.btnEmployeeInfo);
             this.panelTitle.Controls.Add(this.lblEmployeeName);
+            this.panelTitle.Controls.Add(this.tbCurrentDate);
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
             this.panelTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -105,17 +105,17 @@
             this.tbCurrentDate.ReadOnly = true;
             this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
             this.tbCurrentDate.TabIndex = 8;
+            this.tbCurrentDate.Visible = false;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dateTimePicker2.Location = new System.Drawing.Point(260, 12);
+            this.dateTimePicker2.Location = new System.Drawing.Point(16, 20);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(177, 30);
+            this.dateTimePicker2.Size = new System.Drawing.Size(223, 30);
             this.dateTimePicker2.TabIndex = 7;
-            this.dateTimePicker2.Visible = false;
             // 
             // btnFullScreen
             // 
@@ -392,6 +392,7 @@
             this.btnOtTimeOut.TabIndex = 9;
             this.btnOtTimeOut.Text = "OUT";
             this.btnOtTimeOut.UseVisualStyleBackColor = false;
+            this.btnOtTimeOut.Click += new System.EventHandler(this.btnOtTimeOut_Click);
             // 
             // btnOtTimeIn
             // 
@@ -405,6 +406,7 @@
             this.btnOtTimeIn.TabIndex = 8;
             this.btnOtTimeIn.Text = "IN";
             this.btnOtTimeIn.UseVisualStyleBackColor = false;
+            this.btnOtTimeIn.Click += new System.EventHandler(this.btnOtTimeIn_Click);
             // 
             // tbOtTimeOut
             // 
@@ -458,6 +460,7 @@
             this.btnPmTimeOut.TabIndex = 9;
             this.btnPmTimeOut.Text = "OUT";
             this.btnPmTimeOut.UseVisualStyleBackColor = false;
+            this.btnPmTimeOut.Click += new System.EventHandler(this.btnPmTimeOut_Click);
             // 
             // btnPmTimeIn
             // 
@@ -471,6 +474,7 @@
             this.btnPmTimeIn.TabIndex = 8;
             this.btnPmTimeIn.Text = "IN";
             this.btnPmTimeIn.UseVisualStyleBackColor = false;
+            this.btnPmTimeIn.Click += new System.EventHandler(this.btnPmTimeIn_Click);
             // 
             // tbPmTimeOut
             // 
@@ -524,6 +528,7 @@
             this.btnAmTimeOut.TabIndex = 9;
             this.btnAmTimeOut.Text = "OUT";
             this.btnAmTimeOut.UseVisualStyleBackColor = false;
+            this.btnAmTimeOut.Click += new System.EventHandler(this.btnAmTimeOut_Click);
             // 
             // btnAmTimeIn
             // 
@@ -537,6 +542,7 @@
             this.btnAmTimeIn.TabIndex = 8;
             this.btnAmTimeIn.Text = "IN";
             this.btnAmTimeIn.UseVisualStyleBackColor = false;
+            this.btnAmTimeIn.Click += new System.EventHandler(this.btnAmTimeIn_Click);
             // 
             // tbAmTimeOut
             // 
