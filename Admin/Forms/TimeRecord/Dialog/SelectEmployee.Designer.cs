@@ -69,7 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 409);
+            this.ClientSize = new System.Drawing.Size(780, 409);
             this.Controls.Add(this.tbCurProj);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.btnClose);

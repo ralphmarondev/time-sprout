@@ -22,7 +22,6 @@ namespace TimeSprout
             DBConfig.DeleteEmptyTables();
 
             Application.Run(new Auth.AuthForm());
-            //Application.Run(new Employee.EmployeeMainForm());
         }
     }
 }
