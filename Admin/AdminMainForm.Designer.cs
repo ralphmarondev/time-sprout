@@ -30,7 +30,7 @@
         {
             this.panelNavigation = new System.Windows.Forms.Panel();
             this.btnEmployees = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnUsers = new System.Windows.Forms.Button();
             this.btnProjects = new System.Windows.Forms.Button();
             this.btnSummary = new System.Windows.Forms.Button();
             this.btnTimeInOut = new System.Windows.Forms.Button();
@@ -56,7 +56,7 @@
             // 
             this.panelNavigation.BackColor = System.Drawing.Color.White;
             this.panelNavigation.Controls.Add(this.btnEmployees);
-            this.panelNavigation.Controls.Add(this.btnSettings);
+            this.panelNavigation.Controls.Add(this.btnUsers);
             this.panelNavigation.Controls.Add(this.btnProjects);
             this.panelNavigation.Controls.Add(this.btnSummary);
             this.panelNavigation.Controls.Add(this.btnTimeInOut);
@@ -88,24 +88,25 @@
             this.btnEmployees.UseVisualStyleBackColor = false;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
-            // btnSettings
+            // btnUsers
             // 
-            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettings.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.Purple;
-            this.btnSettings.Location = new System.Drawing.Point(9, 373);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSettings.MaximumSize = new System.Drawing.Size(200, 68);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(200, 60);
-            this.btnSettings.TabIndex = 4;
-            this.btnSettings.Text = "SETTINGS";
-            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnUsers.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnUsers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUsers.FlatAppearance.BorderSize = 0;
+            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsers.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsers.ForeColor = System.Drawing.Color.Purple;
+            this.btnUsers.Location = new System.Drawing.Point(9, 373);
+            this.btnUsers.Margin = new System.Windows.Forms.Padding(0);
+            this.btnUsers.MaximumSize = new System.Drawing.Size(200, 68);
+            this.btnUsers.Name = "btnUsers";
+            this.btnUsers.Size = new System.Drawing.Size(200, 60);
+            this.btnUsers.TabIndex = 4;
+            this.btnUsers.Text = "USERS";
+            this.btnUsers.UseVisualStyleBackColor = false;
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // btnProjects
             // 
@@ -370,7 +371,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panelNavigation;
-        private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button btnUsers;
         private System.Windows.Forms.Button btnSummary;
         private System.Windows.Forms.Button btnTimeInOut;
         private System.Windows.Forms.Button btnLogout;

@@ -11,6 +11,7 @@ namespace TimeSprout.Core.DB
         {
             try
             {
+                Console.WriteLine("Initializing users table...");
                 using (var connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
@@ -37,10 +38,11 @@ namespace TimeSprout.Core.DB
                         }
                     }
                 }
+                Console.WriteLine("Done.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Failed! Error: {ex.Message}");
             }
         }
 
@@ -77,13 +79,13 @@ namespace TimeSprout.Core.DB
         {
             try
             {
+                Console.WriteLine("Creating new user...");
                 InitializeUsersTable();
 
                 using (var connection = new SQLiteConnection(DBConfig.connectionString))
                 {
-                    Console.WriteLine("Opening database...");
                     connection.Open();
-                    Console.WriteLine("Inserting new user");
+
                     string insertUserQuery = "INSERT INTO users (username, password, fullName) VALUES (@username, @password, @fullName)";
                     using (var command = new SQLiteCommand(insertUserQuery, connection))
                     {
@@ -93,12 +95,12 @@ namespace TimeSprout.Core.DB
 
                         command.ExecuteNonQuery();
                     }
-                    Console.WriteLine($"User [name: '{username}, password: '{password}', fullName: '{fullName}'] inserted successfully.");
+                    Console.WriteLine("Done.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Failed! Error: {ex.Message}");
             }
         }
 
@@ -106,13 +108,15 @@ namespace TimeSprout.Core.DB
         {
             try
             {
+                Console.WriteLine("Updating user...");
                 InitializeUsersTable();
 
                 using (var connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
 
-                    string updateUserQuery = "UPDATE users set password = @password, fullName = @fullName WHERE @username = @username ";
+                    Console.WriteLine($"UPDATE users SET password = {password}, fullName = {fullName} WHERE username = {username};");
+                    string updateUserQuery = "UPDATE users SET password = @password, fullName = @fullName WHERE username = @username ";
 
                     using (var command = new SQLiteCommand(updateUserQuery, connection))
                     {
@@ -123,6 +127,7 @@ namespace TimeSprout.Core.DB
                         command.ExecuteNonQuery();
                     }
                 }
+                Console.WriteLine("Done.");
             }
             catch (Exception ex)
             {

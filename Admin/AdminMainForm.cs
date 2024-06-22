@@ -93,6 +93,14 @@ namespace TimeSprout.Admin
                 _fullName: fullName));
         }
 
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            OpenFormInPanel(new Admin.Forms.Settings.SettingsForm(
+                _username: username,
+                _password: password,
+                _fullName: fullName));
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             LogoutForm();
