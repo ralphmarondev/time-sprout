@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelTitle = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.tbEmployeeId = new System.Windows.Forms.TextBox();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnToggleNavPanel = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.lblAdminName = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnNew = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEmployeeInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -60,6 +60,19 @@
             this.panelTitle.Name = "panelTitle";
             this.panelTitle.Size = new System.Drawing.Size(858, 68);
             this.panelTitle.TabIndex = 13;
+            this.panelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseDown);
+            this.panelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseMove);
+            this.panelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseUp);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Courier New", 10.2F);
+            this.label2.Location = new System.Drawing.Point(12, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 20);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "ID:";
             // 
             // tbEmployeeId
             // 
@@ -94,6 +107,7 @@
             this.btnFullScreen.Size = new System.Drawing.Size(30, 30);
             this.btnFullScreen.TabIndex = 6;
             this.btnFullScreen.UseVisualStyleBackColor = false;
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
             // btnToggleNavPanel
             // 
@@ -113,6 +127,7 @@
             this.btnToggleNavPanel.Size = new System.Drawing.Size(30, 30);
             this.btnToggleNavPanel.TabIndex = 5;
             this.btnToggleNavPanel.UseVisualStyleBackColor = false;
+            this.btnToggleNavPanel.Click += new System.EventHandler(this.btnToggleNavPanel_Click);
             // 
             // btnLogout2
             // 
@@ -132,6 +147,7 @@
             this.btnLogout2.Size = new System.Drawing.Size(30, 30);
             this.btnLogout2.TabIndex = 4;
             this.btnLogout2.UseVisualStyleBackColor = false;
+            this.btnLogout2.Click += new System.EventHandler(this.btnLogout2_Click);
             // 
             // btnEmployeeInfo
             // 
@@ -198,16 +214,6 @@
             this.btnNew.Text = "NEW EMPLOYEE";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Courier New", 10.2F);
-            this.label2.Location = new System.Drawing.Point(12, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 20);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "ID:";
             // 
             // EmployeeForm
             // 
