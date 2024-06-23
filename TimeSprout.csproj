@@ -209,12 +209,6 @@
     <Compile Include="Admin\Forms\Summary\SummaryForm.Designer.cs">
       <DependentUpon>SummaryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\Dialog\SelectEmployee.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Forms\TimeRecord\Dialog\SelectEmployee.Designer.cs">
-      <DependentUpon>SelectEmployee.cs</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Forms\TimeRecord\Dialog\UpdateDeleteTimeRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,9 +288,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\Summary\SummaryForm.resx">
       <DependentUpon>SummaryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Forms\TimeRecord\Dialog\SelectEmployee.resx">
-      <DependentUpon>SelectEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\TimeRecord\Dialog\UpdateDeleteTimeRecord.resx">
       <DependentUpon>UpdateDeleteTimeRecord.cs</DependentUpon>

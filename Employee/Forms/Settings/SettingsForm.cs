@@ -48,14 +48,14 @@ namespace TimeSprout.Employee.Forms.Settings
             if (btnShowUpdate.Text == "UPDATE PASSWORD")
             {
                 panelUpdatePass.Visible = true;
-                panelDetails.Visible = false;
+                //panelDetails.Visible = false;
 
                 btnShowUpdate.Text = "CANCEL";
             }
             else
             {
                 panelUpdatePass.Visible = false;
-                panelDetails.Visible = true;
+                //panelDetails.Visible = true;
 
                 btnShowUpdate.Text = "UPDATE PASSWORD";
             }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using TimeSprout.Admin.Forms.TimeRecord.Dialog;
 using TimeSprout.Core.DB;
 using TimeSprout.Core.Model;
 
@@ -8,72 +7,106 @@ namespace TimeSprout.Admin.Forms.TimeRecord
 {
     public partial class TimeRecordForm : Form
     {
-        private string username, password, fullName;
-        private string currentDate;
-        // from select employee form
         private string id, name, currentProject;
+        private string currentDate;
 
         public TimeRecordForm()
         {
             InitializeComponent();
         }
 
-        public TimeRecordForm(string _username, string _password, string _fullName)
-        {
-            InitializeComponent();
-
-            username = _username;
-            password = _password;
-            fullName = _fullName;
-        }
-
         private void TimeRecordForm_Load(object sender, EventArgs e)
         {
             Console.WriteLine("TimeRecordForm is loaded.");
+            fieldsPanel.Visible = false;
 
-            lblEmployeeName.Text = fullName;
-
-            SetEmployeeInformation();
+            SetupCurrentDate();
+            currentDate = GetFormattedDate();
         }
-
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         #region ONLOAD
         private void SetEmployeeInformation()
         {
-            // show dialog to get employee
-            // showing the child form as a modal dialog
-            SelectEmployee selectEmployee = new SelectEmployee();
-            selectEmployee.StartPosition = FormStartPosition.CenterScreen;
-            this.Enabled = false;
+            // set value of date time picker
+            Console.WriteLine($"We got, id = {id}, name = {name}, currentProject: {currentProject}");
 
-            if (selectEmployee.ShowDialog() == DialogResult.OK)
+            lblEmployeeName.Text = name;
+            tbEmployeeId.Text = id;
+            tbCurrentProject.Text = currentProject;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            string _id = tbIdToPass.Text.Trim();
+            if (DBEmployee.IsEmployeeIdTaken(_id: _id))
             {
-                id = selectEmployee.EmployeeId;
-                name = selectEmployee.EmployeeName;
-                currentProject = selectEmployee.EmployeeCurrentProject;
+                EmployeeModel employee = DBEmployee.ReadEmployeeDetails(_id: _id);
 
-                Console.WriteLine($"We've got => id: {id}, name: {name}, currProject: {currentProject}");
-            }
+                id = employee.id;
+                name = employee.name;
+                currentProject = employee.currentProject;
 
-            if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(currentProject))
-            {
-                this.Enabled = true;
+                SetEmployeeInformation();
 
-                // set the values 
-                tbEmployeeId.Text = id;
-                lblEmployeeName.Text = name;
-                tbCurrentProject.Text = currentProject;
+                fieldsPanel.Visible = true;
+                panelDialog.Visible = false;
+
+                GetRecordForThisDay();
+                UpdateTotalWorkHours();
+                TimeInTimeOutCheck();
             }
             else
             {
-                // TODO: GO BACK TO SUMMARY FORM
+                MessageBox.Show("Employee is not registered in database.");
+            }
+        }
+
+        private void SetupCurrentDate()
+        {
+            dateTimePicker2.Value = DateTime.Now;
+            // Set the DateTimePicker format to Custom
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+
+            // Define the custom format string
+            dateTimePicker2.CustomFormat = "dd/MM/yyyy - ddd";
+
+            tbCurrentDate.Text = dateTimePicker2.Value.ToString("dd/MM/yyyy - ddd");
+        }
+
+        private string GetFormattedDate()
+        {
+            DateTime selectedDate = dateTimePicker2.Value;
+            string formattedDate = selectedDate.ToString("ddMMyyyy");
+
+            Console.WriteLine($"Formatted date: {formattedDate}");
+            return formattedDate;
+        }
+
+        private void GetRecordForThisDay()
+        {
+            if (DBTimeRecord.IsEmployeeTimeRecordExists(_currentDate: currentDate, _id: id))
+            {
+                TimeRecordModel record = DBTimeRecord.ReadEmployeeTimeRecord(_currentDate: currentDate, _id: id);
+
+                tbAmTimeIn.Text = record.amTimeIn;
+                tbAmTimeOut.Text = record.amTimeOut;
+                tbPmTimeIn.Text = record.pmTimeIn;
+                tbPmTimeOut.Text = record.pmTimeOut;
+                tbOtTimeIn.Text = record.otTimeIn;
+                tbOtTimeOut.Text = record.otTimeOut;
+                lblWorkedHour.Text = record.workingHour;
+                lblOvertime.Text = record.overtime;
+
+                Console.WriteLine($"Record for currentDate: {currentDate} exists. Setting things up...");
+                Console.WriteLine($"Time In/Out: [amIn: {tbAmTimeIn.Text}, amOut: {tbAmTimeOut.Text}]");
+                Console.WriteLine($"Time In/Out: [pmIn: {tbPmTimeIn.Text}, pmOut: {tbPmTimeOut.Text}]");
+                Console.WriteLine($"Time In/Out: [otIn: {tbOtTimeIn.Text}, otOut: {tbOtTimeOut.Text}]");
+                Console.WriteLine($"Working hour: {lblWorkedHour.Text}, Overtime: {lblOvertime.Text}");
+            }
+            else
+            {
+                Console.WriteLine($"Record for currentDate: {currentDate} does not exist.");
             }
         }
         #endregion ONLOAD
@@ -342,5 +375,13 @@ namespace TimeSprout.Admin.Forms.TimeRecord
 
         #endregion TimeInTimeOut
 
+
+
+        #region SAVE
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            UpdateTimeRecord();
+        }
+        #endregion SAVE
     }
 }
