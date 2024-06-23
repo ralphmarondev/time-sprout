@@ -98,6 +98,11 @@ namespace TimeSprout.Admin
                 _fullName: fullName));
         }
 
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             LogoutForm();
