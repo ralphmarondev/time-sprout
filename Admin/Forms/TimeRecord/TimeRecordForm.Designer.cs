@@ -68,9 +68,9 @@
             this.tbAmTimeIn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panelDialog = new System.Windows.Forms.Panel();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.tbIdToPass = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbIdToPass = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEmployeeInfo)).BeginInit();
             this.fieldsPanel.SuspendLayout();
@@ -108,10 +108,11 @@
             this.dateTimePicker2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dateTimePicker2.Location = new System.Drawing.Point(16, 20);
+            this.dateTimePicker2.Location = new System.Drawing.Point(261, 18);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(223, 30);
+            this.dateTimePicker2.Size = new System.Drawing.Size(143, 30);
             this.dateTimePicker2.TabIndex = 7;
+            this.dateTimePicker2.Visible = false;
             // 
             // btnFullScreen
             // 
@@ -198,12 +199,12 @@
             // 
             // tbCurrentDate
             // 
+            this.tbCurrentDate.BackColor = System.Drawing.SystemColors.Window;
             this.tbCurrentDate.Location = new System.Drawing.Point(16, 20);
             this.tbCurrentDate.Name = "tbCurrentDate";
             this.tbCurrentDate.ReadOnly = true;
             this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
             this.tbCurrentDate.TabIndex = 8;
-            this.tbCurrentDate.Visible = false;
             // 
             // fieldsPanel
             // 
@@ -322,6 +323,7 @@
             this.tbEmployeeId.ForeColor = System.Drawing.Color.Purple;
             this.tbEmployeeId.Location = new System.Drawing.Point(10, 8);
             this.tbEmployeeId.Name = "tbEmployeeId";
+            this.tbEmployeeId.ReadOnly = true;
             this.tbEmployeeId.Size = new System.Drawing.Size(173, 23);
             this.tbEmployeeId.TabIndex = 9;
             this.tbEmployeeId.Text = "21-21800";
@@ -420,7 +422,6 @@
             this.tbOtTimeOut.Location = new System.Drawing.Point(117, 29);
             this.tbOtTimeOut.MaxLength = 5;
             this.tbOtTimeOut.Name = "tbOtTimeOut";
-            this.tbOtTimeOut.ReadOnly = true;
             this.tbOtTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbOtTimeOut.TabIndex = 7;
             this.tbOtTimeOut.Text = "00:00";
@@ -433,7 +434,6 @@
             this.tbOtTimeIn.Location = new System.Drawing.Point(28, 29);
             this.tbOtTimeIn.MaxLength = 5;
             this.tbOtTimeIn.Name = "tbOtTimeIn";
-            this.tbOtTimeIn.ReadOnly = true;
             this.tbOtTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbOtTimeIn.TabIndex = 6;
             this.tbOtTimeIn.Text = "00:00";
@@ -488,7 +488,6 @@
             this.tbPmTimeOut.Location = new System.Drawing.Point(117, 29);
             this.tbPmTimeOut.MaxLength = 5;
             this.tbPmTimeOut.Name = "tbPmTimeOut";
-            this.tbPmTimeOut.ReadOnly = true;
             this.tbPmTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbPmTimeOut.TabIndex = 7;
             this.tbPmTimeOut.Text = "00:00";
@@ -501,7 +500,6 @@
             this.tbPmTimeIn.Location = new System.Drawing.Point(28, 29);
             this.tbPmTimeIn.MaxLength = 5;
             this.tbPmTimeIn.Name = "tbPmTimeIn";
-            this.tbPmTimeIn.ReadOnly = true;
             this.tbPmTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbPmTimeIn.TabIndex = 6;
             this.tbPmTimeIn.Text = "00:00";
@@ -557,7 +555,6 @@
             this.tbAmTimeOut.Location = new System.Drawing.Point(117, 29);
             this.tbAmTimeOut.MaxLength = 5;
             this.tbAmTimeOut.Name = "tbAmTimeOut";
-            this.tbAmTimeOut.ReadOnly = true;
             this.tbAmTimeOut.Size = new System.Drawing.Size(76, 30);
             this.tbAmTimeOut.TabIndex = 7;
             this.tbAmTimeOut.Text = "00:00";
@@ -571,7 +568,6 @@
             this.tbAmTimeIn.Location = new System.Drawing.Point(28, 29);
             this.tbAmTimeIn.MaxLength = 5;
             this.tbAmTimeIn.Name = "tbAmTimeIn";
-            this.tbAmTimeIn.ReadOnly = true;
             this.tbAmTimeIn.Size = new System.Drawing.Size(76, 30);
             this.tbAmTimeIn.TabIndex = 6;
             this.tbAmTimeIn.Text = "00:00";
@@ -593,27 +589,10 @@
             this.panelDialog.Controls.Add(this.label1);
             this.panelDialog.Controls.Add(this.tbIdToPass);
             this.panelDialog.Controls.Add(this.btnOk);
-            this.panelDialog.Location = new System.Drawing.Point(46, 86);
+            this.panelDialog.Location = new System.Drawing.Point(27, 96);
             this.panelDialog.Name = "panelDialog";
             this.panelDialog.Size = new System.Drawing.Size(212, 184);
             this.panelDialog.TabIndex = 11;
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(24, 96);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(161, 61);
-            this.btnOk.TabIndex = 0;
-            this.btnOk.Text = "OKAY";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // tbIdToPass
-            // 
-            this.tbIdToPass.Location = new System.Drawing.Point(24, 42);
-            this.tbIdToPass.Name = "tbIdToPass";
-            this.tbIdToPass.Size = new System.Drawing.Size(161, 30);
-            this.tbIdToPass.TabIndex = 1;
             // 
             // label1
             // 
@@ -624,6 +603,23 @@
             this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 17;
             this.label1.Text = "ID:";
+            // 
+            // tbIdToPass
+            // 
+            this.tbIdToPass.Location = new System.Drawing.Point(24, 42);
+            this.tbIdToPass.Name = "tbIdToPass";
+            this.tbIdToPass.Size = new System.Drawing.Size(161, 30);
+            this.tbIdToPass.TabIndex = 1;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(24, 96);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(161, 61);
+            this.btnOk.TabIndex = 0;
+            this.btnOk.Text = "OKAY";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // TimeRecordForm
             // 

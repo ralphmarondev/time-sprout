@@ -31,7 +31,6 @@
             this.panelNavigation = new System.Windows.Forms.Panel();
             this.btnEmployees = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
-            this.btnProjects = new System.Windows.Forms.Button();
             this.btnSummary = new System.Windows.Forms.Button();
             this.btnTimeInOut = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -57,7 +56,6 @@
             this.panelNavigation.BackColor = System.Drawing.Color.White;
             this.panelNavigation.Controls.Add(this.btnEmployees);
             this.panelNavigation.Controls.Add(this.btnUsers);
-            this.panelNavigation.Controls.Add(this.btnProjects);
             this.panelNavigation.Controls.Add(this.btnSummary);
             this.panelNavigation.Controls.Add(this.btnTimeInOut);
             this.panelNavigation.Controls.Add(this.btnLogout);
@@ -78,7 +76,7 @@
             this.btnEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployees.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEmployees.ForeColor = System.Drawing.Color.Purple;
-            this.btnEmployees.Location = new System.Drawing.Point(9, 226);
+            this.btnEmployees.Location = new System.Drawing.Point(9, 150);
             this.btnEmployees.Margin = new System.Windows.Forms.Padding(0);
             this.btnEmployees.MaximumSize = new System.Drawing.Size(200, 68);
             this.btnEmployees.Name = "btnEmployees";
@@ -98,7 +96,7 @@
             this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsers.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsers.ForeColor = System.Drawing.Color.Purple;
-            this.btnUsers.Location = new System.Drawing.Point(9, 373);
+            this.btnUsers.Location = new System.Drawing.Point(9, 297);
             this.btnUsers.Margin = new System.Windows.Forms.Padding(0);
             this.btnUsers.MaximumSize = new System.Drawing.Size(200, 68);
             this.btnUsers.Name = "btnUsers";
@@ -107,25 +105,6 @@
             this.btnUsers.Text = "USERS";
             this.btnUsers.UseVisualStyleBackColor = false;
             this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
-            // 
-            // btnProjects
-            // 
-            this.btnProjects.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProjects.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnProjects.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProjects.FlatAppearance.BorderSize = 0;
-            this.btnProjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProjects.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProjects.ForeColor = System.Drawing.Color.Purple;
-            this.btnProjects.Location = new System.Drawing.Point(9, 154);
-            this.btnProjects.Margin = new System.Windows.Forms.Padding(0);
-            this.btnProjects.MaximumSize = new System.Drawing.Size(200, 68);
-            this.btnProjects.Name = "btnProjects";
-            this.btnProjects.Size = new System.Drawing.Size(200, 60);
-            this.btnProjects.TabIndex = 6;
-            this.btnProjects.Text = "PROJECTS";
-            this.btnProjects.UseVisualStyleBackColor = false;
             // 
             // btnSummary
             // 
@@ -137,7 +116,7 @@
             this.btnSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSummary.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSummary.ForeColor = System.Drawing.Color.Purple;
-            this.btnSummary.Location = new System.Drawing.Point(9, 300);
+            this.btnSummary.Location = new System.Drawing.Point(9, 224);
             this.btnSummary.Margin = new System.Windows.Forms.Padding(0);
             this.btnSummary.MaximumSize = new System.Drawing.Size(200, 68);
             this.btnSummary.Name = "btnSummary";
@@ -386,7 +365,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblAdminName;
         private System.Windows.Forms.Button btnEmployees;
-        private System.Windows.Forms.Button btnProjects;
         private System.Windows.Forms.Panel mainPanel;
     }
 }

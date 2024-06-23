@@ -185,6 +185,24 @@
     <Compile Include="Admin\Forms\Employees\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Forms\Project\Dialog\CreateNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Project\Dialog\CreateNewProject.Designer.cs">
+      <DependentUpon>CreateNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Project\Dialog\UpdateDeleteProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Project\Dialog\UpdateDeleteProject.Designer.cs">
+      <DependentUpon>UpdateDeleteProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forms\Project\ProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Forms\Project\ProjectForm.Designer.cs">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Forms\Settings\Dialog\CreateNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +248,7 @@
     <Compile Include="Core\DB\DBConfig.cs" />
     <Compile Include="Core\DB\DBEmployee.cs" />
     <Compile Include="Core\DB\DBExport.cs" />
+    <Compile Include="Core\DB\DBProjects.cs" />
     <Compile Include="Core\DB\DBTimeRecord.cs" />
     <Compile Include="Core\DB\DBUsers.cs" />
     <Compile Include="Core\Model\EmployeeModel.cs" />
@@ -276,6 +295,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\Employees\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Project\Dialog\UpdateDeleteProject.resx">
+      <DependentUpon>UpdateDeleteProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Forms\Project\ProjectForm.resx">
+      <DependentUpon>ProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Forms\Settings\Dialog\CreateNewUser.resx">
       <DependentUpon>CreateNewUser.cs</DependentUpon>

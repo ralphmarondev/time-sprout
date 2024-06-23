@@ -347,13 +347,18 @@ namespace TimeSprout.Employee.Forms.TimeRecord
             tbOtTimeIn.Text = GetCurrentTime();
         }
 
+        
+
         private void btnOtTimeOut_Click(object sender, EventArgs e)
         {
             tbOtTimeOut.Text = GetCurrentTime();
         }
         #endregion SAVING_RECORD
 
+private void tbCurrentDate_TextChanged(object sender, EventArgs e)
+        {
 
+        }
 
         #region CALCULATING_TOTAL_WORKING_HOUR
         private void UpdateTotalWorkHours()

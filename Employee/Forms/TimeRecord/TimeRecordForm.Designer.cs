@@ -108,6 +108,7 @@
             this.tbCurrentDate.ReadOnly = true;
             this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
             this.tbCurrentDate.TabIndex = 8;
+            this.tbCurrentDate.TextChanged += new System.EventHandler(this.tbCurrentDate_TextChanged);
             // 
             // dateTimePicker2
             // 

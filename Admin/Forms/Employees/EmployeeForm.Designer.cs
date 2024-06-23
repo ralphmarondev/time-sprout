@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelTitle = new System.Windows.Forms.Panel();
-            this.tbCurrentDate = new System.Windows.Forms.TextBox();
+            this.tbEmployeeId = new System.Windows.Forms.TextBox();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnToggleNavPanel = new System.Windows.Forms.Button();
             this.btnLogout2 = new System.Windows.Forms.Button();
@@ -37,6 +37,7 @@
             this.lblAdminName = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnNew = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEmployeeInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -45,7 +46,8 @@
             // panelTitle
             // 
             this.panelTitle.BackColor = System.Drawing.Color.White;
-            this.panelTitle.Controls.Add(this.tbCurrentDate);
+            this.panelTitle.Controls.Add(this.label2);
+            this.panelTitle.Controls.Add(this.tbEmployeeId);
             this.panelTitle.Controls.Add(this.btnFullScreen);
             this.panelTitle.Controls.Add(this.btnToggleNavPanel);
             this.panelTitle.Controls.Add(this.btnLogout2);
@@ -59,19 +61,20 @@
             this.panelTitle.Size = new System.Drawing.Size(858, 68);
             this.panelTitle.TabIndex = 13;
             // 
-            // tbCurrentDate
+            // tbEmployeeId
             // 
-            this.tbCurrentDate.AutoCompleteCustomSource.AddRange(new string[] {
+            this.tbEmployeeId.AutoCompleteCustomSource.AddRange(new string[] {
             "2024-001",
             "2024-002",
             "2024-003"});
-            this.tbCurrentDate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.tbCurrentDate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbCurrentDate.Location = new System.Drawing.Point(16, 20);
-            this.tbCurrentDate.Name = "tbCurrentDate";
-            this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
-            this.tbCurrentDate.TabIndex = 8;
-            this.tbCurrentDate.Text = "SEARCH ID";
+            this.tbEmployeeId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.tbEmployeeId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbEmployeeId.Location = new System.Drawing.Point(53, 17);
+            this.tbEmployeeId.Name = "tbEmployeeId";
+            this.tbEmployeeId.Size = new System.Drawing.Size(223, 30);
+            this.tbEmployeeId.TabIndex = 8;
+            this.tbEmployeeId.TextChanged += new System.EventHandler(this.tbEmployeeId_TextChanged);
+            this.tbEmployeeId.MouseLeave += new System.EventHandler(this.tbEmployeeeId_MouseLeave);
             // 
             // btnFullScreen
             // 
@@ -196,6 +199,16 @@
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Courier New", 10.2F);
+            this.label2.Location = new System.Drawing.Point(12, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 20);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "ID:";
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
@@ -223,7 +236,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTitle;
-        private System.Windows.Forms.TextBox tbCurrentDate;
+        private System.Windows.Forms.TextBox tbEmployeeId;
         private System.Windows.Forms.Button btnFullScreen;
         private System.Windows.Forms.Button btnToggleNavPanel;
         private System.Windows.Forms.Button btnLogout2;
@@ -231,5 +244,6 @@
         private System.Windows.Forms.Label lblAdminName;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Label label2;
     }
 }

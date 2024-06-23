@@ -380,7 +380,15 @@ namespace TimeSprout.Admin.Forms.TimeRecord
         #region SAVE
         private void btnSave_Click(object sender, EventArgs e)
         {
-            UpdateTimeRecord();
+            if (IsTimeInputtedValid())
+                UpdateTimeRecord();
+            else
+                MessageBox.Show("Invalid time inputted.");
+        }
+
+        private bool IsTimeInputtedValid()
+        {
+            return true;
         }
         #endregion SAVE
     }

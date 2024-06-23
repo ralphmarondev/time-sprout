@@ -169,7 +169,7 @@ namespace TimeSprout.Employee.Forms.Summary
                 string message = $"Date: {date}\nName: {name}\nCurrent Project: {currentProject}\n" +
                                  $"Working Hour: {workingHour}\nOvertime: {overtime}";
 
-                MessageBox.Show(message, "Row Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(message, "Employee Details", MessageBoxButtons.OK);
             }
         }
 
@@ -256,7 +256,7 @@ namespace TimeSprout.Employee.Forms.Summary
                 workbook.SaveAs(excelPath);
 
                 Console.WriteLine($"Data exported to {excelPath} successfully.");
-                MessageBox.Show($"Data exported to {excelPath} successfully.");
+                MessageBox.Show("Data exported successfully.");
             }
             catch (Exception ex)
             {
