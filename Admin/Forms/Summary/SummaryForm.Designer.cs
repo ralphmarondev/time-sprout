@@ -81,6 +81,10 @@
             this.panelTitle.Name = "panelTitle";
             this.panelTitle.Size = new System.Drawing.Size(858, 68);
             this.panelTitle.TabIndex = 12;
+            this.panelTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTitle_Paint);
+            this.panelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseDown);
+            this.panelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseMove);
+            this.panelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseUp);
             // 
             // tbCurrentDate
             // 
@@ -120,6 +124,7 @@
             this.btnFullScreen.Size = new System.Drawing.Size(30, 30);
             this.btnFullScreen.TabIndex = 6;
             this.btnFullScreen.UseVisualStyleBackColor = false;
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
             // btnToggleNavPanel
             // 
@@ -139,6 +144,7 @@
             this.btnToggleNavPanel.Size = new System.Drawing.Size(30, 30);
             this.btnToggleNavPanel.TabIndex = 5;
             this.btnToggleNavPanel.UseVisualStyleBackColor = false;
+            this.btnToggleNavPanel.Click += new System.EventHandler(this.btnToggleNavPanel_Click);
             // 
             // btnLogout2
             // 
@@ -158,6 +164,7 @@
             this.btnLogout2.Size = new System.Drawing.Size(30, 30);
             this.btnLogout2.TabIndex = 4;
             this.btnLogout2.UseVisualStyleBackColor = false;
+            this.btnLogout2.Click += new System.EventHandler(this.btnLogout2_Click);
             // 
             // btnEmployeeInfo
             // 

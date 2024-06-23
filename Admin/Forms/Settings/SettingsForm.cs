@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
+using System.Drawing;
 using System.Windows.Forms;
 using TimeSprout.Admin.Forms.Settings.Dialog;
 using TimeSprout.Core.DB;
@@ -107,6 +108,76 @@ namespace TimeSprout.Admin.Forms.Settings
             return summary;
         }
         #endregion ON_LOAD
+
+
+
+
+        #region DRAG_AND_DROP_TITLE
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+
+        private void panelTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Cursor.Position;
+            dragFormPoint = this.ParentForm.Location;
+        }
+
+        private void panelTitle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point diff = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                AdminMainForm mainForm = this.ParentForm as AdminMainForm;
+
+                if (mainForm != null)
+                {
+                    mainForm.Location = Point.Add(dragFormPoint, new Size(diff));
+                }
+            }
+        }
+
+        private void panelTitle_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        #endregion DRAG_AND_DROP_TITLE
+
+
+
+        #region TopBar
+        private void btnFullScreen_Click(object sender, EventArgs e)
+        {
+            AdminMainForm mainForm = this.ParentForm as AdminMainForm;
+
+            if (mainForm != null)
+            {
+                mainForm.ToggleFullScreen();
+            }
+        }
+
+        private void btnLogout2_Click(object sender, EventArgs e)
+        {
+            AdminMainForm mainForm = this.ParentForm as AdminMainForm;
+
+            if (mainForm != null)
+            {
+                mainForm.LogoutForm();
+            }
+        }
+
+        private void btnToggleNavPanel_Click(object sender, EventArgs e)
+        {
+            AdminMainForm mainForm = this.ParentForm as AdminMainForm;
+
+            if (mainForm != null)
+            {
+                mainForm.ToggleNavigationPanel();
+            }
+        }
+        #endregion TopBar
 
 
 

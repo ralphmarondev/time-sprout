@@ -119,6 +119,32 @@ namespace TimeSprout.Admin
             authForm.Show();
             Close();
         }
+
+        internal void ToggleFullScreen()
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                // full screen
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        internal void ToggleNavigationPanel()
+        {
+            if (panelNavigation.Visible)
+            {
+                panelNavigation.Visible = false;
+            }
+            else
+            {
+                panelNavigation.Visible = true;
+            }
+        }
+
         #endregion TOP_BAR
     }
 }
