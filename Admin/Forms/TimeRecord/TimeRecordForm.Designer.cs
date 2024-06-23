@@ -67,6 +67,10 @@
             this.tbAmTimeOut = new System.Windows.Forms.TextBox();
             this.tbAmTimeIn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.panelDialog = new System.Windows.Forms.Panel();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.tbIdToPass = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEmployeeInfo)).BeginInit();
             this.fieldsPanel.SuspendLayout();
@@ -78,6 +82,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panelDialog.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitle
@@ -187,9 +192,9 @@
             this.lblEmployeeName.ForeColor = System.Drawing.Color.Purple;
             this.lblEmployeeName.Location = new System.Drawing.Point(497, 24);
             this.lblEmployeeName.Name = "lblEmployeeName";
-            this.lblEmployeeName.Size = new System.Drawing.Size(190, 22);
+            this.lblEmployeeName.Size = new System.Drawing.Size(166, 22);
             this.lblEmployeeName.TabIndex = 0;
-            this.lblEmployeeName.Text = "RALPH MARON EDA";
+            this.lblEmployeeName.Text = "Employee Name";
             // 
             // tbCurrentDate
             // 
@@ -582,11 +587,50 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Current Project:";
             // 
+            // panelDialog
+            // 
+            this.panelDialog.BackColor = System.Drawing.SystemColors.Window;
+            this.panelDialog.Controls.Add(this.label1);
+            this.panelDialog.Controls.Add(this.tbIdToPass);
+            this.panelDialog.Controls.Add(this.btnOk);
+            this.panelDialog.Location = new System.Drawing.Point(46, 86);
+            this.panelDialog.Name = "panelDialog";
+            this.panelDialog.Size = new System.Drawing.Size(212, 184);
+            this.panelDialog.TabIndex = 11;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(24, 96);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(161, 61);
+            this.btnOk.TabIndex = 0;
+            this.btnOk.Text = "OKAY";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // tbIdToPass
+            // 
+            this.tbIdToPass.Location = new System.Drawing.Point(24, 42);
+            this.tbIdToPass.Name = "tbIdToPass";
+            this.tbIdToPass.Size = new System.Drawing.Size(161, 30);
+            this.tbIdToPass.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 17);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "ID:";
+            // 
             // TimeRecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 596);
+            this.Controls.Add(this.panelDialog);
             this.Controls.Add(this.fieldsPanel);
             this.Controls.Add(this.panelTitle);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -618,6 +662,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panelDialog.ResumeLayout(false);
+            this.panelDialog.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -663,5 +709,9 @@
         private System.Windows.Forms.TextBox tbAmTimeOut;
         private System.Windows.Forms.TextBox tbAmTimeIn;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panelDialog;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbIdToPass;
+        private System.Windows.Forms.Button btnOk;
     }
 }

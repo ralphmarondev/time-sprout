@@ -66,6 +66,9 @@
             this.tbAmTimeIn = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panelDelete = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblDelOvertime = new System.Windows.Forms.Label();
+            this.lblDelTotalHours = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
             this.tbDelEmpName = new System.Windows.Forms.TextBox();
@@ -84,9 +87,6 @@
             this.btnDeleteNav = new System.Windows.Forms.Button();
             this.btnUpdateNav = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.lblDelTotalHours = new System.Windows.Forms.Label();
-            this.lblDelOvertime = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.panelUpdate.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -571,6 +571,37 @@
             this.panelDelete.Size = new System.Drawing.Size(545, 513);
             this.panelDelete.TabIndex = 23;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(29, 271);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(287, 48);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "REMINDER: \r\nPlease think twice before deleting.\r\nThis action is irreversible!";
+            // 
+            // lblDelOvertime
+            // 
+            this.lblDelOvertime.AutoSize = true;
+            this.lblDelOvertime.ForeColor = System.Drawing.Color.Purple;
+            this.lblDelOvertime.Location = new System.Drawing.Point(32, 213);
+            this.lblDelOvertime.Name = "lblDelOvertime";
+            this.lblDelOvertime.Size = new System.Drawing.Size(130, 22);
+            this.lblDelOvertime.TabIndex = 24;
+            this.lblDelOvertime.Text = "OVERTIME: ";
+            // 
+            // lblDelTotalHours
+            // 
+            this.lblDelTotalHours.AutoSize = true;
+            this.lblDelTotalHours.ForeColor = System.Drawing.Color.Purple;
+            this.lblDelTotalHours.Location = new System.Drawing.Point(32, 176);
+            this.lblDelTotalHours.Name = "lblDelTotalHours";
+            this.lblDelTotalHours.Size = new System.Drawing.Size(166, 22);
+            this.lblDelTotalHours.TabIndex = 23;
+            this.lblDelTotalHours.Text = "TOTAL HOURS: ";
+            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -771,44 +802,13 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Controls.Add(this.panelDelete);
             this.panel10.Controls.Add(this.panelUpdate);
+            this.panel10.Controls.Add(this.panelDelete);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(804, 582);
             this.panel10.TabIndex = 24;
-            // 
-            // lblDelTotalHours
-            // 
-            this.lblDelTotalHours.AutoSize = true;
-            this.lblDelTotalHours.ForeColor = System.Drawing.Color.Purple;
-            this.lblDelTotalHours.Location = new System.Drawing.Point(32, 176);
-            this.lblDelTotalHours.Name = "lblDelTotalHours";
-            this.lblDelTotalHours.Size = new System.Drawing.Size(166, 22);
-            this.lblDelTotalHours.TabIndex = 23;
-            this.lblDelTotalHours.Text = "TOTAL HOURS: ";
-            // 
-            // lblDelOvertime
-            // 
-            this.lblDelOvertime.AutoSize = true;
-            this.lblDelOvertime.ForeColor = System.Drawing.Color.Purple;
-            this.lblDelOvertime.Location = new System.Drawing.Point(32, 213);
-            this.lblDelOvertime.Name = "lblDelOvertime";
-            this.lblDelOvertime.Size = new System.Drawing.Size(130, 22);
-            this.lblDelOvertime.TabIndex = 24;
-            this.lblDelOvertime.Text = "OVERTIME: ";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(29, 271);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(287, 48);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "REMINDER: \r\nPlease think twice before deleting.\r\nThis action is irreversible!";
             // 
             // UpdateDeleteTimeRecord
             // 

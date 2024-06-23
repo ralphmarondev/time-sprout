@@ -238,22 +238,9 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Dialog
                 btnOtTimeOut.Enabled = true;
             }
         }
+        #endregion Update
 
 
-
-        #region NavigationBar
-        private void btnUpdateNav_Click(object sender, EventArgs e)
-        {
-            panelUpdate.Visible = true;
-            panelDelete.Visible = false;
-        }
-
-        private void btnDeleteNav_Click(object sender, EventArgs e)
-        {
-            panelDelete.Visible = true;
-            panelUpdate.Visible = false;
-        }
-        #endregion NavigationBar
 
         #region CALCULATING_TOTAL_WORKING_HOUR
         private void UpdateTotalWorkHours()
@@ -335,7 +322,21 @@ namespace TimeSprout.Admin.Forms.TimeRecord.Dialog
         }
         #endregion CALCULATING_TOTAL_WORKING_HOUR
 
-        #endregion Update
+
+
+        #region NavigationBar
+        private void btnUpdateNav_Click(object sender, EventArgs e)
+        {
+            panelUpdate.Visible = true;
+            panelDelete.Visible = false;
+        }
+
+        private void btnDeleteNav_Click(object sender, EventArgs e)
+        {
+            panelDelete.Visible = true;
+            panelUpdate.Visible = false;
+        }
+        #endregion NavigationBar
 
 
 

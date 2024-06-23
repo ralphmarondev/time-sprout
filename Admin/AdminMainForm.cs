@@ -51,7 +51,7 @@ namespace TimeSprout.Admin
         #region NAVIGATION
         private void OpenFormInPanel(Form form)
         {
-            foreach (Control control in panelNavigation.Controls)
+            foreach (System.Windows.Forms.Control control in panelNavigation.Controls)
             {
                 if (control is Form)
                 {
@@ -87,10 +87,7 @@ namespace TimeSprout.Admin
 
         private void btnTimeInOut_Click(object sender, EventArgs e)
         {
-            OpenFormInPanel(new Admin.Forms.TimeRecord.TimeRecordForm(
-                _username: username,
-                _password: password,
-                _fullName: fullName));
+            OpenFormInPanel(new Admin.Forms.TimeRecord.TimeRecordForm());
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
