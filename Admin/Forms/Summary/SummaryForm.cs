@@ -33,7 +33,7 @@ namespace TimeSprout.Admin.Forms.Summary
             SetupEmployeeDetails();
             SetupCurrentDate();
 
-            _currentDate = dateTimePicker2.Value;
+            _currentDate = dtStartDateTime.Value;
             PopulateDataGridViewWithRecordToday(_currentDate);
         }
 
@@ -45,23 +45,26 @@ namespace TimeSprout.Admin.Forms.Summary
         }
         private void SetupCurrentDate()
         {
-            dateTimePicker2.Value = DateTime.Now;
+            dtStartDateTime.Value = DateTime.Now;
             // Set the DateTimePicker format to Custom
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dtStartDateTime.Format = DateTimePickerFormat.Custom;
 
             // Define the custom format string
-            dateTimePicker2.CustomFormat = "dd/MM/yyyy - ddd";
+            dtStartDateTime.CustomFormat = "dd/MM/yyyy - ddd";
 
-            tbCurrentDate.Text = dateTimePicker2.Value.ToString("dd/MM/yyyy - ddd");
+            tbCurrentDate.Text = dtStartDateTime.Value.ToString("dd/MM/yyyy - ddd");
         }
 
+
+
+        #region WIthStartEndTime
         private void PopulateDataGridView()
         {
             dataGridView1.Controls.Clear();
-            DateTime startDate = new DateTime(2024, 6, 14);
-            DateTime endDate = DateTime.Now;
-
-            DataTable summaryData = GetSummaryData(startDate, endDate);
+            //DateTime startDate = new DateTime(2024, 6, 14);
+            //DateTime endDate = DateTime.Now;
+            Console.WriteLine($"Populating datagridview from: {dtStartDateTime.Value} to {dtEndDateTime.Value}");
+            DataTable summaryData = GetSummaryData(startDate: dtStartDateTime.Value, endDate: dtEndDateTime.Value);
             dataGridView1.DataSource = summaryData;
 
             dataGridView1.Columns["Date"].HeaderText = "Date";
@@ -83,6 +86,7 @@ namespace TimeSprout.Admin.Forms.Summary
             summary.Columns.Add("workingHour", typeof(string));
             summary.Columns.Add("overtime", typeof(string));
 
+            Console.WriteLine($"From: {startDate} to {endDate}");
 
             for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
             {
@@ -163,15 +167,28 @@ namespace TimeSprout.Admin.Forms.Summary
             }
         }
         #endregion ON_LOAD
-
+        #endregion WithStartEndTime
 
 
         DateTime _currentDate;
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            // TODO: ONLY SHOW TIME RECORD ON THAT SPECIFIC DAY
-            _currentDate = dateTimePicker2.Value;
-            PopulateDataGridViewWithRecordToday(_currentDate);
+            //// TODO: ONLY SHOW TIME RECORD ON THAT SPECIFIC DAY
+            //_currentDate = dtStartDateTime.Value;
+            //PopulateDataGridViewWithRecordToday(_currentDate);
+
+            if (dtEndDateTime.Value > dtStartDateTime.Value)
+            {
+                PopulateDataGridView();
+            }
+            else if (dtStartDateTime.Value == dtEndDateTime.Value)
+            {
+                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
+            }
+            else
+            {
+                Console.WriteLine("Invalid. End time must be greater than start time.");
+            }
         }
 
         #region RecordForToday
@@ -179,7 +196,7 @@ namespace TimeSprout.Admin.Forms.Summary
         {
             dataGridView1.Controls.Clear();
 
-            DataTable summaryData = GetSummaryDataWithRecordToday(_currentDate);
+            DataTable summaryData = GetSummaryDataWithRecordToday(_currentDate: _currentDate);
             dataGridView1.DataSource = summaryData;
 
             dataGridView1.Columns["Date"].HeaderText = "Date";
@@ -249,7 +266,7 @@ namespace TimeSprout.Admin.Forms.Summary
         #region Utils
         private string GetFormattedDate()
         {
-            DateTime selectedDate = dateTimePicker2.Value;
+            DateTime selectedDate = dtStartDateTime.Value;
             string formattedDate = selectedDate.ToString("ddMMyyyy");
 
             Console.WriteLine($"Formatted date: {formattedDate}");
@@ -386,6 +403,26 @@ namespace TimeSprout.Admin.Forms.Summary
         }
         #endregion TopBar
 
+
+
+        #region REfactor
+        private void dbEndDateTime_ValueChanged(object sender, EventArgs e)
+        {
+            // compare start and end time
+            if (dtEndDateTime.Value > dtStartDateTime.Value)
+            {
+                PopulateDataGridView();
+            }
+            else if (dtStartDateTime.Value == dtEndDateTime.Value)
+            {
+                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
+            }
+            else
+            {
+                Console.WriteLine("Invalid. End time must be greater than start time.");
+            }
+        }
+        #endregion Refactor
 
     }
 }

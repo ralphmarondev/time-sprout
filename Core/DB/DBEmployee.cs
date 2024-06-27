@@ -17,7 +17,7 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS employees(id TEXT NOT NULL, name TEXT NOT NULL, password TEXT NOT NULL, currentProject TEXT NOT NULL);";
+                    string createEmployeeTableQuery = @"CREATE TABLE IF NOT EXISTS employees(id TEXT NOT NULL, name TEXT NOT NULL, currentProject TEXT NOT NULL);";
                     using (var command = new SQLiteCommand(createEmployeeTableQuery, connection))
                     {
                         command.ExecuteNonQuery();
@@ -42,16 +42,14 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string insertNewEmployeeQuery = "INSERT INTO employees (id, name, password, currentProject) VALUES (@id, @name, @password, @currentProject);";
+                    string insertNewEmployeeQuery = "INSERT INTO employees (id, name, currentProject) VALUES (@id, @name, @currentProject);";
                     using (var command = new SQLiteCommand(insertNewEmployeeQuery, connection))
                     {
                         command.Parameters.AddWithValue("@id", employee.id);
                         command.Parameters.AddWithValue("@name", employee.name);
-                        command.Parameters.AddWithValue("@password", employee.password);
                         command.Parameters.AddWithValue("@currentProject", employee.currentProject);
                         command.ExecuteNonQuery();
                     }
-                    Console.WriteLine($"Employee [{employee.id}] with values: name: '{employee.name}', password: '{employee.password}', currentProject: '{employee.currentProject}' was added to database successfully.");
                 }
 
             }
@@ -72,17 +70,15 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string updateEmployeeQuery = "UPDATE employees SET name = @name, password = @password, currentProject = @currentProject WHERE id = @id";
+                    string updateEmployeeQuery = "UPDATE employees SET name = @name, currentProject = @currentProject WHERE id = @id";
                     using (var command = new SQLiteCommand(updateEmployeeQuery, connection))
                     {
                         command.Parameters.AddWithValue("@id", employee.id);
                         command.Parameters.AddWithValue("@name", employee.name);
-                        command.Parameters.AddWithValue("@password", employee.password);
                         command.Parameters.AddWithValue("@currentProject", employee.currentProject);
 
                         command.ExecuteNonQuery();
                     }
-                    Console.WriteLine($"Employee ['{employee.id}'] updated information to [name: '{employee.name}', password: '{employee.password}', currentProject: '{employee.currentProject}'] succesfully.");
                 }
 
             }
@@ -130,7 +126,7 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string fetchQuery = "SELECT id, name, password, currentProject FROM employees WHERE id = @id";
+                    string fetchQuery = "SELECT id, name, currentProject FROM employees WHERE id = @id";
                     using (var command = new SQLiteCommand(fetchQuery, connection))
                     {
                         command.Parameters.AddWithValue("@id", _id);
@@ -143,12 +139,10 @@ namespace TimeSprout.Core.DB
                                 {
                                     id = reader["id"].ToString(),
                                     name = reader["name"].ToString(),
-                                    password = reader["password"].ToString(),
                                     currentProject = reader["currentProject"].ToString()
                                 };
 
                                 Console.WriteLine($"Employee details...");
-                                Console.WriteLine($"ID: {employee.id}, name: {employee.name}, password: {employee.password}, currentProject: {employee.currentProject}");
                             }
                             else
                             {
@@ -179,7 +173,7 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string fetchQuery = "SELECT id, name, password, currentProject FROM employees";
+                    string fetchQuery = "SELECT id, name, currentProject FROM employees";
                     using (var command = new SQLiteCommand(fetchQuery, connection))
                     {
                         using (var reader = command.ExecuteReader())
@@ -190,11 +184,9 @@ namespace TimeSprout.Core.DB
                                 {
                                     id = reader["id"].ToString(),
                                     name = reader["name"].ToString(),
-                                    password = reader["password"].ToString(),
                                     currentProject = reader["currentProject"].ToString()
                                 };
                                 employees.Add(employee);
-                                Console.WriteLine($"ID: {employee.id}, name: {employee.name}, password: {employee.password}, currentProject: {employee.currentProject}");
                             }
                         }
                     }
@@ -222,7 +214,7 @@ namespace TimeSprout.Core.DB
                 {
                     connection.Open();
 
-                    string fetchQuery = "SELECT id, name, password, currentProject FROM employees WHERE id = @id";
+                    string fetchQuery = "SELECT id, name, currentProject FROM employees WHERE id = @id";
                     using (var command = new SQLiteCommand(fetchQuery, connection))
                     {
                         command.Parameters.AddWithValue("@id", _id);
@@ -234,11 +226,9 @@ namespace TimeSprout.Core.DB
                                 {
                                     id = reader["id"].ToString(),
                                     name = reader["name"].ToString(),
-                                    password = reader["password"].ToString(),
                                     currentProject = reader["currentProject"].ToString()
                                 };
                                 employees.Add(employee);
-                                Console.WriteLine($"ID: {employee.id}, name: {employee.name}, password: {employee.password}, currentProject: {employee.currentProject}");
                             }
                         }
                     }
@@ -251,35 +241,6 @@ namespace TimeSprout.Core.DB
             return employees;
         }
 
-        public static bool IsEmployeeExists(string _id, string _password)
-        {
-            try
-            {
-                InitializeEmployeeTable();
-
-                using (var connection = new SQLiteConnection(DBConfig.connectionString))
-                {
-                    connection.Open();
-
-                    string query = "SELECT COUNT(*) FROM employees WHERE id = @id AND password = @password";
-                    using (var command = new SQLiteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@id", _id);
-                        command.Parameters.AddWithValue("@password", _password);
-
-                        long count = (long)command.ExecuteScalar();
-
-                        Console.WriteLine($"Employee Id taken: {count > 0}");
-                        return (count > 0);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-            return false;
-        }
         public static bool IsEmployeeIdTaken(string _id)
         {
             try
@@ -308,32 +269,6 @@ namespace TimeSprout.Core.DB
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return false;
-            }
-        }
-
-        public static void UpdateEmployeePassword(string _id, string _password)
-        {
-            try
-            {
-                Console.WriteLine($"Updating employee: '{_id}' password.");
-                using (var connection = new SQLiteConnection(DBConfig.connectionString))
-                {
-                    connection.Open();
-
-                    string query = "UPDATE employees SET password = @password WHERE id = @id;";
-                    using (var command = new SQLiteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@password", _password);
-                        command.Parameters.AddWithValue("@id", _id);
-
-                        command.ExecuteNonQuery();
-                    }
-                }
-                Console.WriteLine("Done.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
             }
         }
     }
