@@ -30,19 +30,21 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelTitle = new System.Windows.Forms.Panel();
-            this.tbCurrentDate = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbEmpID = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtEndDateTime = new System.Windows.Forms.DateTimePicker();
             this.dtStartDateTime = new System.Windows.Forms.DateTimePicker();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnToggleNavPanel = new System.Windows.Forms.Button();
             this.btnLogout2 = new System.Windows.Forms.Button();
+            this.tbCurrentDate = new System.Windows.Forms.TextBox();
             this.btnEmployeeInfo = new System.Windows.Forms.PictureBox();
             this.lblAdminName = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
-            this.dtEndDateTime = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEmployeeInfo)).BeginInit();
@@ -65,15 +67,16 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(858, 447);
+            this.dataGridView1.Size = new System.Drawing.Size(858, 418);
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // panelTitle
             // 
             this.panelTitle.BackColor = System.Drawing.Color.White;
+            this.panelTitle.Controls.Add(this.btnSearch);
             this.panelTitle.Controls.Add(this.label3);
-            this.panelTitle.Controls.Add(this.textBox1);
+            this.panelTitle.Controls.Add(this.tbEmpID);
             this.panelTitle.Controls.Add(this.label2);
             this.panelTitle.Controls.Add(this.label1);
             this.panelTitle.Controls.Add(this.dtEndDateTime);
@@ -93,14 +96,53 @@
             this.panelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseMove);
             this.panelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTitle_MouseUp);
             // 
-            // tbCurrentDate
+            // label3
             // 
-            this.tbCurrentDate.Location = new System.Drawing.Point(59, 554);
-            this.tbCurrentDate.Name = "tbCurrentDate";
-            this.tbCurrentDate.ReadOnly = true;
-            this.tbCurrentDate.Size = new System.Drawing.Size(180, 30);
-            this.tbCurrentDate.TabIndex = 8;
-            this.tbCurrentDate.Visible = false;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Courier New", 10.2F);
+            this.label3.Location = new System.Drawing.Point(470, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 20);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Employee ID:";
+            // 
+            // tbEmpID
+            // 
+            this.tbEmpID.Location = new System.Drawing.Point(474, 40);
+            this.tbEmpID.Name = "tbEmpID";
+            this.tbEmpID.Size = new System.Drawing.Size(144, 30);
+            this.tbEmpID.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Courier New", 10.2F);
+            this.label2.Location = new System.Drawing.Point(241, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 20);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "End Date:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Courier New", 10.2F);
+            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 20);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Start Date:";
+            // 
+            // dtEndDateTime
+            // 
+            this.dtEndDateTime.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtEndDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtEndDateTime.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.dtEndDateTime.Location = new System.Drawing.Point(245, 40);
+            this.dtEndDateTime.Name = "dtEndDateTime";
+            this.dtEndDateTime.Size = new System.Drawing.Size(223, 30);
+            this.dtEndDateTime.TabIndex = 8;
+            this.dtEndDateTime.ValueChanged += new System.EventHandler(this.dbEndDateTime_ValueChanged);
             // 
             // dtStartDateTime
             // 
@@ -173,6 +215,15 @@
             this.btnLogout2.UseVisualStyleBackColor = false;
             this.btnLogout2.Click += new System.EventHandler(this.btnLogout2_Click);
             // 
+            // tbCurrentDate
+            // 
+            this.tbCurrentDate.Location = new System.Drawing.Point(59, 554);
+            this.tbCurrentDate.Name = "tbCurrentDate";
+            this.tbCurrentDate.ReadOnly = true;
+            this.tbCurrentDate.Size = new System.Drawing.Size(180, 30);
+            this.tbCurrentDate.TabIndex = 8;
+            this.tbCurrentDate.Visible = false;
+            // 
             // btnEmployeeInfo
             // 
             this.btnEmployeeInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -220,53 +271,43 @@
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // dtEndDateTime
+            // btnSearch
             // 
-            this.dtEndDateTime.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtEndDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtEndDateTime.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dtEndDateTime.Location = new System.Drawing.Point(245, 40);
-            this.dtEndDateTime.Name = "dtEndDateTime";
-            this.dtEndDateTime.Size = new System.Drawing.Size(223, 30);
-            this.dtEndDateTime.TabIndex = 8;
-            this.dtEndDateTime.ValueChanged += new System.EventHandler(this.dbEndDateTime_ValueChanged);
+            this.btnSearch.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSearch.BackgroundImage = global::TimeSprout.Properties.Resources.icons8_full_screen_48;
+            this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.Purple;
+            this.btnSearch.Location = new System.Drawing.Point(621, 40);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSearch.MaximumSize = new System.Drawing.Size(28, 28);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(28, 28);
+            this.btnSearch.TabIndex = 13;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 10.2F);
-            this.label1.Location = new System.Drawing.Point(12, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 20);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Start Date:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Courier New", 10.2F);
-            this.label2.Location = new System.Drawing.Point(241, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 20);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "End Date:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(483, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(172, 30);
-            this.textBox1.TabIndex = 11;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Courier New", 10.2F);
-            this.label3.Location = new System.Drawing.Point(479, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 20);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Employee ID:";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Purple;
+            this.button1.Location = new System.Drawing.Point(436, 532);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.MaximumSize = new System.Drawing.Size(200, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 60);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "EXPORT ALL";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // SummaryForm
             // 
@@ -274,6 +315,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(858, 596);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tbCurrentDate);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelTitle);
@@ -310,8 +352,10 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.DateTimePicker dtEndDateTime;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbEmpID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button button1;
     }
 }

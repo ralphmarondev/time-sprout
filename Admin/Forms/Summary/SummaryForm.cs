@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using TimeSprout.Admin.Forms.TimeRecord.Dialog;
 using TimeSprout.Core.DB;
@@ -13,11 +14,7 @@ namespace TimeSprout.Admin.Forms.Summary
     public partial class SummaryForm : Form
     {
         private string username, password, fullName;
-
-        public SummaryForm()
-        {
-            InitializeComponent();
-        }
+        private string startTime, endTime;
 
         public SummaryForm(string _username, string _password, string _fullName)
         {
@@ -32,9 +29,9 @@ namespace TimeSprout.Admin.Forms.Summary
         {
             SetupEmployeeDetails();
             SetupCurrentDate();
+            SetupStartEndTime();
 
-            _currentDate = dtStartDateTime.Value;
-            PopulateDataGridViewWithRecordToday(_currentDate);
+            PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
         }
 
 
@@ -46,14 +43,24 @@ namespace TimeSprout.Admin.Forms.Summary
         private void SetupCurrentDate()
         {
             dtStartDateTime.Value = DateTime.Now;
+            dtEndDateTime.Value = DateTime.Now;
             // Set the DateTimePicker format to Custom
             dtStartDateTime.Format = DateTimePickerFormat.Custom;
+            dtEndDateTime.Format = DateTimePickerFormat.Custom;
 
             // Define the custom format string
             dtStartDateTime.CustomFormat = "dd/MM/yyyy - ddd";
+            dtEndDateTime.CustomFormat = "dd/MM/yyyy - ddd";
 
             tbCurrentDate.Text = dtStartDateTime.Value.ToString("dd/MM/yyyy - ddd");
         }
+
+        private void SetupStartEndTime()
+        {
+            startTime = dtStartDateTime.Value.ToString("ddMMyyyy");
+            endTime = dtEndDateTime.Value.ToString("ddMMyyyy");
+        }
+        #endregion ON_LOAD
 
 
 
@@ -70,7 +77,6 @@ namespace TimeSprout.Admin.Forms.Summary
             dataGridView1.Columns["Date"].HeaderText = "Date";
             dataGridView1.Columns["id"].HeaderText = "Employee ID";
             dataGridView1.Columns["name"].HeaderText = "Employee Name";
-            dataGridView1.Columns["currentProject"].HeaderText = "Current Project";
             dataGridView1.Columns["workingHour"].HeaderText = "Worked Hour";
             dataGridView1.Columns["overtime"].HeaderText = "Overtime";
         }
@@ -82,7 +88,6 @@ namespace TimeSprout.Admin.Forms.Summary
             summary.Columns.Add("Date", typeof(string));
             summary.Columns.Add("id", typeof(string));
             summary.Columns.Add("name", typeof(string));
-            summary.Columns.Add("currentProject", typeof(string));
             summary.Columns.Add("workingHour", typeof(string));
             summary.Columns.Add("overtime", typeof(string));
 
@@ -91,7 +96,13 @@ namespace TimeSprout.Admin.Forms.Summary
             for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
             {
                 string tableName = $"record_{date:ddMMyyyy}";
-                string query = $"SELECT id AS id, name AS name, currentProject AS CurrentProject, workingHour AS workingHour, overtime AS overtime FROM {tableName};";
+                string query = $"SELECT id AS id, name AS name, workingHour AS workingHour, overtime AS overtime FROM {tableName};";
+
+                string _empId = tbEmpID.Text.Trim();
+                if (!string.IsNullOrEmpty(_empId))
+                {
+                    query = $"SELECT id AS id, name AS name, workingHour AS workingHour, overtime AS overtime FROM {tableName} WHERE id = @id;";
+                }
 
                 using (SQLiteConnection connection = new SQLiteConnection(DBConfig.connectionString))
                 {
@@ -99,6 +110,7 @@ namespace TimeSprout.Admin.Forms.Summary
 
                     using (SQLiteCommand command = new SQLiteCommand(query, connection))
                     {
+                        command.Parameters.AddWithValue("@id", _empId);
                         try
                         {
 
@@ -113,7 +125,6 @@ namespace TimeSprout.Admin.Forms.Summary
                                     newRow["Date"] = date.ToString("dd-MM-yyyy");
                                     newRow["id"] = row["id"].ToString();
                                     newRow["name"] = row["name"].ToString();
-                                    newRow["currentProject"] = row["CurrentProject"].ToString();
                                     newRow["workingHour"] = row["workingHour"].ToString();
                                     newRow["overtime"] = row["overtime"].ToString();
 
@@ -132,64 +143,9 @@ namespace TimeSprout.Admin.Forms.Summary
 
             return summary;
         }
-
-        // HACK: HANDLING CELL CLICK
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-                string date = row.Cells["Date"].Value.ToString().Replace("-", "");
-                string id = row.Cells["id"].Value.ToString();
-
-                // get data
-                TimeRecordModel record = DBTimeRecord.ReadEmployeeTimeRecord(_currentDate: date, _id: id);
-
-                UpdateDeleteTimeRecord updateDeleteTimeRecord = new UpdateDeleteTimeRecord(
-                    _id: record.id,
-                    _name: record.employeeName,
-                    _currentProject: record.currentProject,
-                    _amTimeIn: record.amTimeIn,
-                    _amTimeOut: record.amTimeOut,
-                    _pmTimeIn: record.pmTimeIn,
-                    _pmTimeOut: record.pmTimeOut,
-                    _otTimeIn: record.otTimeIn,
-                    _otTimeOut: record.otTimeOut,
-                    _workinghour: record.workingHour,
-                    _overtime: record.overtime,
-                    _date: date);
-
-                updateDeleteTimeRecord.StartPosition = FormStartPosition.CenterParent;
-                updateDeleteTimeRecord.ShowDialog(this);
-
-                PopulateDataGridViewWithRecordToday(_currentDate);
-            }
-        }
-        #endregion ON_LOAD
         #endregion WithStartEndTime
 
 
-        DateTime _currentDate;
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            //// TODO: ONLY SHOW TIME RECORD ON THAT SPECIFIC DAY
-            //_currentDate = dtStartDateTime.Value;
-            //PopulateDataGridViewWithRecordToday(_currentDate);
-
-            if (dtEndDateTime.Value > dtStartDateTime.Value)
-            {
-                PopulateDataGridView();
-            }
-            else if (dtStartDateTime.Value == dtEndDateTime.Value)
-            {
-                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
-            }
-            else
-            {
-                Console.WriteLine("Invalid. End time must be greater than start time.");
-            }
-        }
 
         #region RecordForToday
         private void PopulateDataGridViewWithRecordToday(DateTime _currentDate)
@@ -224,12 +180,19 @@ namespace TimeSprout.Admin.Forms.Summary
             string tableName = $"record_{formattedDate}";
             string query = $"SELECT id AS id, name AS name, currentProject AS CurrentProject, workingHour AS workingHour, overtime AS overtime FROM {tableName};";
 
+            string _empId = tbEmpID.Text.Trim();
+            if (!string.IsNullOrEmpty(_empId))
+            {
+                query = $"SELECT id AS id, name AS name, currentProject AS CurrentProject, workingHour AS workingHour, overtime AS overtime FROM {tableName} WHERE id = @id;";
+            }
+
             using (SQLiteConnection connection = new SQLiteConnection(DBConfig.connectionString))
             {
                 connection.Open();
 
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@id", _empId);
                     try
                     {
 
@@ -263,6 +226,99 @@ namespace TimeSprout.Admin.Forms.Summary
         }
         #endregion RecordForToday
 
+
+
+
+        #region DataGridView_ClickEvent
+
+        // HACK: HANDLING CELL CLICK
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                string date = row.Cells["Date"].Value.ToString().Replace("-", "");
+                string id = row.Cells["id"].Value.ToString();
+
+                // get data
+                TimeRecordModel record = DBTimeRecord.ReadEmployeeTimeRecord(_currentDate: date, _id: id);
+
+                UpdateDeleteTimeRecord updateDeleteTimeRecord = new UpdateDeleteTimeRecord(
+                    _id: record.id,
+                    _name: record.employeeName,
+                    _currentProject: record.currentProject,
+                    _amTimeIn: record.amTimeIn,
+                    _amTimeOut: record.amTimeOut,
+                    _pmTimeIn: record.pmTimeIn,
+                    _pmTimeOut: record.pmTimeOut,
+                    _otTimeIn: record.otTimeIn,
+                    _otTimeOut: record.otTimeOut,
+                    _workinghour: record.workingHour,
+                    _overtime: record.overtime,
+                    _date: date);
+
+                updateDeleteTimeRecord.StartPosition = FormStartPosition.CenterParent;
+                updateDeleteTimeRecord.ShowDialog(this);
+
+                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
+            }
+        }
+        #endregion DataGridView_ClickEvent
+
+
+
+
+        #region DateTimePicker_ValueChanged
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            SetupStartEndTime();
+            // compare start and end time
+            if (dtEndDateTime.Value > dtStartDateTime.Value)
+            {
+                PopulateDataGridView();
+            }
+            else
+            {
+                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
+            }
+        }
+        private void dbEndDateTime_ValueChanged(object sender, EventArgs e)
+        {
+            SetupStartEndTime();
+            // compare start and end time
+            if (dtEndDateTime.Value > dtStartDateTime.Value)
+            {
+                PopulateDataGridView();
+            }
+            else
+            {
+                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
+            }
+        }
+        #endregion DateTimePicker_ValueChanged
+
+
+
+        #region Search
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SetupStartEndTime();
+            // compare start and end time
+            if (dtEndDateTime.Value > dtStartDateTime.Value)
+            {
+                PopulateDataGridView();
+            }
+            else
+            {
+                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
+            }
+        }
+        #endregion Search
+
+
+
         #region Utils
         private string GetFormattedDate()
         {
@@ -277,7 +333,110 @@ namespace TimeSprout.Admin.Forms.Summary
 
 
         #region Export
+        // export only with the given parameters
         private void btnExport_Click(object sender, EventArgs e)
+        {
+            exportContentOfDataGridView();
+        }
+
+        private void exportContentOfDataGridView()
+        {
+            string _tbEmpId = tbEmpID.Text.Trim();
+            string excelPath = $"..\\{startTime}-{endTime}-{_tbEmpId}_timerecord.xlsx";
+
+            try
+            {
+                var workbook = new XLWorkbook();
+                var worksheet = workbook.Worksheets.Add("Sheet1");
+
+                // Add column headers
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    worksheet.Cell(1, i + 1).Value = dataGridView1.Columns[i].HeaderText;
+                }
+
+                // Add rows
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        worksheet.Cell(i + 2, j + 1).Value = dataGridView1.Rows[i].Cells[j].Value?.ToString();
+                    }
+                }
+
+                workbook.SaveAs(excelPath);
+
+                Console.WriteLine($"Data exported to {excelPath} successfully.");
+                MessageBox.Show("Data exported successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private void exportFromQuery()
+        {
+            string excelPath = $"..\\{startTime}-{endTime}_timerecord.xlsx";
+            DateTime startDateTime = DateTime.ParseExact(startTime, "ddMMyyyy", CultureInfo.InvariantCulture);
+            DateTime endDateTime = DateTime.ParseExact(endTime, "ddMMyyyy", CultureInfo.InvariantCulture);
+
+            try
+            {
+                var workbook = new XLWorkbook();
+
+                using (var connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    string queryTableNames = "SELECT name FROM sqlite_master WHERE type = 'table' AND name LIKE 'record_%'";
+
+                    using (var commandTableNames = new SQLiteCommand(queryTableNames, connection))
+                    {
+                        using (var reader = commandTableNames.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string tableName = reader["name"].ToString();
+                                string datePart = tableName.Replace("record_", "");
+
+                                if (DateTime.TryParseExact(datePart, "ddMMyyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime tableDate))
+                                {
+                                    if (tableDate >= startDateTime && tableDate <= endDateTime)
+                                    {
+                                        string queryData = $"SELECT * FROM {tableName}";  // Replace datetimeColumn with your actual column name
+
+                                        using (var commandData = new SQLiteCommand(queryData, connection))
+                                        {
+                                            using (var adapter = new SQLiteDataAdapter(commandData))
+                                            {
+                                                DataTable dataTable = new DataTable();
+                                                adapter.Fill(dataTable);
+
+                                                workbook.Worksheets.Add(dataTable, tableName);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                workbook.SaveAs(excelPath);
+
+                Console.WriteLine($"Data exported to {excelPath} successfully.");
+                MessageBox.Show("Data exported successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+        // export all
+        private void button1_Click(object sender, EventArgs e)
         {
             string excelPath = $"..\\full_timerecord.xlsx";
 
@@ -326,6 +485,7 @@ namespace TimeSprout.Admin.Forms.Summary
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+
         }
         #endregion Export
 
@@ -366,10 +526,7 @@ namespace TimeSprout.Admin.Forms.Summary
         {
             dragging = false;
         }
-
         #endregion DRAG_AND_DROP_TITLE
-
-
 
         #region TopBar
         private void btnFullScreen_Click(object sender, EventArgs e)
@@ -403,26 +560,6 @@ namespace TimeSprout.Admin.Forms.Summary
         }
         #endregion TopBar
 
-
-
-        #region REfactor
-        private void dbEndDateTime_ValueChanged(object sender, EventArgs e)
-        {
-            // compare start and end time
-            if (dtEndDateTime.Value > dtStartDateTime.Value)
-            {
-                PopulateDataGridView();
-            }
-            else if (dtStartDateTime.Value == dtEndDateTime.Value)
-            {
-                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
-            }
-            else
-            {
-                Console.WriteLine("Invalid. End time must be greater than start time.");
-            }
-        }
-        #endregion Refactor
 
     }
 }
