@@ -31,8 +31,6 @@
             this.employeeFieldsPanel = new System.Windows.Forms.Panel();
             this.tbCurrentProject = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.tbName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,8 +44,6 @@
             this.employeeFieldsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.employeeFieldsPanel.Controls.Add(this.tbCurrentProject);
             this.employeeFieldsPanel.Controls.Add(this.label1);
-            this.employeeFieldsPanel.Controls.Add(this.tbPassword);
-            this.employeeFieldsPanel.Controls.Add(this.label3);
             this.employeeFieldsPanel.Controls.Add(this.btnSave);
             this.employeeFieldsPanel.Controls.Add(this.tbName);
             this.employeeFieldsPanel.Controls.Add(this.label4);
@@ -62,7 +58,7 @@
             // 
             this.tbCurrentProject.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCurrentProject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.tbCurrentProject.Location = new System.Drawing.Point(38, 236);
+            this.tbCurrentProject.Location = new System.Drawing.Point(38, 172);
             this.tbCurrentProject.Name = "tbCurrentProject";
             this.tbCurrentProject.Size = new System.Drawing.Size(228, 30);
             this.tbCurrentProject.TabIndex = 4;
@@ -72,31 +68,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Courier New", 10F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label1.Location = new System.Drawing.Point(35, 216);
+            this.label1.Location = new System.Drawing.Point(35, 152);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(169, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Current Project:";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.tbPassword.Location = new System.Drawing.Point(38, 171);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(228, 30);
-            this.tbPassword.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Courier New", 10F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label3.Location = new System.Drawing.Point(35, 151);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Password:";
             // 
             // btnSave
             // 
@@ -161,7 +137,7 @@
             this.Controls.Add(this.employeeFieldsPanel);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateNewEmployee";
             this.ShowInTaskbar = false;
             this.Text = "CreateNewEmployee";
@@ -176,8 +152,6 @@
         private System.Windows.Forms.Panel employeeFieldsPanel;
         private System.Windows.Forms.TextBox tbCurrentProject;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label4;

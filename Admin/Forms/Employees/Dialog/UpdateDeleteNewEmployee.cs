@@ -6,20 +6,19 @@ namespace TimeSprout.Admin.Forms.Employees.Dialog
 {
     public partial class UpdateDeleteNewEmployee : Form
     {
-        string id, name, password, currentProject;
+        string id, name, currentProject;
 
         public UpdateDeleteNewEmployee()
         {
             InitializeComponent();
         }
 
-        public UpdateDeleteNewEmployee(string _id, string _name, string _password, string _currentProject)
+        public UpdateDeleteNewEmployee(string _id, string _name, string _currentProject)
         {
             InitializeComponent();
 
             id = _id;
             name = _name;
-            password = _password;
             currentProject = _currentProject;
         }
 
@@ -39,7 +38,6 @@ namespace TimeSprout.Admin.Forms.Employees.Dialog
         {
             tbId.Text = id;
             tbName.Text = name;
-            tbPassword.Text = password;
             tbCurrentProject.Text = currentProject;
 
             tbIdDel.Text = id;
@@ -69,7 +67,7 @@ namespace TimeSprout.Admin.Forms.Employees.Dialog
             // TODO: UPDATE ALL RECORDS OF EMPLOYEES ON TIME RECORD TOO
             try
             {
-                if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbPassword.Text) || string.IsNullOrEmpty(tbCurrentProject.Text))
+                if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbCurrentProject.Text))
                 {
                     MessageBox.Show("Please fill in all fields.");
                 }
@@ -79,7 +77,6 @@ namespace TimeSprout.Admin.Forms.Employees.Dialog
                         employee: new Core.Model.EmployeeModel(
                             _id: id,
                             _name: tbName.Text.Trim(),
-                            _password: tbPassword.Text.Trim(),
                             _currentProject: tbCurrentProject.Text.Trim()
                             ));
                     MessageBox.Show(caption: "Update Employee", text: $"Employee: '{id}' updated successfully.");
@@ -93,9 +90,12 @@ namespace TimeSprout.Admin.Forms.Employees.Dialog
 
             }
         }
+
+        private void updatePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
         #endregion ACTION
-
-
 
         #region NAVIGATION
         private void btnUpdateNav_Click(object sender, EventArgs e)

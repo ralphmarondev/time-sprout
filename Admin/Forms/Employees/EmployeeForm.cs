@@ -45,7 +45,6 @@ namespace TimeSprout.Admin.Forms.Employees
 
             dataGridView1.Columns["id"].HeaderText = "Employee ID";
             dataGridView1.Columns["name"].HeaderText = "Employee Name";
-            dataGridView1.Columns["password"].HeaderText = "Password";
             dataGridView1.Columns["currentProject"].HeaderText = "Current Project";
         }
 
@@ -58,13 +57,11 @@ namespace TimeSprout.Admin.Forms.Employees
                 // Extract data from the clicked row
                 string id = row.Cells["id"].Value.ToString();
                 string name = row.Cells["name"].Value.ToString();
-                string password = row.Cells["password"].Value.ToString();
                 string currentProject = row.Cells["currentProject"].Value.ToString();
 
                 UpdateDeleteNewEmployee updateDelete = new UpdateDeleteNewEmployee(
                     _id: id,
                     _name: name,
-                    _password: password,
                     _currentProject: currentProject);
                 updateDelete.StartPosition = FormStartPosition.CenterParent;
                 updateDelete.ShowDialog(this);
@@ -79,12 +76,11 @@ namespace TimeSprout.Admin.Forms.Employees
             // Define the structure of your summary DataTable with all columns as strings
             summary.Columns.Add("id", typeof(string));
             summary.Columns.Add("name", typeof(string));
-            summary.Columns.Add("password", typeof(string));
             summary.Columns.Add("currentProject", typeof(string));
 
             try
             {
-                string selectQuery = "SELECT id AS id, name AS name, password AS password, currentProject AS currentProject FROM employees;";
+                string selectQuery = "SELECT id AS id, name AS name, currentProject AS currentProject FROM employees;";
                 using (SQLiteConnection connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
@@ -101,7 +97,6 @@ namespace TimeSprout.Admin.Forms.Employees
                                 DataRow newRow = summary.NewRow();
                                 newRow["id"] = row["id"].ToString();
                                 newRow["name"] = row["name"].ToString();
-                                newRow["password"] = row["password"].ToString();
                                 newRow["currentProject"] = row["currentProject"].ToString();
 
                                 summary.Rows.Add(newRow);
@@ -157,7 +152,6 @@ namespace TimeSprout.Admin.Forms.Employees
 
             dataGridView1.Columns["id"].HeaderText = "Employee ID";
             dataGridView1.Columns["name"].HeaderText = "Employee Name";
-            dataGridView1.Columns["password"].HeaderText = "Password";
             dataGridView1.Columns["currentProject"].HeaderText = "Current Project";
         }
 
@@ -167,12 +161,11 @@ namespace TimeSprout.Admin.Forms.Employees
             // Define the structure of your summary DataTable with all columns as strings
             summary.Columns.Add("id", typeof(string));
             summary.Columns.Add("name", typeof(string));
-            summary.Columns.Add("password", typeof(string));
             summary.Columns.Add("currentProject", typeof(string));
 
             try
             {
-                string selectQuery = "SELECT id AS id, name AS name, password AS password, currentProject AS currentProject FROM employees WHERE id = @id;";
+                string selectQuery = "SELECT id AS id, name AS name, currentProject AS currentProject FROM employees WHERE id = @id;";
                 using (SQLiteConnection connection = new SQLiteConnection(DBConfig.connectionString))
                 {
                     connection.Open();
@@ -191,7 +184,6 @@ namespace TimeSprout.Admin.Forms.Employees
                                 DataRow newRow = summary.NewRow();
                                 newRow["id"] = row["id"].ToString();
                                 newRow["name"] = row["name"].ToString();
-                                newRow["password"] = row["password"].ToString();
                                 newRow["currentProject"] = row["currentProject"].ToString();
 
                                 summary.Rows.Add(newRow);

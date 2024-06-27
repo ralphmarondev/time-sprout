@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TimeSprout.Admin;
 using TimeSprout.Core.DB;
-using TimeSprout.Employee;
 
 namespace TimeSprout.Auth
 {
@@ -17,40 +16,17 @@ namespace TimeSprout.Auth
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            /*EMPLOYEE
-                ADMIN*/
-            if (tbStatus.Text.Trim() == "ADMIN")
+            if (DBUsers.IsUserExists(username: tbUsername.Text.Trim(), password: tbPassword.Text.Trim()))
             {
-                if (DBUsers.IsUserExists(username: tbUsername.Text.Trim(), password: tbPassword.Text.Trim()))
-                {
-                    Console.WriteLine("Login successfully...");
-                    AdminMainForm adminMainForm = new AdminMainForm(tbUsername.Text.Trim());
+                Console.WriteLine("Login successfully...");
+                AdminMainForm adminMainForm = new AdminMainForm(tbUsername.Text.Trim());
 
-                    adminMainForm.Show();
-                    Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Incorrent Password :)", "Loggin in as Admin.");
-                }
+                adminMainForm.Show();
+                Hide();
             }
             else
             {
-                // GO TO EMPLOYEE FORM
-                // TODO: IMPLEMENT THIS LATER
-                if (DBEmployee.IsEmployeeExists(_id: tbUsername.Text.Trim(), _password: tbPassword.Text.Trim()))
-                {
-                    Console.WriteLine($"Login as [{tbUsername.Text.Trim()}] successfully.");
-
-                    EmployeeMainForm employeeMainForm = new EmployeeMainForm(tbUsername.Text.Trim());
-
-                    employeeMainForm.Show();
-                    Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Incorrent Password :)", "Logging in as Employee.");
-                }
+                MessageBox.Show("Incorrent Password!", "Logging in as Admin.");
             }
         }
 
@@ -92,9 +68,9 @@ namespace TimeSprout.Auth
 
         private void AuthForm_Load(object sender, EventArgs e)
         {
-            tbUsername.Text = "root";
-            tbStatus.Text = "ADMIN";
-            tbPassword.Text = "toor";
+            //tbUsername.Text = "root";
+            //tbStatus.Text = "ADMIN";
+            //tbPassword.Text = "toor";
         }
 
         private void btnTest1_Click(object sender, EventArgs e)

@@ -35,8 +35,6 @@
             this.updatePanel = new System.Windows.Forms.Panel();
             this.tbCurrentProject = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.tbName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -122,8 +120,6 @@
             this.updatePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
             this.updatePanel.Controls.Add(this.tbCurrentProject);
             this.updatePanel.Controls.Add(this.label1);
-            this.updatePanel.Controls.Add(this.tbPassword);
-            this.updatePanel.Controls.Add(this.label3);
             this.updatePanel.Controls.Add(this.btnUpdate);
             this.updatePanel.Controls.Add(this.tbName);
             this.updatePanel.Controls.Add(this.label4);
@@ -134,12 +130,13 @@
             this.updatePanel.Size = new System.Drawing.Size(305, 352);
             this.updatePanel.TabIndex = 7;
             this.updatePanel.Visible = false;
+            this.updatePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.updatePanel_Paint);
             // 
             // tbCurrentProject
             // 
             this.tbCurrentProject.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCurrentProject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.tbCurrentProject.Location = new System.Drawing.Point(38, 236);
+            this.tbCurrentProject.Location = new System.Drawing.Point(38, 176);
             this.tbCurrentProject.Name = "tbCurrentProject";
             this.tbCurrentProject.Size = new System.Drawing.Size(228, 30);
             this.tbCurrentProject.TabIndex = 4;
@@ -149,31 +146,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Courier New", 10F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label1.Location = new System.Drawing.Point(35, 216);
+            this.label1.Location = new System.Drawing.Point(35, 156);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(169, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Current Project:";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.tbPassword.Location = new System.Drawing.Point(38, 171);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(228, 30);
-            this.tbPassword.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Courier New", 10F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label3.Location = new System.Drawing.Point(35, 151);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Password:";
             // 
             // btnUpdate
             // 
@@ -349,8 +326,6 @@
         private System.Windows.Forms.Panel updatePanel;
         private System.Windows.Forms.TextBox tbCurrentProject;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label4;

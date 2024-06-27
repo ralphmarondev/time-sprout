@@ -89,8 +89,6 @@
             this.fieldsPanel.Controls.Add(this.btnLogin);
             this.fieldsPanel.Controls.Add(this.tbPassword);
             this.fieldsPanel.Controls.Add(this.label4);
-            this.fieldsPanel.Controls.Add(this.label3);
-            this.fieldsPanel.Controls.Add(this.tbStatus);
             this.fieldsPanel.Controls.Add(this.tbUsername);
             this.fieldsPanel.Controls.Add(this.label2);
             this.fieldsPanel.Location = new System.Drawing.Point(66, 152);
@@ -117,7 +115,7 @@
             // 
             this.tbPassword.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.tbPassword.Location = new System.Drawing.Point(38, 180);
+            this.tbPassword.Location = new System.Drawing.Point(37, 114);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(228, 30);
             this.tbPassword.TabIndex = 3;
@@ -127,7 +125,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Courier New", 10F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label4.Location = new System.Drawing.Point(35, 157);
+            this.label4.Location = new System.Drawing.Point(34, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 20);
             this.label4.TabIndex = 4;
@@ -138,11 +136,12 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Courier New", 10F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(27)))), ((int)(((byte)(154)))));
-            this.label3.Location = new System.Drawing.Point(35, 87);
+            this.label3.Location = new System.Drawing.Point(448, 215);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Status:";
+            this.label3.Visible = false;
             // 
             // tbStatus
             // 
@@ -152,11 +151,12 @@
             this.tbStatus.Items.AddRange(new object[] {
             "EMPLOYEE",
             "ADMIN"});
-            this.tbStatus.Location = new System.Drawing.Point(38, 110);
+            this.tbStatus.Location = new System.Drawing.Point(451, 238);
             this.tbStatus.Name = "tbStatus";
             this.tbStatus.Size = new System.Drawing.Size(228, 30);
             this.tbStatus.TabIndex = 2;
             this.tbStatus.Text = "EMPLOYEE";
+            this.tbStatus.Visible = false;
             this.tbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbStatus_KeyPress);
             // 
             // tbUsername
@@ -187,6 +187,7 @@
             this.btnTest1.TabIndex = 4;
             this.btnTest1.Text = "test1";
             this.btnTest1.UseVisualStyleBackColor = true;
+            this.btnTest1.Visible = false;
             this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
             // 
             // btnTest2
@@ -197,6 +198,7 @@
             this.btnTest2.TabIndex = 5;
             this.btnTest2.Text = "test2";
             this.btnTest2.UseVisualStyleBackColor = true;
+            this.btnTest2.Visible = false;
             this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
             // btnroot
@@ -207,6 +209,7 @@
             this.btnroot.TabIndex = 6;
             this.btnroot.Text = "root";
             this.btnroot.UseVisualStyleBackColor = true;
+            this.btnroot.Visible = false;
             this.btnroot.Click += new System.EventHandler(this.btnroot_Click);
             // 
             // AuthForm
@@ -217,6 +220,8 @@
             this.Controls.Add(this.btnroot);
             this.Controls.Add(this.btnTest2);
             this.Controls.Add(this.btnTest1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbStatus);
             this.Controls.Add(this.fieldsPanel);
             this.Controls.Add(this.titlePanel);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -232,6 +237,7 @@
             this.fieldsPanel.ResumeLayout(false);
             this.fieldsPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

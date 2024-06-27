@@ -94,7 +94,6 @@
             this.panelTitle.Controls.Add(this.btnLogout2);
             this.panelTitle.Controls.Add(this.btnEmployeeInfo);
             this.panelTitle.Controls.Add(this.lblEmployeeName);
-            this.panelTitle.Controls.Add(this.tbCurrentDate);
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
             this.panelTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -111,11 +110,11 @@
             this.dateTimePicker2.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.dateTimePicker2.Location = new System.Drawing.Point(261, 18);
+            this.dateTimePicker2.Location = new System.Drawing.Point(27, 18);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(143, 30);
+            this.dateTimePicker2.Size = new System.Drawing.Size(212, 30);
             this.dateTimePicker2.TabIndex = 7;
-            this.dateTimePicker2.Visible = false;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // btnFullScreen
             // 
@@ -206,11 +205,12 @@
             // tbCurrentDate
             // 
             this.tbCurrentDate.BackColor = System.Drawing.SystemColors.Window;
-            this.tbCurrentDate.Location = new System.Drawing.Point(16, 20);
+            this.tbCurrentDate.Location = new System.Drawing.Point(609, 118);
             this.tbCurrentDate.Name = "tbCurrentDate";
             this.tbCurrentDate.ReadOnly = true;
             this.tbCurrentDate.Size = new System.Drawing.Size(223, 30);
             this.tbCurrentDate.TabIndex = 8;
+            this.tbCurrentDate.Visible = false;
             // 
             // fieldsPanel
             // 
@@ -635,6 +635,7 @@
             this.Controls.Add(this.panelDialog);
             this.Controls.Add(this.fieldsPanel);
             this.Controls.Add(this.panelTitle);
+            this.Controls.Add(this.tbCurrentDate);
             this.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Purple;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -667,6 +668,7 @@
             this.panelDialog.ResumeLayout(false);
             this.panelDialog.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

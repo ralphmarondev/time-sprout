@@ -15,10 +15,9 @@ namespace TimeSprout.Admin.Forms.Employees.Dialog
         {
             string id = tbId.Text.Trim();
             string name = tbName.Text.Trim();
-            string password = tbPassword.Text.Trim();
             string currentProject = tbCurrentProject.Text.Trim();
 
-            if (id == string.Empty || name == string.Empty || password == string.Empty || currentProject == string.Empty)
+            if (id == string.Empty || name == string.Empty || currentProject == string.Empty)
             {
                 MessageBox.Show("Please fill in all fields.");
             }
@@ -30,7 +29,6 @@ namespace TimeSprout.Admin.Forms.Employees.Dialog
                         new Core.Model.EmployeeModel(
                             _id: id,
                             _name: name,
-                            _password: password,
                             _currentProject: currentProject
                             ));
                     MessageBox.Show("Saved.");

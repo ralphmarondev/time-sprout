@@ -26,6 +26,14 @@ namespace TimeSprout.Admin.Forms.TimeRecord
         }
 
 
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Changin datetime picker value.");
+            currentDate = GetFormattedDate();
+            GetRecordForThisDay();
+        }
+
+
         #region ONLOAD
         private void SetEmployeeInformation()
         {
@@ -107,6 +115,15 @@ namespace TimeSprout.Admin.Forms.TimeRecord
             }
             else
             {
+                string initial = "00:00";
+                tbAmTimeIn.Text = initial;
+                tbAmTimeOut.Text = initial;
+                tbPmTimeIn.Text = initial;
+                tbPmTimeOut.Text = initial;
+                tbOtTimeIn.Text = initial;
+                tbOtTimeOut.Text = initial;
+                lblWorkedHour.Text = initial;
+                lblOvertime.Text = initial;
                 Console.WriteLine($"Record for currentDate: {currentDate} does not exist.");
             }
         }
