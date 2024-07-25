@@ -346,6 +346,7 @@
     <Content Include="Resources\icons8-menu-50.png" />
     <None Include="Resources\icons8-shutdown-64.png" />
     <None Include="Resources\icons8-test-account-80.png" />
+    <Content Include="SETUP.txt" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
