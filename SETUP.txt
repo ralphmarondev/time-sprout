@@ -1,18 +1,4 @@
-# time-sprout
-Daily time record written in C# using winforms library and sqlite database
-- it is an stand alone software that can be used in taking and storing daily time record of employees.
-
-
-# CORRECTIONS
-- only one user [admin]
-- can add, update, delete employee details
-- summary must show data within startDate and endDate 
-- summary must show accumulated total work hour and overtime within the given range
-- admin must be able to insert time record for specific day.
-
-
-## BRIEF MANUAL
-# SETUP:
+SETUP:
 1. EXTRACT THE DOWNLOADED .ZIP FILE
 2. GO INSIDE THE [RELEASE] FOLDER
 3. RUN [TIMESPROUT.EXE] FILE
@@ -20,13 +6,13 @@ Daily time record written in C# using winforms library and sqlite database
 5. YOU'VE START THE APP SUCCESSFULLY.
 
 
-# CREATE SHORTCUT [OPTIONAL]:
+CREATE SHORTCUT [OPTIONAL]:
 1. RIGHT CLICK [TIMESPROUT.EXE] FILE
 2. CREATE SHORT CUT
 3. MOVE IT TO ANY DESIRED LOCATION [RECOMMENDED: DESKTOP]
 
 
-# DEFAULT CREDENTAILS:
+DEFAULT CREDENTAILS:
 username: root
 password: toor
 
@@ -35,32 +21,29 @@ password: toor
 CREATE EMPLOYEE:
 1. NAVIGATE TO EMPLOYEE
 2. ADD EMPLOYEE
-3. DONE
 
 
-# CREATE TIME IN - OUT
+CREATE TIME IN - OUT
 1. NAVIGATE TO TIME IN/OUT
 2. ENTER EMPLOYEE ID
 3. PRESS OKAY
 4. TIME IN AND OUT
 5. PRESS SAVE TO SAVE THE RECORD
-6. DONE
 
 
-# VIEW SUMMARY
+VIEW SUMMARY
 1. NAVIGATE TO SUMMARY
 2. YOU CAN VIEW SUMMARY OF EMPLOYEE BY CHANGING START DATE AND END DATE
 3. USE THE SEARCH FIELD TO FILTER A CERTAIN EMPLOYEE
-4. DONE
 
 
-# EXPORT ALL RECORDS
+EXPORT ALL RECORDS
 1. NAVIGATE TO SUMMARY
 2. PRESS [EXPORT ALL]
 3. DONE
 
 
-# EXPORT CERTAIN RECORD
+EXPORT CERTAIN RECORD
 1. NAVIGATE TO SUMAMRY
 2. CHANGE START DATE AND END DATE TO A DESIRED DATE
 3. ENTER EMPLOYEE ID AND PRESS SEARCH TO ONLY SHOW THAT EMPLOYEE
@@ -68,8 +51,8 @@ CREATE EMPLOYEE:
 5. DONE
 
 
-# USERS
+USERS
 1. NAVIGATE TO USERS
 2. YOU CAN CHANGE THE FULL NAME AND PASSWORD OF ADMIN
-3. DONE
+
 

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using TimeSprout.Admin.Forms.TimeRecord.Dialog;
 using TimeSprout.Core.DB;
@@ -71,17 +72,17 @@ namespace TimeSprout.Admin.Forms.Summary
             //DateTime startDate = new DateTime(2024, 6, 14);
             //DateTime endDate = DateTime.Now;
             Console.WriteLine($"Populating datagridview from: {dtStartDateTime.Value} to {dtEndDateTime.Value}");
-            DataTable summaryData = GetSummaryData(startDate: dtStartDateTime.Value, endDate: dtEndDateTime.Value);
+            DataTable summaryData = GetSummaryData1(startDate: dtStartDateTime.Value, endDate: dtEndDateTime.Value);
             dataGridView1.DataSource = summaryData;
 
-            dataGridView1.Columns["Date"].HeaderText = "Date";
+            //dataGridView1.Columns["Date"].HeaderText = "Date";
             dataGridView1.Columns["id"].HeaderText = "Employee ID";
             dataGridView1.Columns["name"].HeaderText = "Employee Name";
             dataGridView1.Columns["workingHour"].HeaderText = "Worked Hour";
             dataGridView1.Columns["overtime"].HeaderText = "Overtime";
         }
 
-        private DataTable GetSummaryData(DateTime startDate, DateTime endDate)
+        private DataTable GetSummaryData_old(DateTime startDate, DateTime endDate)
         {
             DataTable summary = new DataTable();
             // Define the structure of your summary DataTable with all columns as strings
@@ -146,6 +147,145 @@ namespace TimeSprout.Admin.Forms.Summary
         #endregion WithStartEndTime
 
 
+        #region populate_version1
+
+        private DataTable GetSummaryData1(DateTime startDate, DateTime endDate)
+        {
+            DataTable summary = new DataTable();
+            // Define the structure of your summary DataTable with all columns as strings
+            //summary.Columns.Add("Date", typeof(string));
+            summary.Columns.Add("id", typeof(string));
+            summary.Columns.Add("name", typeof(string));
+            summary.Columns.Add("workingHour", typeof(string));
+            summary.Columns.Add("overtime", typeof(string));
+
+            Console.WriteLine($"From: {startDate} to {endDate}");
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                string tableName = $"record_{date:ddMMyyyy}";
+                string query = $"SELECT id AS id, name AS name, workingHour AS workingHour, overtime AS overtime FROM {tableName};";
+
+                string _empId = tbEmpID.Text.Trim();
+                if (!string.IsNullOrEmpty(_empId))
+                {
+                    query = $"SELECT id AS id, name AS name, workingHour AS workingHour, overtime AS overtime FROM {tableName} WHERE id = @id;";
+                }
+
+                using (SQLiteConnection connection = new SQLiteConnection(DBConfig.connectionString))
+                {
+                    connection.Open();
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", _empId);
+                        try
+                        {
+                            using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
+                            {
+                                DataTable dailyDataTable = new DataTable();
+                                adapter.Fill(dailyDataTable);
+
+                                foreach (DataRow row in dailyDataTable.Rows)
+                                {
+                                    string id = row["id"].ToString();
+                                    string name = row["name"].ToString();
+                                    string workingHour = row["workingHour"].ToString(); // Original format "hour:minute"
+                                    string overtime = row["overtime"].ToString(); // Original format "hour:minute"
+
+                                    // Parse original values for workingHour
+                                    string[] workingParts = workingHour.Split(':');
+                                    int originalWorkingHours = int.Parse(workingParts[0]);
+                                    int originalWorkingMinutes = int.Parse(workingParts[1]);
+
+                                    // Parse original values for overtime
+                                    string[] overtimeParts = overtime.Split(':');
+                                    int originalOvertimeHours = int.Parse(overtimeParts[0]);
+                                    int originalOvertimeMinutes = int.Parse(overtimeParts[1]);
+
+                                    // Calculate new total hours and minutes
+                                    int totalHours = originalWorkingHours + originalOvertimeHours;
+                                    int totalMinutes = originalWorkingMinutes + originalOvertimeMinutes;
+
+                                    // Normalize minutes if they exceed 60
+                                    if (totalMinutes >= 60)
+                                    {
+                                        totalHours += totalMinutes / 60;
+                                        totalMinutes %= 60;
+                                    }
+
+                                    // Format back to "hour:minute" format for workingHour
+                                    string totalFormatted = $"{totalHours}:{totalMinutes:D2}";
+
+                                    // Check if the ID already exists in summary DataTable
+                                    DataRow existingRow = summary.AsEnumerable().FirstOrDefault(r => r.Field<string>("id") == id);
+
+                                    if (existingRow != null)
+                                    {
+                                        // Update existing row with summed values
+                                        string existingWorkingHour = existingRow["workingHour"].ToString();
+                                        string existingOvertime = existingRow["overtime"].ToString();
+
+                                        // Parse existing values for workingHour
+                                        string[] existingWorkingParts = existingWorkingHour.Split(':');
+                                        int existingWorkingHours = int.Parse(existingWorkingParts[0]);
+                                        int existingWorkingMinutes = int.Parse(existingWorkingParts[1]);
+
+                                        // Parse existing values for overtime
+                                        string[] existingOvertimeParts = existingOvertime.Split(':');
+                                        int existingOvertimeHours = int.Parse(existingOvertimeParts[0]);
+                                        int existingOvertimeMinutes = int.Parse(existingOvertimeParts[1]);
+
+                                        // Calculate updated total hours and minutes
+                                        int updatedHours = existingWorkingHours + totalHours;
+                                        int updatedMinutes = existingWorkingMinutes + totalMinutes;
+
+                                        // Normalize minutes again if they exceed 60
+                                        if (updatedMinutes >= 60)
+                                        {
+                                            updatedHours += updatedMinutes / 60;
+                                            updatedMinutes %= 60;
+                                        }
+
+                                        // Update existing row with aggregated values
+                                        existingRow["workingHour"] = $"{updatedHours}:{updatedMinutes:D2}";
+                                    }
+                                    else
+                                    {
+                                        // Add new row to summary DataTable
+                                        DataRow newRow = summary.NewRow();
+                                        //newRow["Date"] = date.ToString("dd-MM-yyyy");
+                                        newRow["id"] = id;
+                                        newRow["name"] = name;
+                                        newRow["workingHour"] = $"{totalHours}:{totalMinutes:D2}";
+                                        newRow["overtime"] = $"{originalOvertimeHours}:{originalOvertimeMinutes:D2}"; // Ensure overtime is properly formatted
+                                        summary.Rows.Add(newRow);
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error accessing table {tableName}: {ex.Message}");
+                        }
+                    }
+                }
+            }
+
+            return summary;
+        }
+
+        private class UserSummary
+        {
+            public string Name { get; set; }
+            public double TotalWorkedHours { get; set; }
+            public double TotalOvertime { get; set; }
+        }
+
+        #endregion
+
+
+
 
         #region RecordForToday
         private void PopulateDataGridViewWithRecordToday(DateTime _currentDate)
@@ -155,7 +295,7 @@ namespace TimeSprout.Admin.Forms.Summary
             DataTable summaryData = GetSummaryDataWithRecordToday(_currentDate: _currentDate);
             dataGridView1.DataSource = summaryData;
 
-            dataGridView1.Columns["Date"].HeaderText = "Date";
+            //dataGridView1.Columns["Date"].HeaderText = "Date";
             dataGridView1.Columns["id"].HeaderText = "Employee ID";
             dataGridView1.Columns["name"].HeaderText = "Employee Name";
             dataGridView1.Columns["currentProject"].HeaderText = "Current Project";
@@ -167,7 +307,7 @@ namespace TimeSprout.Admin.Forms.Summary
         {
             DataTable summary = new DataTable();
             // Define the structure of your summary DataTable with all columns as strings
-            summary.Columns.Add("Date", typeof(string));
+            //summary.Columns.Add("Date", typeof(string));
             summary.Columns.Add("id", typeof(string));
             summary.Columns.Add("name", typeof(string));
             summary.Columns.Add("currentProject", typeof(string));
@@ -204,7 +344,7 @@ namespace TimeSprout.Admin.Forms.Summary
                             foreach (DataRow row in dailyDataTable.Rows)
                             {
                                 DataRow newRow = summary.NewRow();
-                                newRow["Date"] = _currentDate.ToString("dd-MM-yyyy");
+                                //newRow["Date"] = _currentDate.ToString("dd-MM-yyyy");
                                 newRow["id"] = row["id"].ToString();
                                 newRow["name"] = row["name"].ToString();
                                 newRow["currentProject"] = row["CurrentProject"].ToString();
@@ -236,33 +376,37 @@ namespace TimeSprout.Admin.Forms.Summary
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-                string date = row.Cells["Date"].Value.ToString().Replace("-", "");
-                string id = row.Cells["id"].Value.ToString();
-
-                // get data
-                TimeRecordModel record = DBTimeRecord.ReadEmployeeTimeRecord(_currentDate: date, _id: id);
-
-                UpdateDeleteTimeRecord updateDeleteTimeRecord = new UpdateDeleteTimeRecord(
-                    _id: record.id,
-                    _name: record.employeeName,
-                    _currentProject: record.currentProject,
-                    _amTimeIn: record.amTimeIn,
-                    _amTimeOut: record.amTimeOut,
-                    _pmTimeIn: record.pmTimeIn,
-                    _pmTimeOut: record.pmTimeOut,
-                    _otTimeIn: record.otTimeIn,
-                    _otTimeOut: record.otTimeOut,
-                    _workinghour: record.workingHour,
-                    _overtime: record.overtime,
-                    _date: date);
-
-                updateDeleteTimeRecord.StartPosition = FormStartPosition.CenterParent;
-                updateDeleteTimeRecord.ShowDialog(this);
-
-                PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
+                // disabled this functionality
             }
+        }
+        private void clickEvent()
+        {
+            DataGridViewRow row = dataGridView1.Rows[0];//e.RowIndex
+
+            string date = row.Cells["Date"].Value.ToString().Replace("-", "");
+            string id = row.Cells["id"].Value.ToString();
+
+            // get data
+            TimeRecordModel record = DBTimeRecord.ReadEmployeeTimeRecord(_currentDate: date, _id: id);
+
+            UpdateDeleteTimeRecord updateDeleteTimeRecord = new UpdateDeleteTimeRecord(
+                _id: record.id,
+                _name: record.employeeName,
+                _currentProject: record.currentProject,
+                _amTimeIn: record.amTimeIn,
+                _amTimeOut: record.amTimeOut,
+                _pmTimeIn: record.pmTimeIn,
+                _pmTimeOut: record.pmTimeOut,
+                _otTimeIn: record.otTimeIn,
+                _otTimeOut: record.otTimeOut,
+                _workinghour: record.workingHour,
+                _overtime: record.overtime,
+                _date: date);
+
+            updateDeleteTimeRecord.StartPosition = FormStartPosition.CenterParent;
+            updateDeleteTimeRecord.ShowDialog(this);
+
+            PopulateDataGridViewWithRecordToday(dtStartDateTime.Value);
         }
         #endregion DataGridView_ClickEvent
 
@@ -273,6 +417,8 @@ namespace TimeSprout.Admin.Forms.Summary
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
+            dtEndDateTime.Value = dtStartDateTime.Value;
+
             SetupStartEndTime();
             // compare start and end time
             if (dtEndDateTime.Value > dtStartDateTime.Value)
@@ -347,7 +493,7 @@ namespace TimeSprout.Admin.Forms.Summary
             try
             {
                 var workbook = new XLWorkbook();
-                var worksheet = workbook.Worksheets.Add("Sheet1");
+                var worksheet = workbook.Worksheets.Add($"{startTime}-to-{endTime}");
 
                 // Add column headers
                 for (int i = 0; i < dataGridView1.Columns.Count; i++)
